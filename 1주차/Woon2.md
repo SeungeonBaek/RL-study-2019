@@ -37,7 +37,7 @@ Value function의 정의에서, value function은 다음과 같이 풀어 쓸 �
 그렇게 되면, v(s)라는 값은 다음과 같이, s에서 선택할 수 있는 모든 a 에 대해
 𝜋(𝑎│𝑠) * q(s,a) 합한 것과 같다고 할 수 있습니다.
 
-####𝑣_𝜋 (𝑠) = (모든 𝑎∈𝐴에 대해) ∑〖𝜋(𝑎│𝑠) * 𝑞_𝜋 (𝑠,𝑎)〗
+####𝑣_𝜋 (𝑠) = {a∈𝐴} ∑〖𝜋(𝑎│𝑠) * 𝑞_𝜋 (𝑠,𝑎)〗
 
 ==================================================================
 
@@ -109,3 +109,5 @@ optimal policy는 (s,a)에서 action-value function이 가장 높은 action만�
 deterministic하다고 할 수 있습니다.
 
 An optimal policy can be found by maximising over q_*(s,a)
+
+####𝜋_* (a|s) = 1 (if a = argmax q_*(s,a) ) or 0 (if otherwise)
