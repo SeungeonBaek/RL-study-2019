@@ -33,3 +33,7 @@ Value function의 정의에서, value function은 다음과 같이 풀어 쓸 �
 
 현재 state의 value function과 다음 state의 value function의 상관관계 식을
 구하려면 그 사이에 있는 state-action pair에 대해서 그 관계를 나눠볼 필요가 있습니다.
+
+𝑣_𝜋 (𝑠) = (모든 𝑎∈𝐴에 대해) ∑〖𝜋(𝑎│𝑠) 𝑞_𝜋 (𝑠,𝑎)〗
+
+𝑞_𝜋 (𝑠,𝑎)=𝑅(𝑠,𝑎) + (모든 𝑠′∈𝑆에 대해) 𝛾∗∑〖𝑃(𝑠𝑠^′,𝑎)∗𝑣_𝜋 (𝑠^′)〗
