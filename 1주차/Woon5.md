@@ -47,7 +47,9 @@
 
   - Policy evaluation
 
-  Policy evaluation은 perediction 문제를 푸는 것이다.
+  Policy evaluation은 perediction 문제를 푸는 것으로서 현재 주어진 policy에 대한 true value function을 구하는 것이고, Bellman equation을 사용 한다.
+
+  현재 policy를 가지고 true value function을 구하는 것은 one-step backup으로 구합니다.
 
     > Problem : evaluate a given policy 𝜋
       - Solution : iterative application of Bellman expectation backup
