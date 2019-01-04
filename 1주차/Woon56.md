@@ -17,7 +17,15 @@
   또한 Dynamic programming을 다음과 같이 정의하고 있습니다.
     > The term dynamic programming (DP) refers to a collection of algorithm that can be used to compute optimal policies given a perfect model of the environment as a Markov decision process (MDP)
 
+
 1.Policy iteration
+
+  - Planning vs Learning
+
+  Planning과 Learning의 차이를 먼저 알아보도록 하겠습니다.
+  Planning이란 environment의 model을 알고서 문제를 푸는 것이고, Learning이란 environment의 model을 모르지만 상호작용을 통해서 문제를 푸는 것을 말합니다.
+
+  Dynamic programming은 planning으로서 Environment의 model(reward, state transition matrix)에 대해서 안다는 전제에서, Bellman equation을 통해 문제를 푸는 방법을 말합니다.
 
 
 ==================================================================
