@@ -47,14 +47,14 @@
 
   - Policy evaluation
 
-    > - Problem : evaluate a given policy 𝜋
+    > Problem : evaluate a given policy 𝜋
       - Solution : iterative application of Bellman expectation backup
       - v_1 -> v_2 -> ... -> v_𝜋
       - Using synchronous backup,
-          At each iteration k+1
-          For all states
-          Update v_k+1(s) from v_k(s')
-          where s' is a successor state of s
+        At each iteration k+1
+        For all states
+        Update v_k+1(s) from v_k(s')
+        where s' is a successor state of s
 
   Policy evaluation은 perediction 문제를
 
