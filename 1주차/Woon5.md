@@ -49,11 +49,12 @@
   - Policy evaluation
 
     > Problem : evaluate a given policy 𝜋
+
       - Solution : iterative application of Bellman expectation backup
 
       - v_1 -> v_2 -> ... -> v_𝜋
 
-      - Using synchronous backup,
+      - Using synchronous backup
           At each iteration k+1
           For all states
           Update v_k+1(s) from v_k(s')
