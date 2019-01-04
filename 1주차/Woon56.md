@@ -15,6 +15,8 @@
   각각의 방법들은 효율과 수렴속도 측면에서 여러가지 차이가 있습니다.
 
   또한 Dynamic programming을 다음과 같이 정의하고 있습니다.
+    > The term dynamic programming (DP) refers to a collection of algorithm that can be used to compute optimal policies given a perfect model of the environment as a Markov decision process (MDP)
+
 
 1.Policy iteration
 
