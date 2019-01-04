@@ -104,7 +104,7 @@
 
       - DP is effective for medium-sized problems (millions of states)
 
-      - For large problems DP suffers Bellman's __curse of dimensionality__ 
+      - For large problems DP suffers Bellman's curse of dimensionality
 
       - Even one backup can be too expensive
 
