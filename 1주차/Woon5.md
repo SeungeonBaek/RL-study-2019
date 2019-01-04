@@ -64,9 +64,14 @@
 
   𝑣_(𝑘+1)(𝑠) = {𝑎 ∈ 𝐴} ∑〖𝜋(𝑎│𝑠) ∗ (𝑅(𝑠,𝑎) + 𝛾 ∗ {𝑠 ∈ 𝑆} Σ P(ss′,a) ∗ v_k(s′)〗
 
-  현재 상태의 value function을 update하는데 reward와 next state들의 value function을 사용하는 것입니다. 전체 MDP의 모든 state에 대해서 동시에 한 번씩 Bellman equation을 계산해서 update 함으로서 k가 하나씩 올라가게 됩니다. 차례차례 state별로 구하는 것이 아니고, 한 번에 계산해서 한 번에 value function을 update합니다. 이 Policy evalutation과정을 예를 들어서 설명해 보겠습니다.
+  현재 상태의 value function을 update하는데 reward와 next state들의 value function을 사용하는 것입니다. 전체 MDP의 모든 state에 대해서 동시에 한 번씩 Bellman equation을 계산해서 update 함으로서 k가 하나씩 올라가게 됩니다. 차례차례 state별로 구하는 것이 아니고, 한 번에 계산해서 한 번에 value function을 update합니다.
 
-  
+  - Policy improvement
 
+  해당 policy에 대한 참 값을 얻었으면, 이제 policy를 더 나은 policy로 update 해 주어야 합니다. 그래야 점점 optimal policy에 가까워질 것입니다.
+  그러한 과정을 policy improvement라고 합니다. improve하는 방법으로는 greedy improvement가 있습니다. 다음 state중에서 가장 높은 value function을 가진 state로 가는 것입니다. 즉, max를 취하는 것입니다. (argmax)
+
+    > Improve the policy by acting greedily with respect to v_𝜋
+      𝜋' = greedy(v_𝜋)
 
 ***
