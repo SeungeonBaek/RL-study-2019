@@ -74,4 +74,14 @@
     > Improve the policy by acting greedily with respect to v_𝜋
       𝜋' = greedy(v_𝜋)
 
+  위와 같이 evaluation을 통해 구한 value function을 토대로 여러 번 improve를 하게되면 optimal policy를 구할 수 있습니다. 이러한 반복되는 과정을 Policy iteration이라고 합니다.
+
 ***
+
+## 2.Value iteration
+
+  Value iteration이 Policy iteration과 다른 점은 Bellman Expectation equation이 아니고, Bellman Optimality equation을 사용한다는 것입니다. Bellman Optimality equation은 optimal value function들 사이의 관계 식입니다.
+
+  Value iteration의 구현은 단순히 이 관계식을 itrative하게 변환시켜주면 됩니다.
+
+  Policy itration의 경우에는 evaluation할 때 수많은 계산을 해줘야 하는 단점이 있었는데, 그 evaluation을 단 한 번만 하는 것이 value iteration입니다. 따라서 현재 value function을 계산하고 update할 때 max를 취함으로서 greedy하게 improve하는 효과를 줍니다. 따라서 한 번의 evaluation + improvement = value iteration이 됩니다.
