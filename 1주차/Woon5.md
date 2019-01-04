@@ -45,4 +45,19 @@
 
   Prediction이란 현재 optimal 하지 않은 어떤 policy에 대해서 value function을 구하는 과정이며, 현재의 value function을 토대로 더 나은 policy를 구하고 이와같은 과정을 반복하여 optimal policy를 구하는 것입니다.
 
+  - Policy evaluation
+
+    > - Problem : evaluate a given policy 𝜋
+    - Solution : iterative application of Bellman expectation backup
+    - v_1 -> v_2 -> ... -> v_𝜋
+    - Using synchronous backup,
+      At each iteration k+1
+      For all states
+      Update v_k+1(s) from v_k(s')
+      where s' is a successor state of s
+
+  Policy evaluation은 perediction 문제를 
+
+
+
 ***
