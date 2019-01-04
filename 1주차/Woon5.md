@@ -18,7 +18,7 @@
     > The term dynamic programming (DP) refers to a collection of algorithm that can be used to compute optimal policies given a perfect model of the environment as a Markov decision process (MDP)
 
 
-1.Policy iteration
+## 1.Policy iteration
 
   - Planning vs Learning
 
