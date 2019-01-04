@@ -1,5 +1,7 @@
 /*이웅원님 Git*/
 
+# Introduction & MDP
+
 1. Markov Decision Process
 
   Environment의 response인 R_t+1과 S_t+1이
