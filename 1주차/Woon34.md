@@ -2,7 +2,7 @@
 
 # Bellman Equation
 
-1. Bellman Equation
+## 1. Bellman Equation
 
   Bellman Equation은 Dynamic programming의 기반이 되는 방정식 입니다.
 
