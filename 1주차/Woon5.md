@@ -88,7 +88,7 @@
 
     > 𝑣_(𝑘+1)(𝑠) = {𝑎 ∈ 𝐴} max⁡〖( 𝑅(𝑠,𝑎) + 𝛾 ∗ {s ∈ S} Σ (𝑃(𝑠𝑠′,𝑎) ∗ 𝑣_𝑘(𝑠′)〗
 
-  - Sample Backup
+## 3. Sample Backup
 
   처음에 언급했다 시피 DP는 MDP 에 대한 정보를 다 가지고 있어야 optimal policy를 구할 수 있습니다. 또한 DP는 full-width backup(한 번 update할 때 가능한 모든 successor state의 value function을 통해 update하는 방법)을 사용하고 있기 때문에 단 한번의 backup을 하는 데도 많은 계산을 해야합니다.
 
@@ -96,4 +96,4 @@
 
   이때 등장하는 개념이 Sample backup입니다. 즉, 모든 가능한 successor state와 action을 고려하는 것이 아니고, Sampling을 통해서 한 길만 가보고 그 정보를 토대로 value function을 업데이트 한다는 것입니다.
 
-  이렇게 할 경우, 계산이 효율적이라는 장점도 있지만, "Model-free"가 가능하다는 특징이 있습니다. 즉, DP의 방법대로 optimal 한 해를 찾으려면 매 iteration마다 Reward function과 state transition matrix를 알아야 하는데 sample backup의 경우에는 아래 그림과 같이 <S, A, R, S'>을 training set으로 실제 나온 reward와 
+  이렇게 할 경우, 계산이 효율적이라는 장점도 있지만, "Model-free"가 가능하다는 특징이 있습니다. 즉, DP의 방법대로 optimal 한 해를 찾으려면 매 iteration마다 Reward function과 state transition matrix를 알아야 하는데 sample backup의 경우에는 아래 그림과 같이 <S, A, R, S'>을 training set으로 실제 나온 reward와
