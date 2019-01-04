@@ -1,4 +1,4 @@
-##/*이웅원님 Git*/
+/*이웅원님 Git*/
 
 1. Markov Decision Process
 
