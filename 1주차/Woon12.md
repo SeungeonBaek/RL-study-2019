@@ -36,9 +36,9 @@
 
     > v(s) = E[G_t | S_t = s]
 
-    즉, 어떤 상태 s의 가치입니다. value function을 구하는 방법의 하나의 예를 들어보면, 마치 주사위를 던져 보듯이 계속 그 state로부터 시작되거나, 그 state를 지나가는 episode를 try해보면서 얻어진 reward들에 대한 data들로 그 value function에 점점 다가갈 수 있습니다.
+  즉, 어떤 상태 s의 가치입니다. value function을 구하는 방법의 하나의 예를 들어보면, 마치 주사위를 던져 보듯이 계속 그 state로부터 시작되거나, 그 state를 지나가는 episode를 try해보면서 얻어진 reward들에 대한 data들로 그 value function에 점점 다가갈 수 있습니다.
 
-    대부분 강화학습의 알고리즘에서는 value function을 얼마나 잘 계산하느냐가 중요한 역할을 하고 있습니다. "잘"이라는 의미에는 bias되지 않고, variance가 낮으며, true값에 가까우며 빠른 시간안에 수렴하는 것을 의미합니다.
+  대부분 강화학습의 알고리즘에서는 value function을 얼마나 잘 계산하느냐가 중요한 역할을 하고 있습니다. "잘"이라는 의미에는 bias되지 않고, variance가 낮으며, true값에 가까우며 빠른 시간안에 수렴하는 것을 의미합니다.
 
 
   - Action-Value Function
@@ -57,7 +57,7 @@
 
     > 'q(s,a) = E[G_t | S_t = s, A_t = a]'
 
-    이는 어떤 state s 에서 action a를 취할 경우의 받을 return에 대한 기대값으로써 어떤 행동을 했을 때 얼마나 좋을 것인가에 대한 값입니다.
+  이는 어떤 state s 에서 action a를 취할 경우의 받을 return에 대한 기대값으로써 어떤 행동을 했을 때 얼마나 좋을 것인가에 대한 값입니다.
 
 
-    위에서 언급했던 이유로 앞으로 Value function이 아닌 action-value function을 사용할 것입니다. Action-value function은 다른 말로 Q-value 로써, q-learning이나 deep q - network에서 사용되는 q라는 것이 이것을 의미합니다.
+  위에서 언급했던 이유로 앞으로 Value function이 아닌 action-value function을 사용할 것입니다. Action-value function은 다른 말로 Q-value 로써, q-learning이나 deep q - network에서 사용되는 q라는 것이 이것을 의미합니다.
