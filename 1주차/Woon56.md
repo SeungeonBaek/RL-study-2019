@@ -28,4 +28,19 @@
   Dynamic programming은 planning으로서 Environment의 model(reward, state transition matrix)에 대해서 안다는 전제에서, Bellman equation을 통해 문제를 푸는 방법을 말합니다.
 
 
+    > Two fundamental problems in sequential decision making
+      - Reinforcement Learning
+        The environment is initially unknown
+        The agent interacts with the environment
+        The agent improves its policy
+      - Planning
+        A model of the environment is known
+        The agent performs computations with its model (without any external interaction)
+        The agent improves its policy
+        a.k.a deliberation, reasoning, introspection, pondering, thought, search
+
+  - Prediction & control
+
+  Dynamic programming은 다음의 두 step (1) Prediction (2) Control 으로 나뉩니다.
+
 ==================================================================
