@@ -60,6 +60,9 @@
         Update v_k+1(s) from v_k(s')
         where s' is a successor state of s
 
+  이전의 Bellman equation과 다른 점은, value function에 k라는 iteration 숫자가 붙은 것입니다.
+
+  𝑣_(𝑘+1)(𝑠) = {𝑎 ∈ 𝐴} ∑〖𝜋(𝑎│𝑠) ∗ (𝑅(𝑠,𝑎) + 𝛾 ∗ {𝑠 ∈ 𝑆} Σ P(ss′,a) ∗ v_k(s′)〗
 
 
 ***
