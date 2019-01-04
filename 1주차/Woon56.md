@@ -43,4 +43,6 @@
 
   Dynamic programming은 다음의 두 step (1) Prediction (2) Control 으로 나뉩니다.
 
+  Prediction이란 현재 optimal 하지 않은 어떤 policy에 대해서 value function을 구하는 과정이며, 현재의 value function을 토대로 더 나은 policy를 구하고 이와같은 과정을 반복하여 optimal policy를 구하는 것입니다.
+
 ***
