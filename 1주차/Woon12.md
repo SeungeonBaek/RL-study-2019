@@ -1,6 +1,6 @@
 ##/*이웅원님 Git*/
 
-###Markov Decision Process
+1. Markov Decision Process
 
 Environment의 response인 R_t+1과 S_t+1이
 
@@ -9,8 +9,7 @@ Pr{R_t+1 = r, S_t+1 = s' | S_t, A_t}
 이와 같이 이전 time t에만 영향을 받는 process
 (time 0 ~ time (t-1)에는 영향을 받지 않음.)
 
-Markov decision process (MDP)는 다음과 같이
-tuple <S, A, P, R, gammar >로 이루어져 있습니다.
+Markov decision process (MDP)는 다음과 같이 tuple <S, A, P, R, gammar >로 이루어져 있습니다.
 
 S : 이 중 State는 agent가 인식하는 자신의 상태
 
@@ -31,9 +30,9 @@ gamma : expected return을 계산함에 있어 현재의 reward와 미래의 rew
 Policy : 뜻 그대로 풀이하면 정책이며, 어떤 state에서 어떤 action을 할지를 policy라고
 합니다.
 
-###Value Function
+2. Value Function
 
-####Sate-Value Function
+  - Sate-Value Function
 
 Return Gt : Gt는 total discounted reward from time-step t 입니다.
 
@@ -56,7 +55,7 @@ try해보면서 얻어진 reward들에 대한 data들로 그 value function에 �
 수렴하는 것을 의미합니다.
 
 
-####Action-Value Function
+  - Action-Value Function
 
 action이란, 어떤 state에서 할 수 있는 행동들을 말하는데 보통 모든 state에서 가능한
 행동은 모두 같습니다.
