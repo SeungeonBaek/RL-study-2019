@@ -2,7 +2,7 @@
 
 # Introduction & MDP
 
-1. Markov Decision Process
+## 1. Markov Decision Process
 
   Environment의 response인 R_t+1과 S_t+1이
 
@@ -24,7 +24,7 @@
 
   - Policy : 뜻 그대로 풀이하면 정책이며, 어떤 state에서 어떤 action을 할지를 policy 라고 합니다.합니다.
 
-2. Value Function
+## 2. Value Function
 
   - Sate-Value Function
 
