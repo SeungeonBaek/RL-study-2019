@@ -104,7 +104,7 @@
 
       - DP is effective for medium-sized problems (millions of states)
 
-      - For large problems DP suffers Bellman's _curse of dimensionality_
+      - For large problems DP suffers Bellman's _curse of dimensionality_ 
 
       - Even one backup can be too expensive
 
@@ -118,4 +118,4 @@
 
   즉, 도메인에 대해 잘 모르더라도 일단 가보면서 겪는 experience로부터 문제를 풀기 시작하겠다는 것입니다.
 
-  이렇듯, DP를 sampling을 통해서 풀면서부터 _ _"Reinforcement Learning"_ _이 시작됩니다.
+  이렇듯, DP를 sampling을 통해서 풀면서부터 __"Reinforcement Learning"__ 이 시작됩니다.
