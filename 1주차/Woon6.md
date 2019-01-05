@@ -26,4 +26,12 @@
 
   이렇게 실제로 경험한 정보들을 사용함으로써 처음부터 environment에 대해서 모든 것을 알 필요가 없습니다. environment의 model을 모르고 학습하기 때문에 __Model-free__ 라는 말이 붙게 됩니다.
 
+    > In subsequent lectures we will consider sample backups
+    Using sample rewards and sample transitions <S, A, R, S'>
+    Instead of reward function R and transition dynamics P
+    Advantages :
+      Model-free : no advance knowledge of MDP required
+      Breaks the curse of dimensionality through sampling
+      Cost of backup is constant, independent of n = |S|
+
 ***
