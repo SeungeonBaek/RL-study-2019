@@ -4,7 +4,7 @@
 
   - 5~7장은 Dyanmic programming, Monte Carlo methods, Temporal-difference methods에 대해서 다루고 있습니다.
 
-1. Model-free
+## 1. Model-free
 
   이전 Chapter에서 Dynamic programming에 대해서 배워보았습니다.
   Dynamic programming은 Bellman equation을 통해서 optimal한 해를 찾아내는 방법으로서, MDP에 대한 모든 정보를 가진 상태에서 문제를 풀어나가는 방법을 이야기합니다.
@@ -35,10 +35,20 @@
         Cost of backup is constant, independent of n = |S|
 
 
-  현재의 policy를 바탕으로 움직여 보면서, sampling을 통해 value function을 update하는 것을 __model-free prediction__이라고 하고, policy를 update까지 하게 된다면 __model-free control__이라고 합니다.
+  현재의 policy를 바탕으로 움직여 보면서, sampling을 통해 value function을 update하는 것을 __model-free__ __prediction__이라고 하고, policy를 update까지 하게 된다면 __model-free__ __control__이라고 합니다.
 
   이렇게 Sampling을 통해서 학습하는 model-free 방법에는 다음의 두 가지 방법이 있습니다.
 
-  (1) 
+  (1) Monte-Carlo
+  (2) Temporal difference
+
+  Monte-Carlo는 episode마다 update하는 방법이고 Temporal Difference는 time step마다 update하는 방법입니다. 이번 Chapter에서는 Monte-Carlo Learning을 살펴보도록 하겠습니다.
+
+## 2. Monte-Carlo
+
+  Monte-Carlo라는 말에 대해 Sutton교수는 다음과 같이 말합니다.
+
+    >
+
 
 ***
