@@ -35,7 +35,7 @@
         Cost of backup is constant, independent of n = |S|
 
 
-  현재의 policy를 바탕으로 움직여 보면서, sampling을 통해 value function을 update하는 것을 __model-free__ __prediction__이라고 하고, policy를 update까지 하게 된다면 __model-free__ __control__이라고 합니다.
+  현재의 policy를 바탕으로 움직여 보면서, sampling을 통해 value function을 update하는 것을 __"model-free prediction"__이라고 하고, policy를 update까지 하게 된다면 __"model-free control"__이라고 합니다.
 
   이렇게 Sampling을 통해서 학습하는 model-free 방법에는 다음의 두 가지 방법이 있습니다.
 
@@ -48,7 +48,8 @@
 
   Monte-Carlo라는 말에 대해 Sutton교수는 다음과 같이 말합니다.
 
-    >
+    > Monte-Carlo
+      The term "Monte-Carlo" is often used more
 
 
 ***
