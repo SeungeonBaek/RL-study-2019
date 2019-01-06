@@ -51,5 +51,10 @@
     > Monte-Carlo
       The term "Monte-Carlo" is often used more broadly for any estimation method whose operation
 
+  Monte-Carlo 단어 자체는 무엇인가를 random하게 측정하는 것을 뜻하는 말이라고 합니다. 강화학습에서는 "averaging complete returns"하는 방법을 의미한다고 합니다. 이것은 무엇을 의미하는지 알아보겠습니다.
+
+  Monte-Carlo와 Temporal Difference로 갈리는 것은 value function을 estimation하는 방법에 따라서 입니다. value function이라는 것은 expected accumulative futre reward로서 지금 이 state에서 시작해서 미래까지 받을 기대되는 reward의 총합입니다. 이것을 DP가 아니라면 어떻게 측정할 수 있을까요?
+
+  가장 기본적인 생각은 episode를 끝까지 가본 후에 받은 reward들로 각 state의 value function들을 거꾸로 계산해보는 것입니다. 따라서 MC(Monte-Carlo)는 끝나지 않는 episode에서는 사용할 수 없는 방법입니다. initial state S1에서부터 시작해서 terminal state St까지 현재 policy를 따라서 움직이게 된다면 한 time step마다 reward를 받게 될 텐데, 그 reward들을 기억해 두었다가 St가 되면 뒤돌아보면서 각 state의 value fucntion을 계산하게 됩니다. 아래 recall that the return이라고 되어있는데 제가 말한 것과 같은 말입니다. 순간 순간 받았던 reward들을 시간 순서대로 discount시켜서 sample return을 구할 수 있습니다.
 
 ***
