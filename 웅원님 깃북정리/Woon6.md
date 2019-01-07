@@ -170,6 +170,7 @@
 
   충분히 exploration을 하지 않았기 때문에 global optimum에 가지 못했던 것입니다. 현재 action a가 가장 높은 value function을 가진다고 측정이 되어서 action을 a만 하게 되면 사실은 b가 더 높은 value function을 가질 수도 있는 가능성을 배제해버리게 됩니다. 마치 대학교나 성적만 보고 사람을 뽑아쓰는 것과 같은 실수일지도 모릅니다.
 
+  따라서 그에 따른 대안으로서 일정 확률로 현재 상태에서 가장 높은 가치를 가지지 않은 다른 action을 하도록 합니다. 그 일정 확률을 epsilon ϵ로 표기하며, 이렇게 exploration을 포함한 improvement방법을 epsilon greedy policy improvement라고 합니다.
 
   아래와 같이 선택할 수 있는 aciton이 m개 있을 경우에 greedy action(가장 action value function이 높은 action)과 다른 action들을 아래와 같은 확률로 나눠서 선택합니다. 이로써, 부족했던 exploration을 할 수 있게 된 것입니다.
 
