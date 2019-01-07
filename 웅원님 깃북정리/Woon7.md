@@ -151,4 +151,7 @@
   이 n-step이 terminal state까지 간다면 그게 바로 Monte-Carlo method가 됩니다. 따라서 둘의 장점을 다 취하기 위해서 그 사이의 적당한 n-step을 선택해주는 것이 좋습니다.
 
     > n-Step Return
-      Consider the following n-step returens for n = 1, 2, ...
+      Consider the following n-step returens for n = 1, 2, ..., ∞;
+
+        n = 1 (TD) G(1)_t = R_(t+1) + 𝛾 ∗ V(S_(t+1))
+        n = 2      G(2)_t = R_(t+1) + 𝛾 ∗ R_(t+2) + 𝛾^2 ∗ V(S_(t+2))
