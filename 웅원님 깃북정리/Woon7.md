@@ -15,8 +15,7 @@
       If one had to identify one idea as central and novel to reinforcement learning,
       it would undoubtedly be temporal-difference (TD) learning.
       TD learning is a combination of Monte-Carlo ideas and dynamic programming (DP) ideas.
-      Like Monte-Carlo methods, TD methods can learn directly from raw
-      experience without a model of the environment's dynamics.
+      Like Monte-Carlo methods, TD methods can learn directly from raw experience without a model of the environment's dynamics.
       Like DP, TD methods update estimates based in part
 
   Temporal difference(TD)는 MC와 DP를 섞은 것으로써 MC처럼 raw experience로부터 학습할 수 있지만 DP처럼 time step마다 학습할 수 있는 방법입니다. 마지막에 "bootstrap"이라고 하는데 이 말은 무엇을 뜻할까요?
