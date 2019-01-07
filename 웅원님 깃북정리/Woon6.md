@@ -181,4 +181,6 @@
       With probability ϵ choose action at random
 
         𝜋(𝑎│𝑠) = 𝜖/𝑚 + 1 - 𝜖  (if 𝑎∗ = {𝑎 ∈ 𝐴} 𝑎𝑟𝑔𝑚𝑎𝑥(𝑄(𝑠,𝑎)))
-        𝜋(𝑎│𝑠) = 𝜖/𝑚          (otherwise)
+               = 𝜖/𝑚          (otherwise)
+
+  ### (3) Policy iteration
