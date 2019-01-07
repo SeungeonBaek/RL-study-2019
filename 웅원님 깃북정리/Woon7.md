@@ -26,11 +26,26 @@
 
   TD는 따라서 현재의 value function을 계산하는데 앞선(앞선이라고 표현하기에는 조금 애매한 부분이 있습니다.) 주변 state들의 value function을 사용합니다. 이 것은 이전에 배웠던 Bellman equation이며, 따라서 Bellman equation자체가 Bootstrap하는 것이라고 볼 수 있습니다.
 
-## 1. Tmeporal Difference
+## 2. TD(0)
 
   Temporal Difference(TD)는 Monte-Carlo + DP라고 말했었습니다. 이전에 봤던 Monte-Carlo prediction에서 incremental mean을 보면 아래와 같이 return을 사용해서 update합니다. TD에서는 이 G_t를 R_(t+1) + 𝛾 * V_(t+1)(s)로 바꿔서 아래와 같은 식이 됩니다.
 
   Temporal Difference learning 방법에도 여러가지가 있는데 그 중에서 가장 간단한 방법은 TD(0)이고 방금 말한 방법이 바로 TD(0)입니다.
   R_(t+1) + 𝛾 * V_(t+1)(s)를 TD target이라고 부르고 그 target과 현재의 value function과의 차이를 TD error라고 부릅니다.
 
-  
+    > Temporal Differenc TD(0)
+      Goal : leaern v_𝜋 online from experience under policy 𝜋
+      Incremental every-visit Monte-Carlo
+        Update value V(S_t) toward actual return G_t
+          V(S_t) <- V(S_t) + 𝛼 * (G_t - V(S_t))
+
+      Simplest temporal-difference learning algorithm : __TD(0)__ !
+        Update value V(S_t) toward estimated return R_(t+1) + 𝛾 * V_(t+1)(s)
+          V(S_t) <- V(S_t) + 𝛼 * (R_(t+1) + 𝛾 * V_(t+1)(s) - V(S_t))
+
+      R_(t+1) + 𝛾 * V_(t+1)(s) is called the TD target
+      𝛿_t = R_(t+1) + 𝛾 * V_(t+1)(s) - V(S_t) is called the TD error
+
+      => V_(S_t) = V(S_t) + 𝛼 * 𝛿_t
+
+  TD(0)의 알고리즘을 살펴보고 backup diagram을 보면 아래와 같습니다.
