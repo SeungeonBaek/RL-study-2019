@@ -140,6 +140,8 @@
           S <- S'; A <- A';
         until S is terminal
 
+***
+
 # Eligibility Traces
 
 ## 1. n-step TD
@@ -152,15 +154,142 @@
 
     > n-Step Return
       Consider the following n-step returens for n = 1, 2, ..., ∞;
-        n = 1 (TD) G(1)_t = R_(t+1) + 𝛾 ∗ V(S_(t+1))
-        n = 2      G(2)_t = R_(t+1) + 𝛾 ∗ R_(t+2) + 𝛾^2 ∗ V(S_(t+2))
+        n = 1 (TD) G^1_t = R_(t+1) + 𝛾 ∗ V(S_(t+1))
+        n = 2      G^2_t = R_(t+1) + 𝛾 ∗ R_(t+2) + 𝛾^2 ∗ V(S_(t+2))
           .
           .
           .
-        n = ∞ (MC) G(∞)_t = R_(t+1) + 𝛾 ∗ R_(t+2) + 𝛾^2 ∗ R_(t+3) + ... + 𝛾^(T-1)) ∗ R_T
+        n = ∞ (MC) G^∞_t = R_(t+1) + 𝛾 ∗ R_(t+2) + 𝛾^2 ∗ R_(t+3) + ... + 𝛾^(T-1)) ∗ R_T
 
       Define the n-step return
-        G(n)_t = R_(t+1) + 𝛾 ∗ R_(t+2) + ... + 𝛾^(n-1) ∗ R_(t+n) + 𝛾^(n) ∗ V(S_(t+n))
+        G^n_t = R_(t+1) + 𝛾 ∗ R_(t+2) + ... + 𝛾^(n-1) ∗ R_(t+n) + 𝛾^(n) ∗ V(S_(t+n))
 
       n-step temporal-difference learning
-        V(S_t) <- V(S_t) + 𝛼 * (G(n)_t - V(S_t))
+        V(S_t) <- V(S_t) + 𝛼 * (G^n_t - V(S_t))
+
+  하지만 어떤 n이 적당한 n이라는 것을 알 수있는지와 그 기준이 무엇인지에 대한 문제가 남습니다.
+
+***
+
+## 2. Forward-View of TD(𝜆)
+
+  예제 설명은 스킵하겠습니다.
+
+  어떠한 문제에 n-step TD prediction을 적용시켜볼 경우에 n으로 적당한 숫자가 얼마인지 판별하기 쉽지 않습니다.
+  사실 𝛼의 값에 따라서 어떤 n-step이 학습에 좋은지는 달라지기 때문에 사실은 여러 n-step을 합할 수만 있다면 각 n-step에서의 장점을 다 취할 수 있을 것입니다.
+
+  따라서 이 모든 n-step return을 모두 더해서 사용하는 방법이 있습니다. 하지만 단순히 더해서 평균을 구하는 방식이 아니라, 아래와 같이 𝜆라는 weight을 사용해서 geometrically weighted sum을 이용하게 되면 모든 n-step을 다 포함하면서도 weight들의 합이 1이 됩니다. 이것을 통해서 구한 𝜆-return을 원래 MC의 return 자리에 넣어주게 되면, forward-view TD(𝜆)가 됩니다.
+
+      > 𝜆-return
+        The 𝜆-return G^𝜆_t combines all n-step returns G^𝜆_t
+        Using weight (1-𝜆) * 𝜆^(n-1)
+
+          G^𝜆_t = (1-𝜆) {n = 1 -> ∞} Σ 𝜆^(n-1) * G^n_t
+
+        Forward-view TD(𝜆)
+
+          V(S_t) <- V(S_t) + 𝛼 * (G^𝜆_t - V(S_t))
+
+  다시 정리를 해보자면 TD는 time-step마다 학습할 수 있는 장점은 있었지만 또한 bias가 높고 학습정보가 별로 없기 때문에 TD와 MC의 장점을 둘 다 살리기 위한 방법으로 n-step TD가 있었습니다. 하지만 각 n-step이 상황마다 다른 장점이 있어서 이 모든 장점을 포함하기 위해서 𝜆라는 wiehgt을 도입해서 𝜆-return을 계산해서 사용하는 것이 forward-view TD(𝜆)입니다.
+
+  하지만 이 방법에도 단점이 있습니다. 바로 MC와 똑같이 episode가 끝나야 update를 할 수 있다는 것입니다. (모든 n-step을 포함하기 때문)
+
+      > Forward-view TD(𝜆)
+        Update value function towards the 𝜆-return
+        Forward-view looks into the future to compute G^𝜆_t
+        Like MC, can only be computed from complete episodes
+
+***
+
+## 3. Backward-View of TD(𝜆)
+
+  따라서 본래 TD의 장점이었던 time-step마다 update할 수 있다는 장점이 사라졌습니다. MC의 장점은 살리면서도 바로 바로 update할 수 있는 방법이 없을까요? 여기서 바로 eligibility trace라는 개념이 나옵니다. 아래 그림과 같이 과거에 있었던 일들 중에서 현재 내가 받은 reward에 기여한 것이 무엇일까? 라는 credit assignment문제에서 "얼마나 최근에 일어났던 일이었나?"와 "얼마나 자주 발생했었나?"라는 것을 기준으로 과거의 일들을 기억해놓고 현재 받은 reward를 과거의 state들로 분배해주게 됩니다.
+
+      > Eligibility Traces
+
+        그림 : 벨 벨 벨 전구 쇼크 가 그려져있음.
+
+        Credit assignment problem : did bell or light cause shock?
+        Frequency heuristic : assign credit to most frequent states
+        Recency heuristic   : assign credit to most recent states
+        Eligibility traces combine both heuristics
+
+          E_0(s) = 0
+          E_t(s) = 𝛾 * 𝜆 * E_(t-1)(s) + I(S_t = s)
+
+  즉, TD(0)처럼 현재 update할 𝛿를 계산하면 현재의 value function만 update하는 것이 아니라 과거에 지나왔던 모든 state에 eligibility trace를 기억해두었다가 그 만큼 자신을 update하게 됩니다.
+
+  따라서 아래 그림과 같이 현재의 경험을 통해 한 번에 과거의 모든 state들의 value function을 update하게 되는 것입니다. 현재의 경험이 과거의 value function에 얼마나 영향을 주고 싶은가는 𝜆를 통해서 조절할 수 있습니다.
+
+  이러한 update방식을 backward-view TD(𝜆)라고 합니다.
+
+      > Backward-view TD(𝜆)
+        Keep an eligibility trace for every state s
+        Update value V(s) for every state s
+        In proportion to TD-error 𝛿_t and eligibility trace E_t(s)
+          𝛿_t = R_(t+1) + 𝛾 * V(S_(t+1)) - V(S_t)
+          V(s) <- V(s) + 𝛼 * 𝛿_t * E_t(s)
+
+***
+
+## 4. Sarsa(𝜆)
+
+  위에서는 TD prediction만 다루었습니다. 여기서는 TD Control에 대해서 다루도록 하겠습니다. Sarsa에도 n-step Sarsa가 있고 forward-view Sarsa(𝜆)가 있고, backward-view Sarsa(𝜆)가 있습니다. 각각은 다음과 같습니다. 설명은 생략하겠습니다.
+
+    > n-step Sarsa
+    Consider the following n-step returens for n = 1, 2, ..., ∞;
+      n = 1 (Sarsa) q^1_t = R_(t+1) + 𝛾 ∗ q(S_(t+1))
+      n = 2         q^2_t = R_(t+1) + 𝛾 ∗ R_(t+2) + 𝛾^2 ∗ q(S_(t+2))
+        .
+        .
+        .
+      n = ∞ (MC)    q^∞_t = R_(t+1) + 𝛾 ∗ R_(t+2) + 𝛾^2 ∗ R_(t+3) + ... + 𝛾^(T-1)) ∗ R_T
+
+    Define the n-step Q-return
+      q^n_t = R_(t+1) + 𝛾 ∗ R_(t+2) + ... + 𝛾^(n-1) ∗ R_(t+n) + 𝛾^n ∗ Q(S_(t+n))
+
+    n-step Sarsa updates Q(s,a) towards the n-step Q-return
+      Q(S_t,A_t) <- Q(S_t,A_t) + 𝛼 * (q^n_t - Q(S_t,A_t))
+
+***
+
+## 5. Forward View Sarsa(𝜆)
+
+  The q^𝜆 return combines all n-step Q-returns q^𝜆_t
+  Using weight (1-𝜆) * 𝜆^(n-1)
+    q^𝜆_t = (1-𝜆) {n = 1 -> ∞} Σ (𝜆^(n-1) * q^n_t)
+
+  Forward-view Sarsa(𝜆)
+    Q(S_t,A_t) <- Q(S_t,A_t) + 𝛼 * (q^𝜆_t - Q(S_t,A_t))
+
+***
+
+## 5. Backward View Sarsa(𝜆)
+
+  Just like TD(𝜆), we use eligibility traces in an online algorithm
+  But Sarsa(𝜆) has one eligibility trace for each stata-action pair
+    E_0(s,a) = 0
+    E_t(s,a) = 𝛾 * E_(t-1)(s,a) + I(S_t = s, A_t = a)
+
+  Q(s,a) is updated for every state s and action a
+  In proportion to TD-error 𝛿_t and eligibility trace E_t(s,a)
+    𝛿_t = R_(t+1) + 𝛾 * Q(S_(t+1),A_(t+1)) - Q(S_t,A_t)
+    Q(s,a) <- Q(s,a) + 𝛼 * 𝛿_t * E_t(s,a)
+
+  backward-view Sarsa(𝜆) algorithm의 qseudo code는 다음과 같습니다.
+
+      > Backward-veiw Sarsa(𝜆) algorithm
+        Initialize Q(s,a) arbitrarily, for all {s ∈ S ,𝑎 ∈ 𝐴}
+        Repeat (for each episode) :
+          E(s,a) = 0, for all {s ∈ S ,𝑎 ∈ 𝐴}
+          Initilaze S, A
+          Repeat(for each episode) :
+            Take action A, observe R, S'
+            Choose A' from S' using policy derived from Q (e.g. ϵ−𝑔𝑟𝑒𝑒𝑑𝑦)
+            𝛿 <- R + 𝛾 * Q(S',A') - Q(S,A)
+            E(S,A) <- E(S,A) + 1
+            For all {s ∈ S ,𝑎 ∈ 𝐴}:
+              Q(s,a) <- Q(s,a) +  * 𝛿_t * E_t(s,a)
+              E(s,a) <- 𝛾 * 𝜆 * E(s,a)
+            S <- S'; A <- A'
+        until S is terminal
