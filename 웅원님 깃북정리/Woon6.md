@@ -42,6 +42,8 @@
 
   Monte-Carlo는 episode마다 update하는 방법이고 Temporal Difference는 time step마다 update하는 방법입니다. 이번 Chapter에서는 Monte-Carlo Learning을 살펴보도록 하겠습니다.
 
+***
+
 ## 2. Monte-Carlo
 
   Monte-Carlo라는 말에 대해 Sutton교수는 다음과 같이 말합니다.
@@ -64,6 +66,8 @@
         v_𝜋(s) = E_𝜋[G_t | S_t = s]
       Monte-Carlo policy evaluation uses empirical mean return instead of expected return
 
+***
+
 ## 3. First-Visit MC vs Every-Visit MC
 
   위에서는 한 에피소드가 끝나면 어떻게 하는 지에 대해서 말했습니다. 하지만 multiple episodes를 진행할 경우에는 한 episode마다 얻었던 return을 어떻게 계산해야할까요? MC에서는 단순히 평균을 취해줍니다. 한 episode에서 어떤 state에 대해 return을 계산해놨는데 다른 episode에서도 그 state를 지나가서 다시 새로운 return을 얻었을 경우에 그 두개의 return을 평균을 취해주는 것이고 그 return들이 쌓이면 쌓일수록 true value function에 가까워지게 됩니다.
@@ -83,14 +87,21 @@
     Value is estimated by mean return V(s) = S(s)/N(s)
     By law of large numbers, V(s) -> v_𝜋(s) as N(s) -> ∞
 
+***
+
 ## 4. Incermental Mean
 
   위의 평균을 취하는 식을 좀 더 발전시켜보면 다음과 같습니다. 저희가 학습하는 방법은 여러개를 모아놓고 한 번에 평균을 취하는 것이 아니고, 하나 하나 더해가며 평균을 계산해얗 ㅏ기 때문에 아래와 같은 incremental meatn의 식으로 표현할 수 있습니다.
     The mean 𝜇_1, 𝜇_2, ... of a sequence x_1, x_2 ... can be computed incremntally,
 
-      𝜇_k = (1/k) * {j = 1 -> k } Σ x_j
-          = (1/k) * (x_k + {j = 1 -> k-1 } Σ x_j )
-          = (1/k) * (x_k + (k-1) * 𝜇_(k-1))
-          = (1/k) * (x_k + k * 𝜇_(k-1) - 𝜇_(k-1))
-          = 𝜇_(k-1) + (1/k) * (x_k - 𝜇_(k-1))
+      > 𝜇_k = (1/k) * {j = 1 -> k } Σ x_j
+            = (1/k) * (x_k + {j = 1 -> k-1 } Σ x_j )
+            = (1/k) * (x_k + (k-1) * 𝜇_(k-1))
+            = (1/k) * (x_k + k * 𝜇_(k-1) - 𝜇_(k-1))
+            = 𝜇_(k-1) + (1/k) * (x_k - 𝜇_(k-1))
+
+  이 Incremental Mean을 위의 First-visit MC에 적용시키면 아래와 같습니다. 같은 식을 다르게 표현한 것입니다. 이 때, 분수로 가있는 N(S_t)가 점점 무한대로 가게되는데, 이를 알파로 고정시켜놓으면 효과적으로 평균을 취할 수 있게 됩니다. 맨 처음 정보들에 대해 가중치를 덜 주는 형태라고 보시면 될 것 같습니다. (Complementary filter에 대해서 알면 이해가 쉬운 부분입니다.) 이와 같이 하는 이유는 강화학습이 stationary problem이 아니기 대문입니다. 매 epixode마다 새로운 policy를 사용하기 때문에 non-stationary problem이므로 update하는 상수를 일정하게 고정하는 것입니다.
+
+
+
 ***
