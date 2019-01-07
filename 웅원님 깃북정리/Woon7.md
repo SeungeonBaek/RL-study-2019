@@ -96,3 +96,46 @@
         TD target depends on one random action, transition, reward
 
   앞으로도 Bias와 Variance는 머리속에 기억해두어야 할 필요가 있는 것이, 강화학습을 발전시키려는 노력들이 알고리즘의 근본적인 부분을 수정하는 것에도 있지만, 그 알고리즘의 bias와 variance를 낮추려는 것에 집중되는 경향이 있기 때문입니다.
+
+  ***
+
+# TD Control
+
+## 1. Sansa
+
+  TD(0)의 알고리즘은 다음과 같습니다.
+
+    > TD(0) algorithm
+      Input : the policy 𝜋 to be evaluted
+      Initialize V(s) arbitrarily (e.g., V(s) = 0, ∀s ∈ S+)
+      Repeat (for each episode):
+        A <- action given by 𝜋 for S
+        Take action A; observe reward, R, and next state, S'
+        V(S) <- V(S) + alpha[R + 𝛾 * V(S') - V(S)]
+        S <- S'
+      until S is terminal
+
+  하지만 model-free control이 되기 위해서는 action-value function을 사용해야 한다고 말했었습니다. 따라서 위의 TD(0)의 식에서 value function을 action-value function으로 바꾸어주면 Sarsa가 됩니다. Sarsa는 현재 state-action pair에서 다음 state와 다음 action까지를 보고 update하기 때문에 붙은 이름입니다. TD(0)를 이해했다면 크게 어려운 점이 없는 부분입니다.
+
+    > Sarsa
+      Q(S,A) <- Q(S,A) + 𝛼 * (R + 𝛾 * Q(S',A') - Q(S,A))
+
+  Sarsa는 따라서 TD(0)을 가지고 action-value function으로 바꾸고 ϵ-greedy policy improvement를 한 것입니다.
+
+    > On-Policy Control With Sarsa
+      Every time-step:
+        Policy evalutation Sarsa, Q ≈ q_𝜋
+        Policy improvement ϵ−𝑔𝑟𝑒𝑒𝑑𝑦 policy improvement
+
+  Sarsa의 algorithm을 보면 다음과 같습니다. on-policy TD control algorithm으로써 매 time-setp마다 현재의 Q value를 imediate reward와 다음 action의 Q value를 가지고 update합니다. policy는 따로 정의되지는 ㅏㄶ고 이 Q value를 보고 ϵ−𝑔𝑟𝑒𝑒𝑑𝑦하게 움직이는 것 자체가 policy입니다.
+
+    > Sarsa algorithm
+      Initialize Q(s,a), ∀s ∈ S, a ∈ A(s), arbitrarily, and Q(terminal-state,∙) = 0
+      Repeat (for each episode):
+        Initialize S
+        Choose A from S using policy derived from Q (e.g., ϵ−𝑔𝑟𝑒𝑒𝑑𝑦)
+          Take action A, observe R, S'
+          Choose A' from S' using policy derived from Q (e.g., ϵ−𝑔𝑟𝑒𝑒𝑑𝑦)
+          Q(S,A) <- Q(S,A) + 𝛼 * [R + 𝛾 * Q(S',A') - Q(S,A)]
+          S <- S'; A <- A';
+        until S is terminal
