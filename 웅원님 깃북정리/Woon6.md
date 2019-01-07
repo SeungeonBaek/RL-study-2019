@@ -155,3 +155,29 @@
   ### (1) Value function
 
   현재 MC로써 Policy를 evaluation하는데 Value function을 사용하고 있습니다. 하지만 value function을 사용하면 policy를 improve(greedy)할 때 문제가 발생합니다. 원래 MC를 했던 이유는 Model-free를 하기 위해서 였는데, value function으로 policy를 improve하려면 MDP의 model을 알아야합니다. 아래와 같이 다음 policy를 계산하려면 reward와 transition probability를 알아야 할 수 있습니다. 따라서 value function 대신에 action value function을 사용합니다. 그러면 이러한 문제없이 model-free가 될 수 있습니다.
+
+    > Value function for MC control
+      Greedy policy improvement over V(s) requires model of MDP
+        𝜋′(𝑠) = {𝑎 ∈ 𝐴} 𝑎𝑟𝑔𝑚𝑎𝑥(𝑅(𝑠,𝑎))+𝑃(𝑠𝑠′,𝑎) ∗ 𝑉(𝑠′)
+      Greedy policy improvement over Q(s,a) is model-free
+        𝜋′(𝑠) = {𝑎 ∈ 𝐴} 𝑎𝑟𝑔𝑚𝑎𝑥(Q(s,a))
+
+***
+
+  ### (2) Exploration
+
+  현재는 policy improve는 greedy policy improvement를 사용하고 있습니다. 하지만 계속 현재 상황에서 최고의 것만 보고 판단을 할 경우에는 global optimum으로 가는 것이 아니고, local optimum에 빠져버릴 수가 있습니다.
+
+  충분히 exploration을 하지 않았기 때문에 global optimum에 가지 못했던 것입니다. 현재 action a가 가장 높은 value function을 가진다고 측정이 되어서 action을 a만 하게 되면 사실은 b가 더 높은 value function을 가질 수도 있는 가능성을 배제해버리게 됩니다. 마치 대학교나 성적만 보고 사람을 뽑아쓰는 것과 같은 실수일지도 모릅니다.
+
+
+  아래와 같이 선택할 수 있는 aciton이 m개 있을 경우에 greedy action(가장 action value function이 높은 action)과 다른 action들을 아래와 같은 확률로 나눠서 선택합니다. 이로써, 부족했던 exploration을 할 수 있게 된 것입니다.
+
+    > Exploration
+      Simplest idea for ensuring continual exploration
+      All m actions are tried with non-zero probability
+      With probability 1 - ϵ choose the greedy action
+      With probability ϵ choose action at random
+
+        𝜋(𝑎│𝑠) = 𝜖/𝑚 + 1 - 𝜖  (if 𝑎∗ = {𝑎 ∈ 𝐴} 𝑎𝑟𝑔𝑚𝑎𝑥(𝑄(𝑠,𝑎)))
+        𝜋(𝑎│𝑠) = 𝜖/𝑚          (otherwise)
