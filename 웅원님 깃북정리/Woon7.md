@@ -127,7 +127,7 @@
         Policy evalutation Sarsa, Q ≈ q_𝜋
         Policy improvement ϵ−𝑔𝑟𝑒𝑒𝑑𝑦 policy improvement
 
-  Sarsa의 algorithm을 보면 다음과 같습니다. on-policy TD control algorithm으로써 매 time-setp마다 현재의 Q value를 imediate reward와 다음 action의 Q value를 가지고 update합니다. policy는 따로 정의되지는 ㅏㄶ고 이 Q value를 보고 ϵ−𝑔𝑟𝑒𝑒𝑑𝑦하게 움직이는 것 자체가 policy입니다.
+  Sarsa의 algorithm을 보면 다음과 같습니다. on-policy TD control algorithm으로써 매 time-setp마다 현재의 Q value를 imediate reward와 다음 action의 Q value를 가지고 update합니다. policy는 따로 정의되지는 않고 이 Q value를 보고 ϵ−𝑔𝑟𝑒𝑒𝑑𝑦하게 움직이는 것 자체가 policy입니다.
 
     > Sarsa algorithm
       Initialize Q(s,a), ∀s ∈ S, a ∈ A(s), arbitrarily, and Q(terminal-state,∙) = 0
