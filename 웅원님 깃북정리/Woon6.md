@@ -75,4 +75,22 @@
 
   말 그대로 First-visit은 처음 방문한 state만 인정하는 것이고(두 번째 그 state 방문에 대해서는 return을 계산하지 않는) every-visit은 방문할 때마다 따로 따로 return을 계산하는 방법입니다. 두 방법은 모두 무한대로 갔을 때 true value function으로 수렴합니다. 하지만 First-visit이 좀 더 널리 오랫동안 연구되어 왔으므로 여기서는 First-visit MC에 대해서 다루도록 하겠습니다. 아래는 First-Visit Monet-Carlo Policy Evalutation에 대한 Silver교수님 수업의 자료입니다.
 
+  > First-visit Monte-Carlo Policy evaluation
+    To evaluate state s
+    The first time-step t that state s is visit in an episode,
+    Increment counter N(s) <- N(s) + 1
+    Increment total return S(s) <- S(s) + G_t
+    Value is estimated by mean return V(s) = S(s)/N(s)
+    By law of large numbers, V(s) -> v_𝜋(s) as N(s) -> ∞
+
+## 4. Incermental Mean
+
+  위의 평균을 취하는 식을 좀 더 발전시켜보면 다음과 같습니다. 저희가 학습하는 방법은 여러개를 모아놓고 한 번에 평균을 취하는 것이 아니고, 하나 하나 더해가며 평균을 계산해얗 ㅏ기 때문에 아래와 같은 incremental meatn의 식으로 표현할 수 있습니다.
+    The mean 𝜇_1, 𝜇_2, ... of a sequence x_1, x_2 ... can be computed incremntally,
+
+      𝜇_k = (1/k) * {j = 1 -> k } Σ x_j
+          = (1/k) * (x_k + {j = 1 -> k-1 } Σ x_j )
+          = (1/k) * (x_k + (k-1) * 𝜇_(k-1))
+          = (1/k) * (x_k + k * 𝜇_(k-1) - 𝜇_(k-1))
+          = 𝜇_(k-1) + (1/k) * (x_k - 𝜇_(k-1))
 ***
