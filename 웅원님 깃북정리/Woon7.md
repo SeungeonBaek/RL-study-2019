@@ -49,3 +49,17 @@
       => V_(S_t) = V(S_t) + 𝛼 * 𝛿_t
 
   TD(0)의 알고리즘을 살펴보고 backup diagram을 보면 아래와 같습니다.
+
+    > TD(0) algorithm
+      Input : the policy 𝜋 to be evaluted
+      Initialize V(s) arbitrarily (e.g., V(s) = 0, ∀s ∈ S+)
+      Repeat (for each episode):
+        A <- action given by 𝜋 for S
+        Take action A; observe reward, R, and next state, S'
+        V(S) <- V(S) + alpha[R + 𝛾 * V(S') - V(S)]
+        S <- S'
+      until S is terminal
+
+***
+
+## 3. Monte-Carlo method vs Temporal Difference method
