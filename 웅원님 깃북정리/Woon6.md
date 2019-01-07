@@ -183,4 +183,33 @@
         𝜋(𝑎│𝑠) = 𝜖/𝑚 + 1 - 𝜖  (if 𝑎∗ = {𝑎 ∈ 𝐴} 𝑎𝑟𝑔𝑚𝑎𝑥(𝑄(𝑠,𝑎)))
                = 𝜖/𝑚          (otherwise)
 
+***
+
   ### (3) Policy iteration
+
+  Policy iteration에서는 evalutation 과정이 true value function으로 수렴할 때까지 해야하는데 그렇게 하지 않고 한 번 evaluation한 다음에 policy improve를 해도 optimal로 간다고 말했었습니다.
+
+  그것이 Value iteration이었는데 Monte-Carlo에서도 마찬가지로 이 evaluation과정을 줄임으로써 Monte-Carlo policy iteration에서 Monte-Carlo control이 됩니다. 결국 Monte-Carlo Control은 다음과 같습니다.
+
+    > Monte-Carlo Control
+      Every episode:
+        Policy evalutation : Monte-Carlo policy evalutaion, Q ≈ q_𝜋
+        Policy improvement : ϵ-greedy policy improvement
+
+***
+
+## 3. GLIE (Greedy in the Limit with Infinite Exploration)
+
+  GLIE란 sutton교수님 책에는 안 나왔지만, Silver 교수님 강의에서 나왔던 내용입니다. 학습을 해나감에 따라 충분한 탐험을 했다면 greedy policy에 수렴하는 것을 말합니다.
+
+  하지만 ϵ-greedy policy로서는 greedy하게 하나의 action만 선택하지 않는데 이럴 경우는 GLIE하지 않습니다. 보통 learning을 통해서 배우려는 optimal policy는 greedy policy입니다. 따라서 exploration문제 때문에 사용하는 ϵ-greedy에서 epsilon ϵ가 시간에 흐름에 따라 0으로 수렴한다면 ϵ-greedy 또한 GLIE가 될 수 있습니다. 후에는 이러한 문제를 off-policy control로써 Q-learning을 쓰면서 해결하게 됩니다.
+
+    > GLIE Definition
+      Greedy in the Limit with Infinite Exploration (GLIE)
+      All state-action pairs are explored infinitely many times,
+        lim
+
+      The policy converges on a greedy policy,
+        lim
+
+      For example, ϵ-greedy is GLIE if ϵ reduces to zero at ϵ_k = 1/k
