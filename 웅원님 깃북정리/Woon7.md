@@ -152,6 +152,15 @@
 
     > n-Step Return
       Consider the following n-step returens for n = 1, 2, ..., ∞;
-
         n = 1 (TD) G(1)_t = R_(t+1) + 𝛾 ∗ V(S_(t+1))
         n = 2      G(2)_t = R_(t+1) + 𝛾 ∗ R_(t+2) + 𝛾^2 ∗ V(S_(t+2))
+          .
+          .
+          .
+        n = ∞ (MC) G(∞)_t = R_(t+1) + 𝛾 ∗ R_(t+2) + 𝛾^2 ∗ R_(t+3) + ... + 𝛾^(T-1)) ∗ R_T
+
+      Define the n-step return
+        G(n)_t = R_(t+1) + 𝛾 ∗ R_(t+2) + ... + 𝛾^(n-1) ∗ R_(t+n) + 𝛾^(n) ∗ V(S_(t+n))
+
+      n-step temporal-difference learning
+        V(S_t) <- V(S_t) + 𝛼 * (G(n)_t - V(S_t))
