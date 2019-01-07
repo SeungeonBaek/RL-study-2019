@@ -207,9 +207,9 @@
     > GLIE Definition
       Greedy in the Limit with Infinite Exploration (GLIE)
       All state-action pairs are explored infinitely many times,
-        lim
+        {k -> ∞} lim N_k(s,a) = ∞
 
       The policy converges on a greedy policy,
-        lim
+        {k -> ∞} lim 𝜋(𝑎│𝑠) = I(a = {a' ∈ 𝐴} argmax(Q_k(s,a')) )
 
       For example, ϵ-greedy is GLIE if ϵ reduces to zero at ϵ_k = 1/k
