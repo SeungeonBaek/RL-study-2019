@@ -12,9 +12,11 @@
   끝나지 않더라도 eipsode가 길 경우에는(예를 들어 atari 게임이 아니라 starcraft같은 에김) 학습하기 어려운 단점이 있습니다. 따라서 자연스럽게도 꼭 episode가 끝나지 않더라도 DP철머 time step마다 학습할 수 있지 않나?라는 생각을 하게 됩니다. 이게 바로 Temporal Difference이며 Sutton교수님 책에서는 아래와 같이 소개하고 있습니다.
 
     > Temporal Difference method
-      If one had to identify one idea as central and novel to reinforcement learning, it would undoubtedly be temporal-difference (TD) learning.
+      If one had to identify one idea as central and novel to reinforcement learning,
+      it would undoubtedly be temporal-difference (TD) learning.
       TD learning is a combination of Monte-Carlo ideas and dynamic programming (DP) ideas. Like Monte-Carlo methods.
-      TD methods can learn directly from raw experience without a model of the environment's dynamics. Like DP, TD methods update estimates based in part 
+      TD methods can learn directly from raw experience without a model of the environment's dynamics.
+      Like DP, TD methods update estimates based in part 
 
   Temporal difference(TD)는 MC와 DP를 섞은 것으로써 MC처럼 raw experience로부터 학습할 수 있지만 DP처럼 time step마다 학습할 수 있는 방법입니다. 마지막에 "bootstrap"이라고 하는데 이 말은 무엇을 뜻할까요?
 
