@@ -1,6 +1,6 @@
 /*이웅원님 Git*/
 
-# Monte-Carlo Methods
+# Monte-Carlo Prediction
 
   - 5~7장은 Dyanmic programming, Monte Carlo methods, Temporal-difference methods에 대해서 다루고 있습니다.
 
@@ -59,9 +59,13 @@
 
     > Monte-Carlo
       Goal: learn v_𝜋 from episodes of experience under policy 𝜋
+
         S_1, A_1, R_2, ... , S_k ~ 𝜋
+
       Recall that the return is the total discounted reward:
+
         G_t = R_(t+1) + 𝛾 * R_(t+2) + ... + 𝛾^(T-1) * R_(T)
+
       Recall that the value function is the expected return:
         v_𝜋(s) = E_𝜋[G_t | S_t = s]
       Monte-Carlo policy evaluation uses empirical mean return instead of expected return
@@ -102,6 +106,52 @@
 
   이 Incremental Mean을 위의 First-visit MC에 적용시키면 아래와 같습니다. 같은 식을 다르게 표현한 것입니다. 이 때, 분수로 가있는 N(S_t)가 점점 무한대로 가게되는데, 이를 알파로 고정시켜놓으면 효과적으로 평균을 취할 수 있게 됩니다. 맨 처음 정보들에 대해 가중치를 덜 주는 형태라고 보시면 될 것 같습니다. (Complementary filter에 대해서 알면 이해가 쉬운 부분입니다.) 이와 같이 하는 이유는 강화학습이 stationary problem이 아니기 대문입니다. 매 epixode마다 새로운 policy를 사용하기 때문에 non-stationary problem이므로 update하는 상수를 일정하게 고정하는 것입니다.
 
+      > Incremental Mean
+        Update V(s) incrementally after episodes S_1, A_1, R_2, ..., S_T
+        For each State S_t with return G_t
 
+          N(S_t) <- N(S_t) + 1
+          V(S_t) <- V(S_t) + (1/N(S_t)) * (G_t - V(S_t))
+
+        In non-sationary problems, it can be useful to track a running mean, i.e. forget old episodes.
+
+          V(S_t) <- V(S_t) + 𝛼 * (G_t - V(S_t))
+          => alpha가 0.3이라면, 최근 것은 0.3 이전것은 0.3^2 이런식으로 update 되는 것.
 
 ***
+
+## 5. Backup Diagram
+
+  이러한 MC의 backup 과정은 DP와 다릅니다. DP에서는 one-step backup에서 그 다음으로 가능한 모든 state들로 가지가 뻗었었는데 MC에서는 sampling을 하기 때문에 하나의 가지로 terminal state까지 가게됩니다.
+
+  Monte-Carlo는 처음에 random process를 포함한 방법이라고 말했었는데 episode 마다 update하기 때문에, 처음 시작이 어디었냐에 따라서 또한 같은 state에서 왼쪽으로 가냐, 오른 쪽으로 가냐에 따라서 전혀 다른 experience가 됩니다. 이러한 random한 요소를 포함하고 있어서 MC는 variance가 높습니다. 대신에 random인만큼 어딘가에 치우치는 경향은 적어서 bias는 낮은 편입니다.
+
+***
+
+# Monte-Carlo Control
+
+## 1. Monte-Carlo Policy iteration
+
+  위에서는 Monte-Carlo Policy Evaluation = Prediction을 보았습니다.
+  Dynamic Programming때도 Policy evalutaion + Policy Improvement = Policy iteration이었듯이 MC에서도 MC Policy Evaluation + Policy Improvement를 하면 MC Policy iteration이 됩니다.
+
+  다시 한번 DP의 Policy iteration을 생각해 봅시다. 현재 policy를 토대로 Value function을 iterative하게 계산해서 policy를 evaluation(true value function에 수렴할 때까지)하고 그 value function을 토대로 greedy하게 poilicy를 improve하고 그러한 과정을 optimal policy를 얻을 때까지 반복하였습니다.
+
+  여기에 Policy evaluation만 Monte-Carlo Policy evaluation으로 바꾸어 주면, Monte-Carlo Policy iteration이 됩니다.
+
+    > Monte-Carlo Policy iteration
+      Policy evalutaion  : Monte-Carlo policy evalutation, V = v_𝜋?
+      Policy improvement : Greedy policy improvement
+
+***
+
+## 2. Monte-Carlo Control
+
+  하지만, Monte-Carlo Policy iteration에는 세 가지 문제점이 있습니다.
+  - Value function
+  - Exploration
+  - Policy iteration
+
+  ### (1) Value function
+
+  현재 MC로써 Policy를 evaluation하는데 Value function을 사용하고 있습니다. 하지만 value function을 사용하면 policy를 improve(greedy)할 때 문제가 발생합니다. 원래 MC를 했던 이유는 Model-free를 하기 위해서 였는데, value function으로 policy를 improve하려면 MDP의 model을 알아야합니다. 아래와 같이 다음 policy를 계산하려면 reward와 transition probability를 알아야 할 수 있습니다. 따라서 value function 대신에 action value function을 사용합니다. 그러면 이러한 문제없이 model-free가 될 수 있습니다.
