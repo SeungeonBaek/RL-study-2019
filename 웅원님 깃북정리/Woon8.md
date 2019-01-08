@@ -71,9 +71,15 @@
   Off-Policy 또한 MC와 TD로 갈립니다. Off-policy MC는 아래와 같습니다. 에피소드가 끝나고 return을 계산할 때 아래와 같이 식을 변형시켜줍니다. 각 스텝에 reward를 받게 된 것은 𝜇라는 policy를 따라서 얻었던 것이므로 매 step마다 𝜋/𝜇를 해주어야 합니다. 따라서 Monte-Carlo에 Off-policy를 적용시키는 것은 그리 좋은 아이디어가 아닙니다.
 
     > Importance Sampling for Off-Policy Monte-Carlo
-      Use returns generated
+      Use returns generated from 𝜇 to evaluate 𝜋
+      Weight return G_t according to similarity between policies
+      Multiply importance sampling corrections along whole episode
+                    𝜋(A_t|S_t) * 𝜋(A_(t+1)|S_(t+1)) ... 𝜋(A_T|S_T)
+       G^(𝜋/𝜇)_t = ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ * G_t
+                    𝜇(A_t|S_t) * 𝜇(A_(t+1)|S_(t+1)) ... 𝜇(A_T|S_T)
 
-
+      Update value towards corrected return
+        V(S_t) <- V(S_t) + 𝛼 * (G^(𝜋/𝜇)_t - V(S_t))
 
 
 
