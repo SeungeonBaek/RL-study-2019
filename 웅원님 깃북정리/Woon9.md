@@ -12,4 +12,6 @@
     This is particularly clear and instructive case, but of course it is limited to tasks with small numbers of
     states and actions.
     The problem is not just the memory needed for large tables, but the time and data needed to fill them accurately.
-    In other words, the key issue is that of generalization![.]()
+    In other words, the key issue is that of generalization!
+
+  d
