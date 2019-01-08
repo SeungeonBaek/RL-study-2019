@@ -67,7 +67,7 @@
 
       To find a local minumum of J(w)
       Adjust w in direction of -ve gradient
-        ∆w = -(1/2) *
+        ∆w = -(1/2) * 𝛼 * ∇w J(w)
 
 
 
