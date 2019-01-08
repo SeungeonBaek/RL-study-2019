@@ -14,4 +14,13 @@
     The problem is not just the memory needed for large tables, but the time and data needed to fill them accurately.
     In other words, the key issue is that of generalization!
 
-  d
+  그러나 현실은 gridworld같이 작은 예제가 있지 않기 때문에 현재의 방식은 실용적이지 못합니다. 예를들면, 밑의 문제들을 강화학습은 풀지 못합니다. 그렇기 때문에 "Generalization"이 가능해지기 위해서는 새로운 idea가 필요합니다.
+
+  특히나 강화학습을 실제 세상에 적용시키고 싶다고 할 경우, 실제 세상은 continuous state space이므로 사실상 state가 무한대이기 때문에 새로운 방법이 없다면 로봇이 강화학습으로 학습하기는 쉽지 않을 것입니다.
+    > Large-Scale Reinforcement Learning
+      Reinforcement learning can be used to solve large problems, e.g.
+        Backgammon  : 10^20  states
+        Computer GO : 10^170 states
+        Helicopter  : continuous state space
+
+      How can we scale up the model-free method for __prediction__ and __control__ from the last two lectures?
