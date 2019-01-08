@@ -1,6 +1,6 @@
 /*이웅원님 Git*/
 
-# Q-Learning
+# Off-Policy Control
 
 ## Importance Sampling
 
@@ -71,7 +71,7 @@
 
   Off-Policy 또한 MC와 TD로 갈립니다. Off-policy MC는 아래와 같습니다. 에피소드가 끝나고 return을 계산할 때 아래와 같이 식을 변형시켜줍니다. 각 스텝에 reward를 받게 된 것은 𝜇라는 policy를 따라서 얻었던 것이므로 매 step마다 𝜋/𝜇를 해주어야 합니다. 따라서 Monte-Carlo에 Off-policy를 적용시키는 것은 그리 좋은 아이디어가 아닙니다.
 
-    > Importance Sampling for Off-Policy Monte-Carlo
+    > Importance Sampling for Off-Policy Monte-Carlo method
       Use returns generated from 𝜇 to evaluate 𝜋
       Weight return G_t according to similarity between policies
       Multiply importance sampling corrections along whole episode
@@ -82,9 +82,25 @@
       Update value towards corrected return
         V(S_t) <- V(S_t) + 𝛼 * (G^(𝜋/𝜇)_t - V(S_t))
 
+  Off-Policy TD에서는 MC 때와는 달리 Importance Sampling을 1-step만 진행하면 됩니다.
 
+  MC때와 비교하면 Variance가 낮아지기는 했지만 여전히 원래 TD에 비하면 Importance sampling때문에 높은 variance를 가지고 있습니다. Off-policy learning을 할 떄 Importance sampling말고 다른 방법을 생각할 필요가 있습니다. 바로 여기서, 유명한 Q learning 알고리즘이 나오게 됩니다.
 
+    > Importance Sampling for Off-Policy Temporal Difference method
+      Use TD targets generated from 𝜇 to evaluate 𝜋
+      Weight TD target R + 𝛾 * V(S') by importance sampling
+      Only need a single importance sampling correction
+                                ( (𝜋(A_t|S_t)                                       )
+        V(S_t) <- V(S_t) +  𝛼 * ( ㅡㅡㅡㅡㅡㅡ * (R_(t+1) + 𝛾 * V(S_(t+1) - V(S_t)) ))
+                                ( 𝜇(A_t|S_t))                                       )
 
+***
+
+## Importance Sampling
+
+  지금까지 Monte-Carlo Control과 Temporal-Difference Control을 살펴보았습니다. 사실은 두 방법 모두 on-policy reinforcement learning입니다. 여기서 새로운 개념을 하나 알고 갈 필요가 있습니다.
+
+## 1. On-Policy vs Off-Policy
 
 
 
