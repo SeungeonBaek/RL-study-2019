@@ -69,7 +69,7 @@
                       = Σ Q(X) * (P(X)/Q(X)) * f(X)
                       = E_(X~Q)[ (P(X)/Q(X)) * f(x)]
 
-  Off-Policy 또한 MC와 TD로 갈립니다. Off-policy MC는 아래와 같습니다. 에피소드가 끝나고 return을 계산할 때 아래와 같이 식을 변형시켜줍니다. 각 스텝에 reward를 받게 된 것은 𝜇라는 policy를 따라서 얻었던 것이므로 매 step마다 𝜋/𝜇를 해주어야 합니다. 따라서 Monte-Carlo에 Off-policy를 적용시키는 것은 그리 좋은 아이디어가 아닙니다.
+  Off-Policy 또한 MC와 TD로 갈립니다. Off-Policy MC는 아래와 같습니다. 에피소드가 끝나고 return을 계산할 때 아래와 같이 식을 변형시켜줍니다. 각 스텝에 reward를 받게 된 것은 𝜇라는 policy를 따라서 얻었던 것이므로 매 step마다 𝜋/𝜇를 해주어야 합니다. 따라서 Monte-Carlo에 Off-policy를 적용시키는 것은 그리 좋은 아이디어가 아닙니다.
 
     > Importance Sampling for Off-Policy Monte-Carlo method
       Use returns generated from 𝜇 to evaluate 𝜋
@@ -83,7 +83,6 @@
         V(S_t) <- V(S_t) + 𝛼 * (G^(𝜋/𝜇)_t - V(S_t))
 
   Off-Policy TD에서는 MC 때와는 달리 Importance Sampling을 1-step만 진행하면 됩니다.
-
   MC때와 비교하면 Variance가 낮아지기는 했지만 여전히 원래 TD에 비하면 Importance sampling때문에 높은 variance를 가지고 있습니다. Off-policy learning을 할 떄 Importance sampling말고 다른 방법을 생각할 필요가 있습니다. 바로 여기서, 유명한 Q learning 알고리즘이 나오게 됩니다.
 
     > Importance Sampling for Off-Policy Temporal Difference method
@@ -96,11 +95,22 @@
 
 ***
 
-## Importance Sampling
+## Q Lenarning
 
-  지금까지 Monte-Carlo Control과 Temporal-Difference Control을 살펴보았습니다. 사실은 두 방법 모두 on-policy reinforcement learning입니다. 여기서 새로운 개념을 하나 알고 갈 필요가 있습니다.
+## 1. Q-Learning
 
-## 1. On-Policy vs Off-Policy
+  Off-Policy Learning 알고리즘 중에서 Off-policy MC와 Off-policy TD가 있지만 Importance sampling문제 때문에 새로운 방법이 필요하다고 말했었습니다. Off-Policy learning을 하는데 가장 좋은 알고리즘은 Q Learning입니다. 방법은 다음과 같습니다.
+
+  현재 state S에서 action을 선택하는 것은 behaviour policy를 따라서 선택합니다. TD에서 update할 때는 one-step을 bootstrap하는데 이 때 다음 state의 action을 선택하는 데는 behaviour policy와는 다른 policy(alternative policy)를 사용하면 Importance Sampling이 필요하지 않습니다.
+
+  이전의 Off-Policy에서는 Value function을 사용했었는데 여기서는 action-value function을 사용함으로써 다음 action까지 선택을 해야하는데 그 때 다른 policy를 사용한다는 것입니다.
+    > Q-Learning
+      We now consider off-policy learning of action-values Q(s,a)
+      No importance sampling is required
+      Next action is chosen using behaviour policy A_(t+1) ~ 𝜇
+      But we consider alternative successor action A' ~ 𝜋
+      And update Q(S_t, A_t) towards value of alternative action
+        Q(S_t, A_t) <- Q(S_t, A_t) + 𝛼 * (R_(t+1) + 𝛾 * Q(S_(t+1), A') - Q(S_t, A_t))
 
 
 
