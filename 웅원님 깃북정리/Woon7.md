@@ -283,7 +283,7 @@
         Repeat (for each episode) :
           E(s,a) = 0, for all {s ∈ S ,𝑎 ∈ 𝐴}
           Initilaze S, A
-          Repeat(for each __step__ of episode) :
+          Repeat(for each step of episode) :
             Take action A, observe R, S'
             Choose A' from S' using policy derived from Q (e.g. ϵ−𝑔𝑟𝑒𝑒𝑑𝑦)
             𝛿 <- R + 𝛾 * Q(S',A') - Q(S,A)
