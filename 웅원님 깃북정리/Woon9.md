@@ -52,7 +52,7 @@
 
   이전까지 다루었던 Tabular Reinforcement learning의 단점 때문에 function approximator를 도입하게 되었고 value function을 w라는 parameter를 통해서 approximate하였습니다. 또한 이제 학습이라는 것은 이 parameter를 update하는 것이라고 했었습니다.
 
-
+  그렇다면 parameter를 update하는 것은 어떻게 할 수 있을까요? 이전에 machine learning에 대해서 접해본 분이면 잘 아는 Stochastic Gradient Descent방법을 
 
 
 
