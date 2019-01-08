@@ -64,5 +64,34 @@
 
     > Importance Sampling
       Estimate the expectation of a different distribution
-        E_(X~P)[f(x)] = Σ P(X)f(X)
-                      = Σ P(X)f(X)
+        E_(X~P)[f(x)] = Σ P(X) * f(X)
+                      = Σ Q(X) * (P(X)/Q(X)) * f(X)
+                      = E_(X~Q)[ (P(X)/Q(X)) * f(x)]
+
+  Off-Policy 또한 MC와 TD로 갈립니다. Off-policy MC는 아래와 같습니다. 에피소드가 끝나고 return을 계산할 때 아래와 같이 식을 변형시켜줍니다. 각 스텝에 reward를 받게 된 것은 𝜇라는 policy를 따라서 얻었던 것이므로 매 step마다 𝜋/𝜇를 해주어야 합니다. 따라서 Monte-Carlo에 Off-policy를 적용시키는 것은 그리 좋은 아이디어가 아닙니다.
+
+    > Importance Sampling for Off-Policy Monte-Carlo
+      Use returns generated
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  asd
