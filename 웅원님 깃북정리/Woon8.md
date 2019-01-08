@@ -107,14 +107,51 @@
     > Q-Learning
       We now consider off-policy learning of action-values Q(s,a)
       No importance sampling is required
-      Next action is chosen using behaviour policy A_(t+1) ~ 𝜇
-      But we consider alternative successor action A' ~ 𝜋
+      Next action is chosen using behaviour policy A_(t+1) ~ 𝜇(∙|S_t)
+      But we consider alternative successor action A' ~ 𝜋(∙|S_t)
       And update Q(S_t, A_t) towards value of alternative action
         Q(S_t, A_t) <- Q(S_t, A_t) + 𝛼 * (R_(t+1) + 𝛾 * Q(S_(t+1), A') - Q(S_t, A_t))
 
+***
 
+## 1. Q-Learning
 
+  이 Q learning 알고리즘 중에서 가장 유명한 것이 아래입니다.
+  - Behaviour policy로는 ϵ−𝑔𝑟𝑒𝑒𝑑𝑦 w.r.t. Q(s,a)
+  - Target policy(alternative policy)로는 𝑔𝑟𝑒𝑒𝑑𝑦 w.r.t Q(s,a)
 
+  위와 같이 behavior policy와 target policy를 택한 알고리즘입니다. 이전에 Off-policy의 장점이 exploratory policy를 따르면서도 optimal policy를 학습할 수 있다고 했는데 그게 바로 이 알고리즘입니다. greedy한 policy로 학습을 진행하면 수렴을 빨리 하는데 충분히 탐험을 하지 않았기 때문에 local에 빠지기가 쉽습니다.
+
+  그렇기 때문에, 탐험을 위해 ϵ−𝑔𝑟𝑒𝑒𝑑𝑦 policy를 사용하게 되면 수렴속도가 느려져서 학습속도가 느려지게 됩니다. 이를 해결하기 위한 방법이 ϵ(epsilon)을 시간에 따라 decay기키는 방법과 아래와 같이 Q learning을 사용하는 것입니다.
+
+    > Off-Policy Control with Q-Learning
+      We now allow both behaviour and target policies to improve
+      The target policy 𝜋 is greedy w.r.t. Q(s,a)
+        𝜋(S_(t+1)) = {a') argmax{ Q(S_(t+1),a') }
+
+      The behaviour policy mu is e.g. ϵ−𝑔𝑟𝑒𝑒𝑑𝑦 w.r.t Q(s,a)
+      The Q-learning target then simplifies:
+         R_(t+1) + 𝛾 * Q(S_(t+1), A')
+       = R_(t+1) + 𝛾 * Q(S_(t+1), {a'}argmax{ Q(S_(t+1),a') })
+       = R_(t+1) + {a'}max {𝛾 * Q(S_(t+1), a')}
+
+  아래 알고리즘은 사실 Bellman Optimality Equation을 사용한 Value iteration을 이용한 것입니다.
+  Optimal valuefunction끼리의 관계식을 이용해서 update를 하는 것입니다. 이렇게 update를 할 때 optimal action-value function에 수렴하게 됩니다.
+
+    > Q-Learning control Algorithm
+      식      : Q(S,A) <- Q(S,A) + 𝛼 * (R_(t+1) + 𝛾 * {a'}max {Q(S_(t+1), a')} - Q(S,A))
+      Theorem : Q-learning control converges to the optimal action-value function, Q(s,a) -> q*(s,a)
+
+      Pseudo code
+        Initialize Q(s,a), s S, a A, arbitrarily, and Q(terminal-state,∙) = 0
+        Repeat (for each episode):
+          Initialize S
+          Repeat (for each step of episode):
+            Choose A from S using policy derived from Q (e.g., ϵ−𝑔𝑟𝑒𝑒𝑑𝑦)
+            Take action A, observe R, S'
+            Q(S,A) <- Q(S,A) + 𝛼 * [R + 𝛾 * {a} max(Q(S',a)) - Q(S<A)]
+            S <- S';
+          until S is terminal
 
 
 
