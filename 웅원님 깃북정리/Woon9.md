@@ -69,14 +69,45 @@
       Adjust w in direction of -ve gradient
         ∆w = -(1/2) * 𝛼 * ∇w J(w)
 
+***
 
+## 2. Gradient Descent on RL
 
+  Gradient의 개념을 살펴보았습니다. 이 개념을 강화학습에 적용시켜보도록 하겠습니다. 강화학습에서는 J(w)를 어떻게 정의할까요? 바로 true value function과 approximate value vhat(s,w)와의 error로 잡습니다.
 
+    > Value Function Approximation by Stochastic Gradient Descent
+      Goal : find parameter vector w minimising mean-squared error between approximate value function vhat(s,w) and true value function v_𝜋(s)
+        J(w) = E_𝜋[{v_𝜋(s)-vhat(s,w)}^2]
 
+      Gradient descent finds a local minimum
+        ∆w = -(1/2) * 𝛼 * ∇w J(w)
+           = 𝛼 * E_𝜋[{v_𝜋(s)-vhat(s,w)} * ∇w vhat(s,w)]
 
+      Stochastic gardient descent samples the gradient
+        ∆w = 𝛼 * {v_𝜋(s)-vhat(s,w)} * ∇w vhat(s,w)
 
+      Expedted update is equal to full gradient update
 
+  Gradient Descent방법도 (1) Stochastic Gradient Descent(SGD)와 (2) Batch 방법으로 나눌 수 있는데 위와 같이 모든 state에서 true value function과의 error를 한 번에 함수로 잡아서 업데이트 하는 방식은 Batch의 방식을 활용한 것으로서 step by step으로 업데이트 하는 것이 아니고 한 번에 업데이트 하는 것입니다.
 
+  Mean-Squared error를 gradient방식에 집어넣어서 gradient를 취해보면 다음과 같습니다.
+    > Gradient descent finds a local minimum
+        ∆w = -(1/2) * 𝛼 * ∇w J(w)
+           = 𝛼 * E_𝜋[{v_𝜋(s)-vhat(s,w)} * ∇w vhat(s,w)]
+
+  하지만 DP에서 강화학습으로 넘어갈 때 처럼 expectation을 없애고 sampling으로 대체하면 아래와 같아집니다.
+    > Stochastic gradient descent samples the gradient
+      ∆w = 𝛼 * {v_𝜋(s)-vhat(s,w)} * ∇w vhat(s,w)
+
+  이전에 MC와 TD Learning에서 했듯이 True value function 부분을 여러가지로 대체할 수 있습니다. Sample return을 사용할 수도 있고 TD target을 사용할 수도 있습니다.
+
+    >
+      Have assumed true value function v_pi(s) given by superviser
+      But in RL there is no super visor, only rewards
+      In practice, we substitute a target for v_pi(s)
+        For Mc, the target is the return G_t
+          asdf ㅁㄴㅇㄻㄴㅇㄹ
+        For TD(0), the target is the TD target asdfisdhgip
 
 
 
