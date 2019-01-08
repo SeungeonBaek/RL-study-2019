@@ -44,7 +44,7 @@
         Learn about multiple policies while following one policy
 
   Off-policy는 다음과 같은 장점이 있습니다.
-  - 다른 agent난 사람을 관찰하고 그로부터 학습할 수 있다.
+  - 다른 agent나 사람을 관찰하고 그로부터 학습할 수 있다.
   - 이전의 policy들을 재활용하여 학습할 수 있다.
   - 탐험을 계속 하면서도 optimal한 policy를 학습할 수 있다. (Q-learning)
   - 하나의 policy를 따르면서 여러개의 policy를 학습할 수 있다.
@@ -54,7 +54,8 @@
   위에서 Off-policy learning이 어떤 것인지 배웠습니다. 하지만 다른 policy로 부터 현재 policy를 학습할 수 있다는 근거가 무엇일까요? "importance sampling"이라는 개념은 원래 통계학에서 사용하던 개념으로 아래와 특정한 분포의 값들을 추정하는 기법중의 하나입니다.
 
     > Importance sampling
-      In statics, importance sampling is a general technique for estimating properties of a particular distribution, while only having samples generated from a different distribution than the distribution of interset
+      In statics, importance sampling is a general technique for estimating properties of a particular distribution,
+      while only having samples generated from a different distribution than the distribution of interset
 
   어떤 값을 추정하는데 가장 기본적인 방법은 그냥 random하게 찍어보는 것입니다. 이미 저희가 배웠다시피 이러한 process료 표현하는 말은 "monte-carlo"로서 Monte-Carlo estimation이라고 합니다. 하지만 너무 광범위하게 탐색하기도 하고 어떠한 중요한 부분을 알아서 그 위주로 탐색을 하면 더 빠르고 효율적으로 값을 추정할 수 있고 그러한 아이디어가 바로 "Importance Sampling"입니다.
 
