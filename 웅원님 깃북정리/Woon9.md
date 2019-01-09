@@ -92,11 +92,13 @@
   Gradient Descent방법도 (1) Stochastic Gradient Descent(SGD)와 (2) Batch 방법으로 나눌 수 있는데 위와 같이 모든 state에서 true value function과의 error를 한 번에 함수로 잡아서 업데이트 하는 방식은 Batch의 방식을 활용한 것으로서 step by step으로 업데이트 하는 것이 아니고 한 번에 업데이트 하는 것입니다.
 
   Mean-Squared error를 gradient방식에 집어넣어서 gradient를 취해보면 다음과 같습니다.
+
     > Gradient descent finds a local minimum
         ∆w = -(1/2) * 𝛼 * ∇w J(w)
            = 𝛼 * E_𝜋[{v_𝜋(s)-vhat(s,w)} * ∇w vhat(s,w)]
 
   하지만 DP에서 강화학습으로 넘어갈 때 처럼 expectation을 없애고 sampling으로 대체하면 아래와 같아집니다.
+  
     > Stochastic gradient descent samples the gradient
       ∆w = 𝛼 * {v_𝜋(s)-vhat(s,w)} * ∇w vhat(s,w)
 
