@@ -191,9 +191,8 @@
 
         for t = 1 to T do
 
-          With probability ϵ select a ronadom action A_totherwise
-
-          select a_t = {a}max [Q*(𝜙(s_t), a; 𝜃)]
+          With probability ϵ select a ronadom action A_t
+          otherwise select a_t = {a}max [Q*(𝜙(s_t), a; 𝜃)]
 
           Excute action a_t in emulator and observe reward r_t and image x_(t+1)
 
