@@ -149,7 +149,7 @@
   3. Convolutional neural network를 function approximator로 사용한 점
   4. Experience Replay
 
-  Deep Q Network라는 개념이 여기서 청므 소개되었는데 아래와 같이 action value function을 approximate 하는 model로 deep learning의 model을 도입했는데 그 중에서 convolutional network를 도입해서 network를 훈련시키는 것이 DQN이라고 소개하고 있습니다.
+  Deep Q Network라는 개념이 여기서 처음 소개되었는데 아래와 같이 action value function을 approximate 하는 model로 deep learning의 model을 도입했는데 그 중에서 convolutional network를 도입해서 network를 훈련시키는 것이 DQN이라고 소개하고 있습니다.
 
     > We refer to convolutional networks trained with our approach as Deep Q-Networks (DQN).
 
