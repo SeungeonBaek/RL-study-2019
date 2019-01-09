@@ -186,10 +186,10 @@
     > Experience Replay in Deep Q-Networks (DQN)
       Take action a_t according to ϵ−𝑔𝑟𝑒𝑒𝑑𝑦 policy
       Store transition (s_t, a_t, r_(t+1), s_(t+1)) in replay memory D
-      Sample random mini-batch of transitions () from D
+      Sample random mini-batch of transitions (s,a,r,s') from D
       Compute Q-learning targets w.r.t. old, fixed parameter w-
       Optimise MSE between Q-network and Q-learning targets
-        L_i(w_i) = E_(s,a,r,s') ~ D_i[(r+)^2]
+        L_i(w_i) = E_(s,a,r,s') ~ D_i[(r + 𝛾 * {a'}max(Q(s', a'; w-_i)-Q(s, a; w_i)))^2]
 
       Using variant of stochastic gradient descent
 
