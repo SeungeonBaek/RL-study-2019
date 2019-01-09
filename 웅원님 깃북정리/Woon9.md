@@ -106,8 +106,97 @@
       But in RL there is no super visor, only rewards
       In practice, we substitute a target for v_pi(s)
         For Mc, the target is the return G_t
-          asdf ㅁㄴㅇㄻㄴㅇㄹ
-        For TD(0), the target is the TD target asdfisdhgip
+          ∆w = 𝛼 * {G_t-vhat(s,w)} * ∇w vhat(s,w)
+
+        For TD(0), the target is the TD target R_(t+1) + 𝛾 * vhat(s,w)
+          ∆w = 𝛼 * {R_(t+1) + 𝛾 * vhat(s,w) - vhat(s,w)} * ∇w vhat(s,w)
+        For TD(𝜆), the target is the TD target R_(t+1) + 𝛾 * vhat(s,w)
+          ∆w = 𝛼 * {G^𝜆_t - vhat(s,w)} * ∇w vhat(s,w)
+
+***
+
+# Learning with Function Approximator
+
+## 1. Action-value function approximation
+
+  앞에서는 value function을 사용했지만 model-free가 되기 위해서는 action value function을 사용해야 합니다. 그러한 알고리즘을 그림으로 표현하자면 아래와 같습니다.
+
+  policy evaluation은 parameter의 update로 진행하며 policy improvement는 그렇게 update된 action value function에 ϵ−𝑔𝑟𝑒𝑒𝑑𝑦 한 action을 취함으로써 improve가 됩니다.
+
+    > Control with Value Function Approximation
+      Policy evalutation : Approximate policy evaluation, qhat(∙,∙,w) ≈ q_𝜋
+      Policy improvement : ϵ−𝑔𝑟𝑒𝑒𝑑𝑦 policy improvement
+
+  앞에서 value function으로 했던 내용을 반복하면 아래와 같습니다.
+
+    > Action-Value Function Approximation
+      Approximate the action-value function
+        qhat(S,A,w) ≈ q_𝜋(S,A)
+
+      Minimise mean-squared error between approximate action-value function qhat(S,A,w) and true action-value function q_𝜋(S,A)
+        J(w) = E_𝜋[{q_𝜋(S,A) - qhat(S,A,w)}^2]
+
+      Use stochastic gradient descent to find a local minimum
+        -(1/2) * ∇w J(w) =     {q_𝜋(S,A) - qhat(S,A,w)} * ∇w qhat(S,A,w)
+        ∆w               = 𝛼 * {q_𝜋(S,A) - qhat(S,A,w)} * ∇w qhat(S,A,w)
+
+      True value function을 대체하는 것도 아래와 같습니다.
+
+      Like prediction, we muist substitute a target for q_𝜋(S,A)
+        For MC, the target is the return G_t
+          ∆w = 𝛼 * {G_t - qhat(S_t, A_t, w)} * ∇w qhat(S_t, A_t, w)
+
+        For TD(0), the target is the TD target R(t+1) + 𝛾 * Q(S_(t+1), A_(t+1))
+          ∆w = 𝛼 * {R_(t+1) + 𝛾 * qhat(S_(t+1), A_(t+1), w) - qhat(S_t, A_t, w)} * ∇w qhat(S_t, A_t, w)
+
+        For forward-view TD(𝜆), target is the action-value 𝜆-return
+          ∆w = 𝛼 * {q^𝜆_t - qhat(S_t, A_t, w)} * ∇w qhat(S_t, A_t, w)
+
+        For backward-view TD(𝜆), equivalent update is
+          𝛿_t = R_(t+1) + 𝛾 * qhat(S_(t+1), A_(t+1), w) - qhat(S_t, A_t, w)
+          E_t = 𝜆 * E_(t-1) + ∇w qhat(S_t, A_t, w)
+          ∆w  = 𝛼 * 𝛿_t * E_t
+
+***
+
+## 2. Batch Methods
+
+  지금까지 SGD(Stochastic Gradient Descent)를 통해서 parameter를 update하는 방법을 사용했었습니다. 하지만 이 방법은 아래와 같은 문제가 있습니다.
+
+    > Batch Reinforcement Learning
+      Gradient descent is simple and appealing
+      But it is not sample efficient
+      Batch methods seek to find the best fitting value function
+      Given the agents's experience ("training data")
+
+  SGD처럼 gradient를 따라서 parameter를 update하는 것이 아니고 training data(agent가 경험한 것)들을 모아서 한꺼번에 update하는 것이 "Batch Methods"입니다. 하지만 Batch방법은 한 번에 업데이트 하는 만큼 그 많은 데이터들에 가장 잘 맞는 value function을 찾기가 어렵기 때문에 SGD와 Batch방법의 중간을 사용하는 경우도 많습니다.
+
+  예를 들면, step-by-step으로 업데이트 하는 것이 아니고 100개의 데이터가 모일 떄까지 기다렸다가 100번에 한 번씩 업데이트하는 "mini-batch"방법도 있습니다.
+
+  위에서 말하는 SGD의 문제점인 experience data를 한 번만 사용하는 것이 비 효율적이다라고 말하는 점에 대해서는 한 번만 사용하지 않고 여러번 사용하는 것으로 문제를 해결할 수 있습니다. 하지만 어떤 방법으로 experience data를 여러번 활용할 것인가에 대해서 experience replay가 그 답을 말해줍니다.
+
+***
+
+## 3. Experience Replay
+
+  Experience Replay는 아래와 같습니다. 뒤에서 설명하겠지만 Deepmind에서 Atrai Game에 사용했던 알고리즘이고 아래와 같습니다. replay memory라는 것을 만들어 놓고서 agent가 경험했던 것들을 (S_t, A_t, R_(t+1), S_(t+1))로 time-step마다 끊어서 저장해 놓습니다.
+
+  그 후, action-value funtion의 parameter를 update하는 것은 time-step마다 하지만 하나의 transition에 대해서만 하는것이 아니라 모아놓았던 transition을 replay memory에서 100개 혹은 200개씩 꺼내서(mini-batch) 그 moni-batch에 대해 update를 진행합니다.
+
+    > Experience Replay in Deep Q-Networks (DQN)
+      Take action a_t according to ϵ−𝑔𝑟𝑒𝑒𝑑𝑦 policy
+      Store transition (s_t, a_t, r_(t+1), s_(t+1)) in replay memory D
+      Sample random mini-batch of transitions () from D
+      Compute Q-learning targets w.r.t. old, fixed parameter w-
+      Optimise MSE between Q-network and Q-learning targets
+        L_i(w_i) = E_(s,a,r,s') ~ D_i[(r+)^2]
+
+      Using variant of stochastic gradient descent
+
+  이렇게 할 경우에 sample efficient할 수도 있지만 또한 episode내에서 step-by-step으로 update를 하면 그 데이터들 사이의 correlation 때문에 학습이 잘 안되는 문제도 해결할 수 있습니다.
+
+
+
 
 
 
