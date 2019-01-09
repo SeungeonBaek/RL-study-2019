@@ -191,7 +191,7 @@
 
         for t = 1 to T do
 
-          With probability epsilon select a ronadom action A_totherwise
+          With probability ϵ select a ronadom action A_totherwise
 
           select a_t = {a}max [Q*(𝜙(s_t), a; 𝜃)]
 
