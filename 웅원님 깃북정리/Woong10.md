@@ -212,7 +212,7 @@
 
   episode마다 어떻게 update할까요? loss function을 정의하고 그 gradient를 따라서 update합니다. mini-batch data에 대해서 bootstrap으로 q-learning이 했었던 것 처럼 r + {a}max [Q*(s', a')]을 현재 Q가 update가 되어야 할 target으로 잡고 그 error를 quardratic하게 잡고서 gradient를 취하면 아래과 같습니다.
 
-    > DQN에서 사용한 Gradient와 그에 대한 설명    
+    > DQN에서 사용한 Gradient와 그에 대한 설명
         L_i(𝜃_i) = E_(s,a ~ 𝜌(∙)) [(y_i - Q(s, a; 𝜃_i)^2],
 
       where y_i = E_(s' ~ ϵ) [r + 𝛾 * {a'}max [Q(s', a'; 𝜃_i-1) | s, a] is the target for iteration i and 𝜌(s,a) is
