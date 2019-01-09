@@ -112,6 +112,93 @@
 
 ### (1) Back-Propagation
 
+  Gradient를 구했다면, DNN의 안에 있는 parameter들을 어떻게 update할까요? 다시 DNN안에서 data가 전달되어가는 과정을 생각해봅시다. input이 들어가면 layer들을 거쳐가며 output layer에 도달한 data가 output이 되어 나오게 됩니다.
+
+  parameter를 SGD로 update할 때에는 그 반대 방향으로 가게 됩니다. 따라서 그 이름이 Back-Propagation이라는 이름이 붙습니다. Tensorflow등의 Deep learning library들을 사용할 경우에는 그러한 식들이 library화 되어 있다는 장점이 있습니다.
+
+***
+
+# Deep Q Networks
+
+  첫 번째 chapter에서 Atari game의 학습에 대해서 소개했습니다. 이 예제는 Playing atari with deep reinforcement learning이라는 논문에서 나오는 것으로 링크는 아래와 같습니다. 강화학습 + 딥러닝으로 atari라는 고전 게임을 학습시킴으로써 deep reinforcement learning의 시대를 열어주었습니다.
+  https://www.cs.toronto.edu/~vmnih/docs/dqn.pdf
+
+  이 논문의 abstract는 다음과 같으며 같이 읽어 봅시다.
+
+    > We present the first deep learning model to successfully learn control policies directly from high-dimensional sensory input using reinforcement learning.
+
+    The model is a convolutional neural network, trained with a variant of Q-learning, whose input is raw pixels and whose output is a value function estimating future rewards.
+
+    We apply our method to seven Atari 2600 games from the Arcade Learning Environment, with no adjustment of the architecture or learning algorithm.
+
+    We find that it outperforms all previous approaches on six of the games and surpasses a human expert on three of them.
+
+  이 논문의 주목할 점은 다음과 같습니다.
+
+  1. input data로 law pixel을 받아온 점
+  2. 같은 agent로 여러 개의 게임에 적용되어서 학습이 된다는 점
+  3. Convolutional neural network를 function approximator로 사용한 점
+  4. Experience Replay
+
+  Deep Q Network라는 개념이 여기서 청므 소개되었는데 아래와 같이 action value function을 approximate 하는 model로 deep learning의 model을 도입했는데 그 중에서 convolutional network를 도입해서 network를 훈련시키는 것이 DQN이라고 소개하고 있습니다.
+
+    > We refer to convolutional networks trained with our approach as Deep Q-Networks (DQN).
+
+  Convolutional neural networks (CNN)은 최근 딥러닝 열풍을 몰고온 장본인으로써 이미지를 학습하거나 시계열을 학습시키는데 최적화 된 Neural Network 모델입니다. 이 모델을 사용하면 화면 게임 픽셀 데이터 그 자체로 학습을 시킬 수 있습니다.
+
+  그렇기 때문에 따로 게임마다 agent 설정을 달리 해주지 않아도 여러 게임에 대해 하나의 agent로 학습시킬 수 있는 것입니다.
+
+  Neural Network에 들어가는 input data에 대해서는 다음과 같이 언급하고 있습니다.
+
+    > Working directly with raw Atari frames, which are 210 * 160 pixel images with a 128 color palett, can be computationally demanding, so we apply a basic preprocessing step aimed at reducing the input dimensionality.
+    The raw frames are preprocessed by first converting their RGB representation to gray-scale and down-sampling it to a 110 * 84 image.
+    The final input representation is obtained by cropping an 84 * 84 region of the image that roughly captures the playing area
+
+  이 단계를 Deep mind 팀은 "Preprocessing"이라고 했습니다. CNN으로 이미지를 입력하기 전에 게임의 화면을 학습할 수 있는 형태로 변화시켜 주는 것으로써 일단 색을 없애고, 이미지의 크기를 줄이고, 위 아래의 불필요한 정보를 없애주며 정사각형의 이미지로 만들어주는 과정입니다. 이러한 이미지를 4개씩 묶어서 CNN으로 집어넣게 됩니다.
+  https://www.nervanasys.com/demystifying-deep-reinforcement-learning/
+
+  state가 갑자기 pixel data가 되어서 헷갈릴 수도 있습니다. 하지만 agent의 입장에서는 단지 data의 형태가 바뀌었을 뿐이고 화면을 하나의 상태로 인식하여 그 상태에서 어떤 행동을 했을 때의 reward를 기억하고 있는 것입니다.
+
+  Deep mind의 경우 Chapter 8에서 언금했던 experience replay를 사용하고 있습니다. 그리하여 transition data들을 replay memory에 넣어 놓고 매 time step마다 mini-batch를 랜덤으로 memory에서 꺼내서 update를 합니다. learning 알고리즘으로는 q-learning을 사용하고 있다고 합니다.
+
+  Replay memory : <S, A, R, S'>의 transition batch를 출력으로 내보내서 Agent를update after each step
+
+  Agent : Replay memory로부터 transition batch를 입력받고, Deep Q-Network에서 Q-value를 통해 Action을 Environment에 행함.
+
+  Environment : Agent로부터 action을 받고 Succesor state와 Reward등의 정보를 Replay memory로 보낸다.
+
+    > Algorithm of Deep Q - learning with Experience Replay
+
+      Initialize replay memory D to capacity N
+      Initialize action-value function Q with random weights
+
+      for episode = 1 to M do
+        Initialize sequence s_1 = {x_1} and preprocessed sequenced 𝜙_1 = 𝜙(s_1)
+
+        for t = 1 to T do
+
+          With probability epsilon select a ronadom action A_totherwise
+
+          select a_t = {a}max [Q*(𝜙(s_t), a; 𝜃)]
+
+          Excute action a_t in emulator and observe reward r_t and image x_(t+1)
+
+          Set s_(t+1) = s_t, a_t, x_(t91) and preprocess 𝜙_(t+1) = 𝜙(s_(t+1))
+
+          Store transition (𝜙_t, a_t, r_t, 𝜙_(t+1)) in D
+
+          Sample random minibatech of transition (𝜙_j, a_j, r_j, 𝜙_(j+1)) from D
+                      r_j                                 for terminal 𝜙_(j+1)
+          Set y_j =
+                      r_j + 𝛾 * {a}max [Q*(𝜙_j+1 a'; 𝜃)]  for non-terminal 𝜙_(j+1)
+          Perform a gradient descent step on (y_j - Q())^2
+        end
+      end
+
+
+
+
+
 
 
 
