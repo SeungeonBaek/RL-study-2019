@@ -196,14 +196,14 @@
 
           Excute action a_t in emulator and observe reward r_t and image x_(t+1)
 
-          Set s_(t+1) = s_t, a_t, x_(t91) and preprocess 𝜙_(t+1) = 𝜙(s_(t+1))
+          Set s_(t+1) = s_t, a_t, x_(t+1) and preprocess 𝜙_(t+1) = 𝜙(s_(t+1))
 
           Store transition (𝜙_t, a_t, r_t, 𝜙_(t+1)) in D
 
           Sample random minibatech of transition (𝜙_j, a_j, r_j, 𝜙_(j+1)) from D
                       r_j                                 for terminal 𝜙_(j+1)
           Set y_j =
-                      r_j + 𝛾 * {a}max [Q*(𝜙_j+1 a'; 𝜃)]  for non-terminal 𝜙_(j+1)
+                      r_j + 𝛾 * {a}max [Q*(𝜙_j+1, a'; 𝜃)]  for non-terminal 𝜙_(j+1)
           Perform a gradient descent step on (y_j - Q())^2
         end
       end
