@@ -184,12 +184,12 @@
   그 후, action-value funtion의 parameter를 update하는 것은 time-step마다 하지만 하나의 transition에 대해서만 하는것이 아니라 모아놓았던 transition을 replay memory에서 100개 혹은 200개씩 꺼내서(mini-batch) 그 moni-batch에 대해 update를 진행합니다.
 
     > Experience Replay in Deep Q-Networks (DQN)
-      Take action a_t according to ϵ−𝑔𝑟𝑒𝑒𝑑𝑦 policy
+      Take action a_t according to ϵ−𝑔𝑟𝑒𝑒𝑑𝑦 policy
       Store transition (s_t, a_t, r_(t+1), s_(t+1)) in replay memory D
       Sample random mini-batch of transitions (s,a,r,s') from D
       Compute Q-learning targets w.r.t. old, fixed parameter w-
       Optimise MSE between Q-network and Q-learning targets
-        L_i(w_i) = E_(s,a,r,s') ~ D_i[(r + 𝛾 * {a'}max(Q(s', a'; w-_i)-Q(s, a; w_i)))^2]
+        L_i(w_i) = E_(s,a,r,s') ~ D_i[(r + 𝛾 * {a'}max( Q(s', a'; w-_i) - Q(s, a; w_i) ))^2]
 
       Using variant of stochastic gradient descent
 
