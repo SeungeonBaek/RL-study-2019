@@ -157,7 +157,7 @@
 
         For backward-view TD(𝜆), equivalent update is
           𝛿_t = R_(t+1) + 𝛾 * qhat(S_(t+1), A_(t+1), w) - qhat(S_t, A_t, w)
-          E_t = 𝜆 * E_(t-1) + ∇w qhat(S_t, A_t, w)
+          E_t = 𝛾 * 𝜆 * E_(t-1) + ∇w qhat(S_t, A_t, w)
           ∆w  = 𝛼 * 𝛿_t * E_t
 
 ***
@@ -197,4 +197,3 @@
       Using variant of stochastic gradient descent
 
   이렇게 할 경우에 sample efficient할 수도 있지만 또한 episode내에서 step-by-step으로 update를 하면 그 데이터들 사이의 correlation 때문에 학습이 잘 안되는 문제도 해결할 수 있습니다.
-  
