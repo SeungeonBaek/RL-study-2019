@@ -55,10 +55,10 @@
 
     > Role of bias in neural networks
       Modification of neuron WEIGHTS alone only serves to manipulate the shape/curvature of your transfer function,
-       and not its equilibrium/zero crossing points.
+      and not its equilibrium/zero crossing points.
 
       The introduction of BIAS neurons allows you to shift the transfer function curve horizontally (left/right) along
-       the input axis while leaving the shape/curvature unaltered.
+      the input axis while leaving the shape/curvature unaltered.
 
       This will allow the network to produce arbitrary outputs differnet from the defaults and hence you can
       customize/shift the input to output mapping to suit your particular needs.
