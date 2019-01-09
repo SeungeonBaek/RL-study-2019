@@ -54,9 +54,14 @@
   또한 다른 식으로 bias의 필요성을 설명한 stackoverflow의 댓글이 있습니다.
 
     > Role of bias in neural networks
-      Modification of neuron WEIGHTS alone only serves to manipulate the shape/curvature of your transfer function, and not its equilibrium/zero crossing points.
-      The introduction of BIAS neurons allows you to shift the transfer function curve horizontally (left/right) along the input axis while leaving the shape/curvature unaltered.
-      This will allow the network to produce arbitrary outputs differnet from the defaults and hence you can customize/shift the input to output mapping to suit your particular needs.
+      Modification of neuron WEIGHTS alone only serves to manipulate the shape/curvature of your transfer function,
+       and not its equilibrium/zero crossing points.
+
+      The introduction of BIAS neurons allows you to shift the transfer function curve horizontally (left/right) along
+       the input axis while leaving the shape/curvature unaltered.
+
+      This will allow the network to produce arbitrary outputs differnet from the defaults and hence you can
+      customize/shift the input to output mapping to suit your particular needs.
 
   즉, 노드로 들어가는 input들에 곱해지는 weight(학습시키려는 대상)을 변화시키면 함수의 모양만 변화시킬 수 있지, 왼쪽/오른쪽으로 이동시켜서 0이 되는 point를 변형 시킬수는 없다는 것입니다.
 
