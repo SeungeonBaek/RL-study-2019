@@ -159,9 +159,14 @@
 
   Neural Network에 들어가는 input data에 대해서는 다음과 같이 언급하고 있습니다.
 
-    > Working directly with raw Atari frames, which are 210 * 160 pixel images with a 128 color palett, can be computationally demanding, so we apply a basic preprocessing step aimed at reducing the input dimensionality.
-    The raw frames are preprocessed by first converting their RGB representation to gray-scale and down-sampling it to a 110 * 84 image.
-    The final input representation is obtained by cropping an 84 * 84 region of the image that roughly captures the playing area
+    > Working directly with raw Atari frames, which are 210 * 160 pixel images with a 128 color palett, can be
+    computationally demanding, so we apply a basic preprocessing step aimed at reducing the input dimensionality.
+
+    The raw frames are preprocessed by first converting their RGB representation to gray-scale and down-sampling
+    it to a 110 * 84 image.
+
+    The final input representation is obtained by cropping an 84 * 84 region of the image that roughly captures
+    the playing area
 
   이 단계를 Deep mind 팀은 "Preprocessing"이라고 했습니다. CNN으로 이미지를 입력하기 전에 게임의 화면을 학습할 수 있는 형태로 변화시켜 주는 것으로써 일단 색을 없애고, 이미지의 크기를 줄이고, 위 아래의 불필요한 정보를 없애주며 정사각형의 이미지로 만들어주는 과정입니다. 이러한 이미지를 4개씩 묶어서 CNN으로 집어넣게 됩니다.
   https://www.nervanasys.com/demystifying-deep-reinforcement-learning/
