@@ -86,7 +86,7 @@
 
   사실 딥러닝이 최근에 갑자기 급 부상한 것은 엄청나게 혁신적인 변화가 있었다기 보다는 Computation time의 감소와 더불어 activation function을 sigmoid에서 ReLU로 바꾸는 등의 작은 변화들이 중첩되며 일어났기 때문입니다.
 
-  sigmoid 함수에 비해 ReLU가 가지고 있는 장점은 어떤 것이 있는지 알아보겠습니다. ReLU의 직선적이 형태와 sigmoid함수 처럼 수렴하는 형태가 아닌 점이 ReLU의 stochastic gradient descent가 더 잘 수렴하게 해줍니다. 또한 상대적으로 sigmoid함수에 비해서 계산량이 줄어든다는 장점도 있습니다.
+  sigmoid 함수에 비해 ReLU가 가지고 있는 장점은 어떤 것이 있는지 알아보겠습니다. ReLU의 직선적인 형태와 sigmoid함수 처럼 수렴하는 형태가 아닌 점이 ReLU의 stochastic gradient descent가 더 잘 수렴하게 해줍니다. 또한 상대적으로 sigmoid함수에 비해서 계산량이 줄어든다는 장점도 있습니다.
 
   장점이 있으면 단점도 있는 법입니다. 단점은 다음과 같습니다. Learning rate에 따라서 중간에 최대 40%의 network가 "die"할 수 있다고 합니다. 단, learning rate를 잘 조절하면 이 문제는 그렇게 크지 않다고 합니다.
 
@@ -96,13 +96,13 @@
 
 ### (1) SGD
 
-  지금까지는 deep neural network가 무엇인지에 대해서 살펴보았습니다. 다시 이글의 청므으로 돌아가서 DQN이란 action-value function을 deep neural network로 approximation 한 것을 말합니다. 강화학습의 목표는 optimal policy를 구하는 것이고 각 state에서 optimal한 action value fucntion을 알고 있으면 q 값이 큰 action을 취하면 되는 것이므로 결국은 q-value를 구하면 강화학습 문제를 풀게 됩니다.
+  지금까지는 deep neural network가 무엇인지에 대해서 살펴보았습니다. 다시 이글의 처음으로 돌아가서 DQN이란 action-value function을 deep neural network로 approximation 한 것을 말합니다. 강화학습의 목표는 optimal policy를 구하는 것이고 각 state에서 optimal한 action value fucntion을 알고 있으면 q 값이 큰 action을 취하면 되는 것이므로 결국은 q-value를 구하면 강화학습 문제를 풀게 됩니다.
 
   이 q-value는 DNN(deep neural networks)를 통해서 나오게 되는데 결국 DNN을 학습시키는 것이 목표가 되게 됩니다.
 
   따라서 approximation하지 않았을 때와 다른 것은 q-table을 만들어서 각각의 q-value를 update하는 것이 아니고 DNN안의 weight와 bias를 update하게 됩니다. 그렇다면 어떻게 update할까요?
 
-  이 때 이전에 배웠떤 Stochastic Gradient Descent가 사용됩니다. 정리하자면 graidnet descent라는 것은 w를 parameter로 가지는 J라는 objective funciton을 minimize 하는 방법중의 하나로써 w에 대한 J의 gradient 반대 방향으로 w를 update하는 방식을 말합니다.
+  이 때 이전에 배웠던 Stochastic Gradient Descent가 사용됩니다. 정리하자면 graidnet descent라는 것은 w를 parameter로 가지는 J라는 objective funciton을 minimize 하는 방법중의 하나로써 w에 대한 J의 gradient 반대 방향으로 w를 update하는 방식을 말합니다.
 
     > Gradient descent
         ∆w = -(1/2) * 𝛼 * ∇w J(w)
@@ -130,13 +130,17 @@
 
   이 논문의 abstract는 다음과 같으며 같이 읽어 봅시다.
 
-    > We present the first deep learning model to successfully learn control policies directly from high-dimensional sensory input using reinforcement learning.
+    > We present the first deep learning model to successfully learn control policies directly from high-dimensional
+    sensory input using reinforcement learning.
 
-    The model is a convolutional neural network, trained with a variant of Q-learning, whose input is raw pixels and whose output is a value function estimating future rewards.
+    The model is a convolutional neural network, trained with a variant of Q-learning, whose input is raw pixels and
+    whose output is a value function estimating future rewards.
 
-    We apply our method to seven Atari 2600 games from the Arcade Learning Environment, with no adjustment of the architecture or learning algorithm.
+    We apply our method to seven Atari 2600 games from the Arcade Learning Environment, with no adjustment of the
+    architecture or learning algorithm.
 
-    We find that it outperforms all previous approaches on six of the games and surpasses a human expert on three of them.
+    We find that it outperforms all previous approaches on six of the games and surpasses a human expert on
+    three of them.
 
   이 논문의 주목할 점은 다음과 같습니다.
 
