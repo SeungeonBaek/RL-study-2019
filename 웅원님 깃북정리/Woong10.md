@@ -223,7 +223,7 @@
       Note that the targets depend on the network weights;
       this is in constrast with the targtes used for supervised learning.
 
-      Shich are fixed before learning begins.
+      Which are fixed before learning begins.
       Differentiating the loss function with respect to the weights we arrive at the following gradient,
 
         ∇_𝜃 L_i(𝜃_i) = E_(s,a ~ 𝜌(∙); s' ~ ϵ) [ (r + 𝛾 * {a'}max [Q(s',a'; 𝜃_i-1) - Q(s,a; 𝜃_i)] * ∇𝜃 Q(s,a; 𝜃_i) ]
