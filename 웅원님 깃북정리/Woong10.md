@@ -210,7 +210,7 @@
 
   Replay memory는 N개의 episode를 기억하고 있을 수 있는데 N개가 넘어가면 오래된 episode부터 뺍니다.
 
-  episode마다 어떻게 updat할까요? loss function을 정의하고 그 gradient를 따라서 update합니다. mini-batch data에 대해서 bootstrap으로 q-learning이 했었던 것 처럼 r + {a}max [Q*(s', a')]을 현재 Q가 update가 되어야 할 target으로 잡고 그 error를 quardratic하게 잡고서 gradient를 취하면 아래과 같습니다.
+  episode마다 어떻게 update할까요? loss function을 정의하고 그 gradient를 따라서 update합니다. mini-batch data에 대해서 bootstrap으로 q-learning이 했었던 것 처럼 r + {a}max [Q*(s', a')]을 현재 Q가 update가 되어야 할 target으로 잡고 그 error를 quardratic하게 잡고서 gradient를 취하면 아래과 같습니다.
 
   ~~~~~~ 이미지 직접봐라 개빡친다 ~~~~~~~
 
