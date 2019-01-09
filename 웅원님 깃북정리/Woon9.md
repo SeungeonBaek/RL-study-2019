@@ -197,16 +197,4 @@
       Using variant of stochastic gradient descent
 
   이렇게 할 경우에 sample efficient할 수도 있지만 또한 episode내에서 step-by-step으로 update를 하면 그 데이터들 사이의 correlation 때문에 학습이 잘 안되는 문제도 해결할 수 있습니다.
-
-
-
-
-
-
-
-
-
-
-
-
-  ㅁㄴㅇㄹ
+  
