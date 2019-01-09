@@ -84,7 +84,7 @@
 
   ReLU 함수는 x가 0보다 작거나 같을때는 y가 0이 나오고, x가 0보다 클 경우에는 y = x의 형태를 띄는 함수입니다.
 
-  사실 딥러닝이 최근에 갑자기 급 부상한 이유에는 엄청나게 혁신적인 변화가 있었다기 보다는 Computation time의 감소와 더불어 activation function을 sigmoid에서 ReLU로 바꾸는 등의 작은 변화들이 중첩되며 일어났기 때문입니다.
+  사실 딥러닝이 최근에 갑자기 급 부상한 것은 엄청나게 혁신적인 변화가 있었다기 보다는 Computation time의 감소와 더불어 activation function을 sigmoid에서 ReLU로 바꾸는 등의 작은 변화들이 중첩되며 일어났기 때문입니다.
 
   sigmoid 함수에 비해 ReLU가 가지고 있는 장점은 어떤 것이 있는지 알아보겠습니다. ReLU의 직선적이 형태와 sigmoid함수 처럼 수렴하는 형태가 아닌 점이 ReLU의 stochastic gradient descent가 더 잘 수렴하게 해줍니다. 또한 상대적으로 sigmoid함수에 비해서 계산량이 줄어든다는 장점도 있습니다.
 
