@@ -114,7 +114,7 @@
 
   Gradient를 구했다면, DNN의 안에 있는 parameter들을 어떻게 update할까요? 다시 DNN안에서 data가 전달되어가는 과정을 생각해봅시다. input이 들어가면 layer들을 거쳐가며 output layer에 도달한 data가 output이 되어 나오게 됩니다.
 
-  parameter를 SGD로 update할 때에는 그 반대 방향으로 가게 됩니다. 따라서 그 이름이 Back-Propagation이라는 이름이 붙습니다. Tensorflow등의 Deep learning library들을 사용할 경우에는 그러한 식들이 library화 되어 있다는 장점이 있습니다.
+  parameter를 SGD로 update할 때에는 그 반대 방향으로 가게 됩니다. 따라서 그 이름이 Back-Propagation이라는 이름이 붙습니다. Tensorflow등의 Deep learning framework들을 사용할 경우에는 그러한 식들이 library화 되어 있다는 장점이 있습니다.
 
 ***
 
