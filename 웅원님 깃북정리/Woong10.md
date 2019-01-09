@@ -179,7 +179,7 @@
 
   Agent : Replay memory로부터 transition batch를 입력받고, Deep Q-Network에서 Q-value를 통해 Action을 Environment에 행함.
 
-  Environment : Agent로부터 action을 받고 Succesor state와 Reward등의 정보를 Replay memory로 보낸다.
+  Environment : Agent로부터 action을 받고 Successor state와 Reward등의 정보를 Replay memory로 보낸다.
 
     > Algorithm of Deep Q - learning with Experience Replay
 
