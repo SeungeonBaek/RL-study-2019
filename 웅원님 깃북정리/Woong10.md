@@ -1,6 +1,6 @@
 출처 : https://dnddnjs.gitbooks.io/rl/content
-/*이웅원님 Git*/
+/*이웅원님 Git*/ DQN
 
-# Value function Approximation
+# Neural Network
 
-## 1. Tabular Methods
+## 1. What is DQN
