@@ -98,3 +98,35 @@
   따라서 approximation하지 않았을 때와 다른 것은 q-table을 만들어서 각각의 q-value를 update하는 것이 아니고 DNN안의 weight와 bias를 update하게 됩니다. 그렇다면 어떻게 update할까요?
 
   이 때 이전에 배웠떤 Stochastic Gradient Descent가 사용됩니다. 정리하자면 graidnet descent라는 것은 w를 parameter로 가지는 J라는 objective funciton을 minimize 하는 방법중의 하나로써 w에 대한 J의 gradient 반대 방향으로 w를 update하는 방식을 말합니다.
+
+    > Gradient descent
+        ∆w = -(1/2) * 𝛼 * ∇w J(w)
+           = 𝛼 * E_𝜋[{v_𝜋(s)-vhat(s,w)} * ∇w vhat(s,w)]
+
+      Stochastic Gradient descent samples the gradient
+        ∆w = 𝛼 * {v_𝜋(s)-vhat(s,w)} * ∇w vhat(s,w)
+
+  이런 식으로 update를 하게 되는데 모든 데이터에 대해서 gardient를 구해서 한 번 updat하는 것이 아니고 Sampling을 통해서 순차적으로 update를 하겠다는 gradient descent 방법이 stochastic gradient descent입니다.
+
+  아래 페이지를 참고해보면 그렇게 할 경우 수렴하는 속도가 훨씬 빠르며 online으로도 학습할 수 있다는 장점이 있습니다. 또한 하나 중요한 점은 gradient descent방법이 local optimum으로 갈 수 있다는 단점이 있는 최적화 방법이라는 것을 기억 해야 합니다.
+
+### (1) Back-Propagation
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+asdf
