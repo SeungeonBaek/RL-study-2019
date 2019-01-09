@@ -175,7 +175,7 @@
 
   Deep mind의 경우 Chapter 8에서 언금했던 experience replay를 사용하고 있습니다. 그리하여 transition data들을 replay memory에 넣어 놓고 매 time step마다 mini-batch를 랜덤으로 memory에서 꺼내서 update를 합니다. learning 알고리즘으로는 q-learning을 사용하고 있다고 합니다.
 
-  Replay memory : <S, A, R, S'>의 transition batch를 출력으로 내보내서 Agent를update after each step
+  Replay memory : <S, A, R, S'>의 transition batch를 출력으로 내보내서 Agent를 update after each step
 
   Agent : Replay memory로부터 transition batch를 입력받고, Deep Q-Network에서 Q-value를 통해 Action을 Environment에 행함.
 
