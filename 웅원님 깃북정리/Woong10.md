@@ -5,9 +5,9 @@
 
 ## 1. What is DQN
 
-  강화학습에서 agent는 environment를 MDP를 통해서 이해를 하는데 table형태로 학습을 모든 state에 대한 action-value function의 값을 저장하고 update 시켜나가는 식으로 하면 학습이 상당히 느려집니다. 따라서 approximation을 하게 되고, 그 approximation방 중에서 nonlinear function approximator로 deep neural network가 있습니다. 따라서 action-value function(q-value)를 approximate하는 방법으로 ㅇeep neural network를 택한 reinforcement learning방법이 Deep Rienforcement Learning(deepRL)입니다. 또한 action value function뿐만 아니라 policy 자체를 approximate할 수도 있는데 그 approximator로 DNN을 사용해도 DeepRL이 됩니다.
+  강화학습에서 agent는 environment를 MDP를 통해서 이해를 하는데 table형태로 학습을 모든 state에 대한 action-value function의 값을 저장하고 update 시켜나가는 식으로 하면 학습이 상당히 느려집니다. 따라서 approximation을 하게 되고, 그 approximation방법 중에서 nonlinear function approximator로 deep neural network가 있습니다. 따라서 action-value function(q-value)를 approximate하는 방법으로 deep neural network를 택한 reinforcement learning방법이 Deep Rienforcement Learning(deepRL)입니다. 또한 action value function뿐만 아니라 policy 자체를 approximate할 수도 있는데 그 approximator로 DNN을 사용해도 DeepRL이 됩니다.
 
-  action value function을 approximate하는 deep neural networks를 Deep Q-Networks(DQN)이라고 하는데 그렇다면 DQN으로 어떻게 핛브할까요? DQN이라는 개념은 DeepMind의 "Playing Atari with Deep Reinforcement Learning"이라는 논문에 소개되어 있습니다.
+  action value function을 approximate하는 deep neural networks를 Deep Q-Networks(DQN)이라고 하는데 그렇다면 DQN으로 어떻게 학습할까요? DQN이라는 개념은 DeepMind의 "Playing Atari with Deep Reinforcement Learning"이라는 논문에 소개되어 있습니다.
   https://www.cs.toronto.edu/~vmnih/docs/dqn.pdf
 
 ***
@@ -24,15 +24,15 @@
 
   인공지능이 사람의 뇌를 모방하게 된 것에는 컴퓨터가 계산과 같은 일에는 사람보다 뛰어난 performance를 내지만 개와 고양이를 구별하는 사람이라면 누구나 간단하게 하는 일은 컴퓨터는 하지 못했기 때문입니다.
 
-  따라서 이미 뇌의 구조에 대해서는 수많으 뉴런들과 시냅스로 구성되어 있다는 것을 알고 그것을 수학적 모델로 만들어서 컴퓨터의 알고리즘에 적용시키는 방법을 택한 것입니다.
+  따라서 이미 뇌의 구조에 대해서는 수많은 뉴런들과 시냅스로 구성되어 있다는 것을 알고 그것을 수학적 모델로 만들어서 컴퓨터의 알고리즘에 적용시키는 방법을 택한 것입니다.
 
-  neural networks의 수학적 모델은 실제 뉴런의 구조 및 화학적 원리를 기반으로 만들어 졌습니다. 각 Neuron들은 synapse를 통해서 signal을 받습니다. 만약 signal이 어떤 특정한 threshold를 넘어간다면 neruon이 activate되고 그 뉴런은 axon을 통해서 signal을 다른 synapse로 보냅니다.
+  neural networks의 수학적 모델은 실제 뉴런의 구조 및 생화학적 원리를 기반으로 만들어 졌습니다. 각 Neuron들은 synapse를 통해서 signal을 받습니다. 만약 signal이 어떤 특정한 threshold를 넘어간다면 neruon이 activate되고 그 뉴런은 axon을 통해서 signal을 다른 synapse로 보냅니다.
 
   또한 보통 뉴런은 여러개의 input이 들어와서 여러개의 output이 나가는 구조이며, 그 input과 output은 뉴런사이의 연결을 통해서 전달이 됩니다.
 
   예를 들어 뉴런의 시냅스가 10개라고 가정하게 되면 이 시냅스를 통해서 10개의 다른 input들이 들어오게 됩니다. 또한 neuron의 process에 들어가는 값은 이 10개의 input들의 linear combination입니다. 이 process를 거친 y값은 다시 다른 뉴런들의 synapse의 input으로 들어가게 됩니다. 이러한 사람의 뉴런의 구조를 모방해서 인공신경망을 구성하게 되면, 각 neuron은 node가 되고 synapse를 통해서 들어오는 signal은 input이 되고 각각 다른 synapse를 통해서 들어오는 signal들의 중요도가 다를 수 있으므로 weight를 곱해줘서 들어오게 됩니다.
 
-  이 signal들이 wiehgt와 곱해진 것이 바로 net input signal(알짜 입력 신호)입니다. 그 net input signal을 식으로 표현하게 되면 다음과 같습니다.
+  이 signal들이 weight와 곱해진 것이 바로 net input signal(알짜 입력 신호)입니다. 그 net input signal을 식으로 표현하게 되면 다음과 같습니다.
 
     > Net input signal received through synaptic junctions is
       net = b + Σ w_i * x_i = b + W^T * x
