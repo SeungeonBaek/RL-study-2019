@@ -77,16 +77,43 @@
 
     > Policy Objective functions
 
-     Goal : given policy 𝜋_𝜃(s,a) which parameters 𝜃, find best 𝜃
-     But how do we measure the quality of a policy 𝜋_𝜃?
-     In episode environments we can use the start value
-      J_1(𝜃) = ~~
+      Goal : given policy 𝜋_𝜃(s,a) which parameters 𝜃, find best 𝜃
+      But how do we measure the quality of a policy 𝜋_𝜃?
+      In episode environments we can use the start value
+        J_1(𝜃) = V^(𝜋_𝜃)(s_1) = E_𝜋𝜃[v_1]
 
+      In continuing environments we can use the average value
+        J_avV(𝜃) = {𝜋} Σ d^(𝜋_𝜃)(s) * V^(𝜋_𝜃)(s)
 
+      Or the average reward per time-step
+        J_avR(𝜃) = {𝜋} Σ (d^(𝜋_𝜃)(s)) {a} Σ ()(s,a)*R^s_a)
+
+      where d^(𝜋_𝜃)(s) is stationary distribution of Markov chain for 𝜋_𝜃
+
+  Stationary distribution은 처음 접하는 개념일 수 있습니다. Sutton교수님의 policy gradient 논문에서는 stationary distribution을 다음과 같이 정의하고 있습니다.
+  https://webdocs.cs.ualberta.ca/~sutton/papers/SMSM-NIPS99.pdf 읽어보시게...
+
+  웅원님의 이해로는 각 state에 머무르는 비율로 이해했다고 합니다. 이러한 stationary distribution이 어떻게 구현되었나 궁금하다고 합니다.
+
+  Policy Gradient에서의 목표는 이 Objective function을 최대화 시키는 policy의 parameter vector를 찾아내는 것이라고 합니다.
+
+  그렇다면 어떻게 찾아낼까요? 바로 Gradient descent입니다. 그래서 Policy gradient라고 불리는 것입니다. 다음에서는 Objective function의 graident를 어떻게 구하는 지에 대해서 보겠습니다.
+
+    > Find 𝜃 that maximises J(𝜃)
+      J_1(𝜃)   = V^𝜋𝜃(s_1) = E_𝜋𝜃[v_1]
+      J_avR(𝜃) = {𝜋} Σ (d^(𝜋_𝜃)(s)) {a} Σ ()(s,a)*R^s_a)
 
 ***
 
+## 4. How to get gradient of objective function
 
+  Objective function의 gradient를 구하는 방법이 핵심인데 세 가지 방법이 있습니다.
+
+  - Finite Difference Policy Gradient
+  - Monte-Carlo Policy Gradient
+  - Actor-Critic Policy Gradient
+
+  하나씩 차근 차근 살펴보도록 하겠습니다.
 
 
 
