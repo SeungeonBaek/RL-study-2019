@@ -71,9 +71,11 @@
       Sigmoid 함수는 다음과 같이 표현된다고 합니다.
       S(x) = 1 / (1 + e^-x) = e^x / (e^x + 1)
 
+  이 함수는 output이 0~1 사이의 값으로 나오는 함수입니다. 따라서 stochastic 즉 확률을 나타내는데에는 좋다고 합니다.
 
+  discrete action space의 경우 agent가 왼쪽과 오른쪽으로 갈 수 있다고 하면(action = right or left) 이 함수에서 나오는 값이 "1에 가깝다면 왼쪽으로 갈 확률이 높고 0에 가깝다면 오른쪽으로 갈 확률이 높다"라는 식으로 설정하여 stochastic 한 policy를 표현할 수 있습니다.
 
-
+  또는 continuous action space일 경우에는 다른 형태로 표현할 수도 있습니다. 만약 어떤 로봇의 controller에 0부터 100까지 control input을 줄 수 있다면 sigmoid함수를 통해 0이 나오면 control input은 0, 1이 output으로 나오면 control input은 100을 주는 식으로, sigmoid 함수의 output을 normalized action으로 보고 continuous action 또한 표현할 수 있습니다.
 
 
 
