@@ -68,15 +68,50 @@
   위의 gradient를 통해서 policy의 parameter들을 업데이트 할 것입니다. 하지만 그 전의 stochastic한 policy를 어떻게 표현할 수 있을까요? 보통 딥러닝에서 output node에서 많이 사용되는 nonlinear함수인 Sigmoid함수와 Softmax함수를 많이 사용합니다.
 
   - Sigmoid
-      Sigmoid 함수는 다음과 같이 표현된다고 합니다.
+    Sigmoid 함수는 다음과 같이 표현된다고 합니다.
+
       S(x) = 1 / (1 + e^-x) = e^x / (e^x + 1)
 
-  이 함수는 output이 0~1 사이의 값으로 나오는 함수입니다. 따라서 stochastic 즉 확률을 나타내는데에는 좋다고 합니다.
+    이 함수는 output이 0~1 사이의 값으로 나오는 함수입니다. 따라서 stochastic 즉 확률을 나타내는데에는 좋다고 합니다.
 
-  discrete action space의 경우 agent가 왼쪽과 오른쪽으로 갈 수 있다고 하면(action = right or left) 이 함수에서 나오는 값이 "1에 가깝다면 왼쪽으로 갈 확률이 높고 0에 가깝다면 오른쪽으로 갈 확률이 높다"라는 식으로 설정하여 stochastic 한 policy를 표현할 수 있습니다.
+    discrete action space의 경우 agent가 왼쪽과 오른쪽으로 갈 수 있다고 하면(action = right or left) 이 함수에서 나오는 값이 "1에 가깝다면 왼쪽으로 갈 확률이 높고 0에 가깝다면 오른쪽으로 갈 확률이 높다"라는 식으로 설정하여 stochastic 한 policy를 표현할 수 있습니다.
 
-  또는 continuous action space일 경우에는 다른 형태로 표현할 수도 있습니다. 만약 어떤 로봇의 controller에 0부터 100까지 control input을 줄 수 있다면 sigmoid함수를 통해 0이 나오면 control input은 0, 1이 output으로 나오면 control input은 100을 주는 식으로, sigmoid 함수의 output을 normalized action으로 보고 continuous action 또한 표현할 수 있습니다.
+    또는 continuous action space일 경우에는 다른 형태로 표현할 수도 있습니다. 만약 어떤 로봇의 controller에 0부터 100까지 control input을 줄 수 있다면 sigmoid함수를 통해 0이 나오면 control input은 0, 1이 output으로 나오면 control input은 100을 주는 식으로, sigmoid 함수의 output을 normalized action으로 보고 continuous action 또한 표현할 수 있습니다.
 
+  - Softmax
+    만약 discrete action space에서 action이 3개 이상이 되면 sigmoid함수로 표현하기가 애매해집니다. 이럴 때에는 Softmax함수를 쓰는 것이 좋습니다. Softmax함수는 다음과 같이 표현할 수 있습니다.
+
+      P_t(a) = exp(q_t(a) / 𝜏) / {i = 1 -> n} Σ exp(q_t(i) / 𝜏)
+
+    softmax function은 value를 action probability로 변환해주는 역할을 합니다.
+    이때의 q_t(a)는 알다시피 q value이고 𝜏는 temperature parameter라고 하여서, high temperature일 때는 확률이 거의 같아지게, low temperature에는 action을 고를 확률이 value에 영향을 많이 받게끔 합니다.
+
+    웅원님 설명 : action이 i=1 부터 n까지 있을 때 action probability를 위의 함수로 표현할 수 있다고 합니다. 두 가지 이상의 action에 대해서 sigmoid가 아닌 softmax함수를 쓰는 이유라고 하고, 총 합은 1입니당.
+
+  이렇게 stochastic한 policy를 어떻게 표현하는 지, sigmoid와 softmax에 대해서 간단히 설명 했는데 사실 이론보다는 실제로 코드로 구현할 때 해보면 더 잘 이해가 될 것이라고 합니다.
+
+***
+
+## 4. Monte-Carlo Policy Gradient
+
+  여기까지 policy gradient를 통해서 학습을 할 준비는 끝냈다고 합니다. objective function을 정의했고 policy를 parameter를 통해서 나타냈을 때 그 parameter를 update 하기 위해서 objective function의 gradient를 구해야 했습니다.
+
+  objective function의 gradient는 아래와 같이 정의 된다고 합니다.
+  하지만 action value function의 값을 어떻게 알 수 있을까요? 이전에 모든 state에 대해 action value function을 알기 어려워서 approximation을 했었는데 policy자체를 updat하려니 기준이 필요하고 그러다보니 action value function을 사용해야 하는데 사실 이 값을 알 방법이 애매합니다.
+
+  하지만 알 수 있는 방법이 있는데 그게 바로 Monte-Carlo방법입니다. episode를 가보고 받았던 reward들을 기억해 놓고 episode가 끝난 다음에 각 state에 대한 return을 계산하면 됩니다.
+
+  return자체가 action-value function의 unbiased estimation입니다. 이러한 알고리즘은 REINFORCE라고 하며 아래와 같습니다.
+
+    > Monte-Carlo Policy Gradient (REINFORCE)
+      - Update parametres by stochastic gradient ascent
+      - Using policy gradient theorem
+      - Using return v_t as an unbiased sample of Q^(𝜋_𝜃)(s_t, a_t)
+        ∆𝜃_t = 𝛼 * ∇𝜃 log( 𝜋_𝜃(s_t,a_t) * v_t)
+
+    > function REINFORCE
+      Initialise 𝜃 arbitrarily
+      for each episode {s_1, a_1, r_2, ..., s_(T-1), a_(T-1), r_T}
 
 
 
