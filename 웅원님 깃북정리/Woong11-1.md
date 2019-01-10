@@ -115,12 +115,57 @@
 
   하나씩 차근 차근 살펴보도록 하겠습니다.
 
+***
 
+# Finite Difference Policy Gradient
 
+## 1. Finite Difference Policy Gradient
 
+  이 방법은 수치적인 방법으로서 가장 간단하게 objective function의 gradient를 구할 수 있는 방법입니다. 만약 parameter vector가 5개의 dimension으로 이루어져 있다고 한다면 각 parameter를 ϵ만큼 변화시켜보고 5개의 parameter에 대한 gradient를 각각 구하는 것입니다.
 
+  parameter space가 작을 때는 간단하지만 늘어날수록 비효율적이고 noisy한 방법이라고 합니다. policy가 미분 가능하지 않더라도 사용 가능하다는 장점이 있어서 초기 policy gradient에서 사용되던 방법입니다.
 
+    > Finitie Difference PG (Numerical Method)
+      To evaluate policy gradient of 𝜋_𝜃(s,a)
+      For each dimension k ∈ [1,n]
+        Estimate kth partial derivative of objective function w.r.t. 𝜃
+        By perturbing 𝜃 by small amount ϵ in kth dimension
+          𝜕J(𝜃) / 𝜕𝜃_k ≈ {J(𝜃 + ϵ * u_k) - J(𝜃)} / ϵ
 
+          where u_k is unit vector with 1 in kth component, 0 elsewhere
+      Uses n evaluations to compute policy gradient in n dimensions
+      Simple, noisy, inefficient - but sometimes effective
+      Works for arbitrary policies, even if policy is not differentiable
+
+***
+
+## 2. Example : Training AIBO
+
+  강화학습으로 로봇을 학습시키는 논문중의 Finite Difference Policy Gradient를 사용해서 sony의 AIBO를 학습시킨 2004년 논문이 있습니다. Silver교수님 수업에서도 아래 그림과 같이 소개되었습니다.
+
+    > Training AIBO to Walk by Finite Difference Policy Gradient
+      Goal : learn a fast AIBO walk (useful for Robocup)
+      AIBO walk policy is controlled by 12 numbers (elliptical loci)
+      Adapt these parameters by finite difference policy gradient
+      Evaluate performance of policy by field traversal time
+
+  http://www.sony-aibo.com/ 참고
+  AIBO는 기본 적인 걸음걸이가 느리기 때문에 더 빠르게 걸음걸이(gait)을 튜닝하는데 강화학습을 사용한다고 합니다.
+
+  다리의 궤적 자체를 parameterize했기 때문에 Policy gradient 방법이라고 할 수 있습니다. 다리의 궤적 자체를 policy로 보는 것입니다.
+
+  따라서 가장 빠른 걸음걸이를 얻기 위해 12개의 component로 구성되어 있는 parameter vector를 학습시키는 것이 목표입니다.
+
+  여기서 objective function은 속도가 됩니다. (따라서 사실 앞에서 언급했던 objective function에 대한 식들은 여기서는 사용하지 않습니다. => 가속도를 사용한다는 건가염?)
+
+  ### Gradient를 구하는 방법
+  (1) Parameter vector 𝜋 (directly represent the policy of AIBO)
+  (2) To estimate gradient numerically generate t randomly generated policies
+
+  즉, 12개의 parameter를 기존의 parameter보다 미세한 양을 랜덤하게 변화시킨 t개의 policy를 생성하는 것입니다. 그러면 변화가 된 t개의 policy의 objective function(속도)을 측정합니다. 12개의 parameter들 각각에 대해 average score를 계산해서 update를 하면 됩니다.
+
+  자세한 건 논문을 참고하면 될 것 같고, 로봇의 걸음걸이 자체를 함수화 할 수 없어서 미분 불가능한 문제를 numerical하게 하나하나 해보면서 풀었던 예시라고 합니다.
+  최근에 와서는 잘 사용하지 않는 방법이라고 합니다.
 
 
 
