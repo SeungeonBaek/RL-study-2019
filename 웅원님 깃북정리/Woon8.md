@@ -56,7 +56,7 @@
 
     > Importance sampling
       In statics, importance sampling is a general technique for estimating properties of a particular distribution,
-      while only having samples generated from a different distribution than the distribution of interset
+      while only having samples generated from a different distribution than the distribution of interest
 
   어떤 값을 추정하는데 가장 기본적인 방법은 그냥 random하게 찍어보는 것입니다. 이미 저희가 배웠다시피 이러한 process료 표현하는 말은 "monte-carlo"로서 Monte-Carlo estimation이라고 합니다. 하지만 너무 광범위하게 탐색하기도 하고 어떠한 중요한 부분을 알아서 그 위주로 탐색을 하면 더 빠르고 효율적으로 값을 추정할 수 있고 그러한 아이디어가 바로 "Importance Sampling"입니다.
 
