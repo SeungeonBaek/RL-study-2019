@@ -46,12 +46,13 @@
   하지만 local optimum에 빠질 수 있으며 policy의 evaluate하는 과정이 비효율적이고 variance가 높습니다.
 
     > Policy-based reinforcement learning
-    Advantage
+
+      Advantage
       - Better convergence properties
       - Effective in high-dimensional or continuous action spaces
       - Can learn stochastic policies
 
-    Disadvantage
+      Disadvantage
       - Typically converge to a local rather than global optimum
       - Evaluating a policy is typically inefficient and high variance
 
