@@ -226,6 +226,6 @@
       Which are fixed before learning begins.
       Differentiating the loss function with respect to the weights we arrive at the following gradient,
 
-        ∇𝜃 L_i(𝜃_i) = E_(s,a ~ 𝜌(∙); s' ~ ϵ) [ (r + 𝛾 * {a'}max [Q(s',a'; 𝜃_(i-1)) - Q(s,a; 𝜃_i)] * ∇𝜃 Q(s,a; 𝜃_i) ]
+        ∇𝜃 L_i(𝜃_i) = E_(s,a ~ 𝜌(∙); s' ~ ϵ) [{r + 𝛾 * {a'}max (Q(s',a'; 𝜃_(i-1)) - Q(s,a; 𝜃_i)} * ∇𝜃 Q(s,a; 𝜃_i)]
 
   이 방법은 chapter8에서 배웠던 내용을 활용한 것으로써 달라지는 것은 ∇𝜃 Q(s, a; 𝜃)를 어떻게 구하냐 입니다. 사실은 이 부분은 딥러닝에 대해서 깊게 들어가야 하는 부분인데 tensorflow같은 library들이 잘 되어 있어서 함수를 호출하면 알아서 계산해 줍니다.
