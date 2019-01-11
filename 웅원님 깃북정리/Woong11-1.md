@@ -21,7 +21,7 @@
 
     > Value-based reinforcement learning vs Policy-based reinforcement learning
 
-      In the last lecture we approximated the values or action-value function using parameters 𝜃,
+      In the last lecture we approximated the state-value or action-value function using parameters 𝜃,
         V_𝜃(s)   ≈ V_𝜋(s)
         Q_𝜃(s,a) ≈ Q_𝜋(s,a)
 
