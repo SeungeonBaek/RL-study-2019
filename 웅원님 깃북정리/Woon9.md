@@ -122,7 +122,7 @@
 
 ## 1. Action-value function approximation
 
-  앞에서는 value function을 사용했지만 model-free가 되기 위해서는 action value function을 사용해야 합니다. 그러한 알고리즘을 그림으로 표현하자면 아래와 같습니다.
+  앞에서는 state-value function을 사용했지만 model-free가 되기 위해서는 action-value function을 사용해야 합니다. 그러한 알고리즘을 그림으로 표현하자면 아래와 같습니다.
 
   policy evaluation은 parameter의 update로 진행하며 policy improvement는 그렇게 update된 action value function에 ϵ−𝑔𝑟𝑒𝑒𝑑𝑦 한 action을 취함으로써 improve가 됩니다.
 
