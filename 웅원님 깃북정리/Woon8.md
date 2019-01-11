@@ -105,7 +105,7 @@
   현재 state S에서 action을 선택하는 것은 behaviour policy를 따라서 선택합니다. TD에서 update할 때는 one-step을 bootstrap하는데 이 때 다음 state의 action을 선택하는 데는 behaviour policy와는 다른 policy(alternative policy)를 사용하면 Importance Sampling이 필요하지 않습니다.
 
   이전의 Off-Policy에서는 Value function을 사용했었는데 여기서는 action-value function을 사용함으로써 다음 action까지 선택을 해야하는데 그 때 다른 policy를 사용한다는 것입니다.
-  
+
     > Q-Learning
       We now consider off-policy learning of action-values Q(s,a)
       No importance sampling is required
@@ -124,7 +124,7 @@
 
   위와 같이 behavior policy와 target policy를 택한 알고리즘입니다. 이전에 Off-policy의 장점이 exploratory policy를 따르면서도 optimal policy를 학습할 수 있다고 했는데 그게 바로 이 알고리즘입니다. greedy한 policy로 학습을 진행하면 수렴을 빨리 하는데 충분히 탐험을 하지 않았기 때문에 local에 빠지기가 쉽습니다.
 
-  그렇기 때문에, 탐험을 위해 ϵ−𝑔𝑟𝑒𝑒𝑑𝑦 policy를 사용하게 되면 수렴속도가 느려져서 학습속도가 느려지게 됩니다. 이를 해결하기 위한 방법이 ϵ(epsilon)을 시간에 따라 decay기키는 방법과 아래와 같이 Q learning을 사용하는 것입니다.
+  그렇기 때문에, 탐험을 위해 ϵ−𝑔𝑟𝑒𝑒𝑑𝑦 policy를 사용하게 되면 수렴속도가 느려져서 학습속도가 느려지게 됩니다. 이를 해결하기 위한 방법이 ϵ(epsilon)을 시간에 따라 decay시키는 방법과 아래와 같이 Q learning을 사용하는 것입니다.
 
     > Off-Policy Control with Q-Learning
       We now allow both behaviour and target policies to improve
