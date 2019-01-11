@@ -72,9 +72,9 @@
   이제 기존의 방법처럼 action-value function을 approximate하지 않고 policy를 바로 approximate할 것입니다. 학습은 policy를 approximate한 parameter들을 update해 나가는 것입니다. 이 parameter들을 update하려면 기준이 필요한데 DQN에서는 TD error를 사용했었습니다.
   하지만 Policy Gradient에서는 Objective function이라는 것을 정의합니다. 정의하는 방법에는 세 가지가 있습니다. state value, average value, average reward per time-step입니다.
 
-  똑같은 state에서 시작하는 게임에서는 처음 시작 state의 value function이 강화학습이 최대로 하고자 하는 목표가 됩니다. 두 번째는 잘 사용하지 않고, 세 번째는 각 time-step마다 받는 reward들의 expectation값을 사용합니다.
-
-  사실은 time-step마다 받는 reward들의 expectation값을 사용합니다. 사실은 time-step마다 받은 reward들을 discount시키지 않고 stationary distribution을 사용해서 어떤 행동이 좋았냐에 대한 credit assignment 문제를 풀고 있지 않나 생각됩니다.
+  똑같은 state에서 시작하는 게임에서는 처음 시작 state의 value function이 강화학습이 최대로 하고자 하는 목표가 됩니다.
+  두 번째는 잘 사용하지 않고, 세 번째는 각 time-step마다 받는 reward들의 expectation값을 사용합니다.
+  사실은 time-step마다 받은 reward들을 discount시키지 않고 stationary distribution을 사용해서 어떤 행동이 좋았냐에 대한 credit assignment 문제를 풀고 있지 않나 생각됩니다.
 
     > Policy Objective functions
 
