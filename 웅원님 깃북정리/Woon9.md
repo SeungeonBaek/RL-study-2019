@@ -193,7 +193,7 @@
       Sample random mini-batch of transitions (s,a,r,s') from D
       Compute Q-learning targets w.r.t. old, fixed parameter w-
       Optimise MSE between Q-network and Q-learning targets
-        L_i(w_i) = E_(s,a,r,s') ~ D_i[(r + 𝛾 * {a'}max( Q(s', a'; w-_i) - Q(s, a; w_i) ))^2]
+        L_i(w_i) = E_(s,a,r,s'~ D_i) [(r + 𝛾 * {a'}max( Q(s', a'; w-_i) - Q(s, a; w_i) ))^2]
 
       Using variant of stochastic gradient descent
 
