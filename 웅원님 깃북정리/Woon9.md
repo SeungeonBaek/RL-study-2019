@@ -185,7 +185,7 @@
 
   Experience Replay는 아래와 같습니다. 뒤에서 설명하겠지만 Deepmind에서 Atrai Game에 사용했던 알고리즘이고 아래와 같습니다. replay memory라는 것을 만들어 놓고서 agent가 경험했던 것들을 (S_t, A_t, R_(t+1), S_(t+1))로 time-step마다 끊어서 저장해 놓습니다.
 
-  그 후, action-value funtion의 parameter를 update하는 것은 time-step마다 하지만 하나의 transition에 대해서만 하는것이 아니라 모아놓았던 transition을 replay memory에서 100개 혹은 200개씩 꺼내서(mini-batch) 그 moni-batch에 대해 update를 진행합니다.
+  그 후, action-value funtion의 parameter를 update하는 것은 time-step마다 하지만 하나의 transition에 대해서만 하는것이 아니라 모아놓았던 transition을 replay memory에서 100개 혹은 200개씩 꺼내서(mini-batch) 그 mini-batch에 대해 update를 진행합니다.
 
     > Experience Replay in Deep Q-Networks (DQN)
       Take action a_t according to ϵ−𝑔𝑟𝑒𝑒𝑑𝑦 policy
