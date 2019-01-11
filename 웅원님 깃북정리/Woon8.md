@@ -129,9 +129,9 @@
     > Off-Policy Control with Q-Learning
       We now allow both behaviour and target policies to improve
       The target policy 𝜋 is greedy w.r.t. Q(s,a)
-        𝜋(S_(t+1)) = {a') argmax{ Q(S_(t+1),a') }
+        𝜋(S_(t+1)) = {a'} argmax{ Q(S_(t+1),a') }
 
-      The behaviour policy mu is e.g. ϵ−𝑔𝑟𝑒𝑒𝑑𝑦 w.r.t Q(s,a)
+      The behaviour policy 𝜇 is e.g. ϵ−𝑔𝑟𝑒𝑒𝑑𝑦 w.r.t Q(s,a)
       The Q-learning target then simplifies:
          R_(t+1) + 𝛾 * Q(S_(t+1), A')
        = R_(t+1) + 𝛾 * Q(S_(t+1), {a'}argmax{ Q(S_(t+1),a') })
@@ -145,7 +145,7 @@
       Theorem : Q-learning control converges to the optimal action-value function, Q(s,a) -> q*(s,a)
 
       Pseudo code
-        Initialize Q(s,a), s S, a A, arbitrarily, and Q(terminal-state,∙) = 0
+        Initialize Q(s,a), s ∈ S, a ∈ A, arbitrarily, and Q(terminal-state,∙) = 0
         Repeat (for each episode):
           Initialize S
           Repeat (for each step of episode):
@@ -163,7 +163,7 @@
 
   이 예제에서 목표는 S라는 start state에서 시작해서 Goal까지 가는 optimal path를 찾는 것입니다. 그림에 나와있는 Cliff에 빠져버리면 -100의 reward를 받고 time-step마다 reward를 -1씩 받는 문제라서 절벽에 빠지지 않고 goal까지 가능한 한 빠르게 도착하는 것이 목표입니다.
 
-  눈으로 딱 봐도 그림에 있는 optimal path가 답이라고 생각합니다. SARSA와 Q-learning 모두 다 $$\epsilon$$-greedy한 policy로 움직입니다. 따라서 더러는 Cliff에 빠져버리기도 합니다. 차이는 SARSA는 on-policy라서 그렇게 Cliff에 빠져버리는 결과로 인해 그 주변의 상태들의 value를 낮다고 판단합니다. 하지만 Q-learing의 경우에는 비록 $$\epsilon$$-greedy로 인해 Cliff에 빠져버릴지라도 자신이 직접 체험한 그 결과가 아니라 greedy한 policy로 인한 Q function을 이용해서 업데이트합니다. 따라서 Cliff 근처의 길도 Q-learning은 optimal path라고 판단할 수 있어서 이 문제의 경우 SARSA보다는 Q-learning이 적합하다고 할 수 있습니다.
+  눈으로 딱 봐도 그림에 있는 optimal path가 답이라고 생각합니다. SARSA와 Q-learning 모두 다 ϵ−𝑔𝑟𝑒𝑒𝑑𝑦한 policy로 움직입니다. 따라서 더러는 Cliff에 빠져버리기도 합니다. 차이는 SARSA는 on-policy라서 그렇게 Cliff에 빠져버리는 결과로 인해 그 주변의 상태들의 value를 낮다고 판단합니다. 하지만 Q-learing의 경우에는 비록 ϵ−𝑔𝑟𝑒𝑒𝑑𝑦로 인해 Cliff에 빠져버릴지라도 자신이 직접 체험한 그 결과가 아니라 greedy한 policy로 인한 Q function을 이용해서 업데이트합니다. 따라서 Cliff 근처의 길도 Q-learning은 optimal path라고 판단할 수 있어서 이 문제의 경우 SARSA보다는 Q-learning이 적합하다고 할 수 있습니다.
 
   SARSA에서 탐험을 위해서 $$\epsilon$$-greedy를 사용했지만 결국은 그로인해서 정작 에이전트가 optimal로 수렴하지 못하는 현상들이 발생한 것입니다. 따라서 Q-learning의 등장 이후로는 많은 문제에서 Q-learning이 더 효율적으로 문제를 풀었기 때문에 강화학습에서 Q-learning은 기본적인 알고리즘으로 자리를 잡게 됩니다.
 
