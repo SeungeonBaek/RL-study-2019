@@ -26,7 +26,7 @@
         Q_𝜃(s,a) ≈ Q_pi(s,a)
 
       A policy was generated directly from the value function
-        e.g. using ϵ−𝑔𝑟𝑒𝑒𝑑𝑦
+        e.g. using ϵ−𝑔𝑟𝑒𝑒𝑑𝑦
 
   그와 달리 Policy-based RL은 Policy 자체를 approximate해서 function approximator에서 나오는 것이 value function이 아니고 policy자체가 나옵니다.
 
