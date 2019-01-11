@@ -58,7 +58,7 @@
       In statics, importance sampling is a general technique for estimating properties of a particular distribution,
       while only having samples generated from a different distribution than the distribution of interest
 
-  어떤 값을 추정하는데 가장 기본적인 방법은 그냥 random하게 찍어보는 것입니다. 이미 저희가 배웠다시피 이러한 process료 표현하는 말은 "monte-carlo"로서 Monte-Carlo estimation이라고 합니다. 하지만 너무 광범위하게 탐색하기도 하고 어떠한 중요한 부분을 알아서 그 위주로 탐색을 하면 더 빠르고 효율적으로 값을 추정할 수 있고 그러한 아이디어가 바로 "Importance Sampling"입니다.
+  어떤 값을 추정하는데 가장 기본적인 방법은 그냥 random하게 찍어보는 것입니다. 이미 저희가 배웠다시피 이러한 process를 표현하는 말은 "monte-carlo"로서 Monte-Carlo estimation이라고 합니다. 하지만 너무 광범위하게 탐색하기도 하고 어떠한 중요한 부분을 알아서 그 위주로 탐색을 하면 더 빠르고 효율적으로 값을 추정할 수 있고 그러한 아이디어가 바로 "Importance Sampling"입니다.
 
   importance sampling에 대한 간단한 설명은 다음과 같습니다. p와 q라는 distribution이 있을 때 q라는 distribution에서 실제로 진행을 함에도 불구하고 p로 추정하는 것처럼 할 수 있다는 것입니다. 강화학습에서도 policy가 다르면 state의 distribution은 달라지게 되어 있습니다. 따라서 다른 distribution을 통해 추정할 수 있다는 개념을 그대로 가져와서 다른 policy를 통해서 얻어진 sample을 이용하여 Q 값을 추정할 수 있다는 것입니다. 일종의 trick이라고 할 수 있을 것 같습니다.
 
@@ -105,6 +105,7 @@
   현재 state S에서 action을 선택하는 것은 behaviour policy를 따라서 선택합니다. TD에서 update할 때는 one-step을 bootstrap하는데 이 때 다음 state의 action을 선택하는 데는 behaviour policy와는 다른 policy(alternative policy)를 사용하면 Importance Sampling이 필요하지 않습니다.
 
   이전의 Off-Policy에서는 Value function을 사용했었는데 여기서는 action-value function을 사용함으로써 다음 action까지 선택을 해야하는데 그 때 다른 policy를 사용한다는 것입니다.
+  
     > Q-Learning
       We now consider off-policy learning of action-values Q(s,a)
       No importance sampling is required
