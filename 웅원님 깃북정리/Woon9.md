@@ -136,7 +136,8 @@
       Approximate the action-value function
         qhat(S,A,w) ≈ q_𝜋(S,A)
 
-      Minimise mean-squared error between approximate action-value function qhat(S,A,w) and true action-value function q_𝜋(S,A)
+      Minimise mean-squared error between approximate action-value function qhat(S,A,w)
+      and true action-value function q_𝜋(S,A)
         J(w) = E_𝜋[{q_𝜋(S,A) - qhat(S,A,w)}^2]
 
       Use stochastic gradient descent to find a local minimum
