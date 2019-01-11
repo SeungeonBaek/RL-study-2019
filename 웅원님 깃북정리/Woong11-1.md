@@ -87,7 +87,7 @@
         J_avV(𝜃) = {𝜋} Σ d^(𝜋_𝜃)(s) * V^(𝜋_𝜃)(s)
 
       Or the average reward per time-step
-        J_avR(𝜃) = {𝜋} Σ (d^(𝜋_𝜃)(s)) {a} Σ ()(s,a)*R^s_a)
+        J_avR(𝜃) = {𝜋} Σ (d^(𝜋_𝜃)(s)) {a} Σ 𝜋_𝜃(s,a) * R^s_a)
 
       where d^(𝜋_𝜃)(s) is stationary distribution of Markov chain for 𝜋_𝜃
 
