@@ -105,8 +105,7 @@
 
   이전에 MC와 TD Learning에서 했듯이 True value function 부분을 여러가지로 대체할 수 있습니다. Sample return을 사용할 수도 있고 TD target을 사용할 수도 있습니다.
 
-    >
-      Have assumed true value function v_𝜋(s) given by superviser
+    > Have assumed true value function v_𝜋(s) given by superviser
       But in RL there is no supervisor, only rewards
       In practice, we substitute a target for v_𝜋(s)
         For Mc, the target is the return G_t
