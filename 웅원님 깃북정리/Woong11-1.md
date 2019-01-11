@@ -22,8 +22,8 @@
     > Value-based reinforcement learning vs Policy-based reinforcement learning
 
       In the last lecture we approximated the values or action-value function using parameters 𝜃,
-        V_𝜃(s)   ≈ V_pi(s)
-        Q_𝜃(s,a) ≈ Q_pi(s,a)
+        V_𝜃(s)   ≈ V_𝜋(s)
+        Q_𝜃(s,a) ≈ Q_𝜋(s,a)
 
       A policy was generated directly from the value function
         e.g. using ϵ−𝑔𝑟𝑒𝑒𝑑𝑦
