@@ -129,11 +129,11 @@
     > Finitie Difference PG (Numerical Method)
       To evaluate policy gradient of 𝜋_𝜃(s,a)
       For each dimension k ∈ [1,n]
-        Estimate kth partial derivative of objective function w.r.t. 𝜃
-        By perturbing 𝜃 by small amount ϵ in kth dimension
+        Estimate k th partial derivative of objective function w.r.t. 𝜃
+        By perturbing 𝜃 by small amount ϵ in k th dimension
           𝜕J(𝜃) / 𝜕𝜃_k ≈ {J(𝜃 + ϵ * u_k) - J(𝜃)} / ϵ
 
-          where u_k is unit vector with 1 in kth component, 0 elsewhere
+          where u_k is unit vector with 1 in k th component, 0 elsewhere
       Uses n evaluations to compute policy gradient in n dimensions
       Simple, noisy, inefficient - but sometimes effective
       Works for arbitrary policies, even if policy is not differentiable
