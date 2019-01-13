@@ -19,13 +19,13 @@
 
     J(𝜃)    = E_𝜋𝜃[r] = {s ∈ S} Σ d(s) {a ∈ A} Σ 𝜋_𝜃(s,a) * R^s_a
 
-    ∇𝜃 J(𝜃) = {s ∈ S} Σ d(s) {a ∈ A} Σ 𝜋_𝜃(s,a) * ∇𝜃 log(𝜋_𝜃(s,a) * R^s_a)
-            = E_𝜋𝜃 [∇𝜃 log(𝜋_𝜃(s,a) * r)]
+    ∇𝜃 J(𝜃) = {s ∈ S} Σ d(s) {a ∈ A} Σ 𝜋_𝜃(s,a) * ∇𝜃 log(𝜋_𝜃(s,a)) * R^s_a
+            = E_𝜋𝜃 [∇𝜃 log(𝜋_𝜃(s,a)) * r]
 
   하지만 gradient가 안쪽으로 들어가면서 log가 갑자기 나오는데 그 이유는 다음과 같습니다.
 
     ∇𝜃 𝜋_𝜃(s,a) = 𝜋_𝜃(s,a) * ( ∇𝜃 𝜋_𝜃(s,a) / 𝜋_𝜃(s,a) )
-                = 𝜋_𝜃(s,a) * ∇𝜃 log(𝜋_𝜃(s,a) * R^s_a)
+                = 𝜋_𝜃(s,a) * ∇𝜃 log(𝜋_𝜃(s,a)) * R^s_a
 
   왜 이렇게 하는 걸까요? 만약에 log의 형태로 바꾸지 않았다고 생각하면 식은 다음과 같이 됩니다.
 
@@ -40,9 +40,9 @@
       Likelihood ratios exploit the following identity
 
         ∇𝜃 𝜋_𝜃(s,a) = 𝜋_𝜃(s,a) * ( ∇𝜃 𝜋_𝜃(s,a) / 𝜋_𝜃(s,a) )
-                    = 𝜋_𝜃(s,a) * ∇𝜃 log(𝜋_𝜃(s,a) * R^s_a)
+                    = 𝜋_𝜃(s,a) * ∇𝜃 log(𝜋_𝜃(s,a)) * R^s_a
 
-      The socre function is ∇𝜃 log(𝜋_𝜃(s,a) * R^s_a)
+      The socre function is ∇𝜃 log(𝜋_𝜃(s,a)) * R^s_a
 
   objective function의 gradient는 다음과 같습니다.
     E_𝜋𝜃[∇𝜃 log(𝜋_𝜃(s,a) * r)]
@@ -53,13 +53,21 @@
 
   E_𝜋𝜃[∇𝜃 log(𝜋_𝜃(s,a) * r)]
 
-  이 식의 의미는 다음과 같습니다. p(x)는 policy라고 보시면 되는데 ~는 이 policy를 표현하는 parameter space에서의 gradient입니다. 이 때 여기에 scalar인 reward r을 곱해줌으로써 어떤 방향으로 policy를 업데이트 해줘야 하는지를 결정합니다. 따라서 그 방향으로 parameter space에서의 policy가 이동하게 됩니다.
+  이 식의 의미는 다음과 같습니다. p(x)는 policy라고 보시면 되는데 ∇𝜃 log(𝜋_𝜃(s,a)는 이 policy를 표현하는 parameter space에서의 gradient입니다. 이 때 여기에 scalar인 reward r을 곱해줌으로써 어떤 방향으로 policy를 업데이트 해줘야 하는지를 결정합니다. 따라서 그 방향으로 parameter space에서의 policy가 이동하게 됩니다.
 
   http://karpathy.github.io/2016/05/31/rl/  참고하세용 ^^
 
   이때, policy가 어디로 얼만큼 update 될 것인지의 척도가 되는 scalar function으로 immediate reward만 사용하면 그 순간에 잘했냐, 잘 못했냐의 정보밖에 모르기 때문에 제대로 학습이 되지 않을 가능성이 높습니다.
 
   이 immediate reward대신에 자신이 한 행동에 대한 long-term reward인 action-value function을 사용하겠다는 것이 policy gradient theorem입니다. 따라서 아래의 마지막 식을 보게되면 r 대신에 Q function이 들어간 것을 확인할 수 있습니다. 한 순간 순간의 reward를 보는 것이 아니라 지금까지 강화학습이 그래왔듯이 long-term value를 보겠다는 것입니다. 이 Theorem은 Sutton교수님의 "Policy Gradient Methods for Reinforcement Learning with Function Approximation"논문에 증명이 되어 있다고 합니다.
+
+    > Policy Gradient Theorem
+      - The policy gradient theorem generalises the likelihood ratio approach to multi-step MDPs
+      - Replaces instanteneous reward r with long-term value Q^𝜋(s,a)
+      - Policy gradient theorem applies to start state objective, average reward and average value objective
+
+        For any differentiable policy 𝜋_𝜃(s,a), for any of the policy objective functions J = J_1, J_avR, or (1/(1-𝛾)) * J_avV, the policy gradient is
+        ∇𝜃 J(𝜃) = E_𝜋𝜃 [∇𝜃 log(𝜋_𝜃(s,a)) * Q^𝜋(s,a)]
 
 ***
 
