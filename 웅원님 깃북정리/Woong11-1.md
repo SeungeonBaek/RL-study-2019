@@ -163,7 +163,7 @@
   (1) Parameter vector 𝜋 (directly represent the policy of AIBO)
   (2) To estimate gradient numerically generate t randomly generated policies
 
-  즉, 12개의 parameter를 기존의 parameter보다 미세한 양을 랜덤하게 변화시킨 t개의 policy를 생성하는 것입니다. 그러면 변화가 된 t개의 policy의 objective function(속도)을 측정합니다. 12개의 parameter들 각각에 대해 average score를 계산해서 update를 하면 됩니다.
+  즉, 12개의 parameter를 기존의 parameter보다 미세한 양을 랜덤하게 변화시켜 t개의 policy를 생성하는 것입니다. 그러면 변화가 된 t개의 policy의 objective function(속도)을 측정합니다. 12개의 parameter들 각각에 대해 average score를 계산해서 update를 하면 됩니다.
 
   자세한 건 논문을 참고하면 될 것 같고, 로봇의 걸음걸이 자체를 함수화 할 수 없어서 미분 불가능한 문제를 numerical하게 하나하나 해보면서 풀었던 예시라고 합니다.
   최근에 와서는 잘 사용하지 않는 방법이라고 합니다.
