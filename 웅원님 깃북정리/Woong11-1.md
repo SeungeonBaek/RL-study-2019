@@ -58,6 +58,23 @@
 
   기존 방법의 문제를 살펴보도록 하겠습니다. Value-based RL 방식에는 두 가지 문제가 있습니다.
 
+    > Greedy vs Incremental
+      - Greedy updates
+          𝜃_𝜋' = {𝜃} argmax( E_(𝜋𝜃)[Q^𝜋(s,a)] )
+
+      - V^(𝜋_0)      ->      𝜋_1      ->      V^(𝜋_1)      ->      𝜋_2      -> ...
+               (small change)    (large change)      (large change)    (large change)
+
+      - Potentially unstable learning process with large policy jumps
+    ***
+      - Policy Gradient updates
+          𝜃_𝜋' = 𝜃_𝜋 + 𝛼 * (𝜕J(𝜃) / 𝜕𝜃_𝜋)
+
+      - V^(𝜋_0)      ->      𝜋_1      ->      V^(𝜋_1)      ->      𝜋_2      -> ...
+               (small change)    (small change)      (small change)    (small change)
+
+      - Stable learning process with smooth policy improvement
+
 ### Unstable
   Value-based RL에서는 Value function을 바탕으로 policy를 계산하므로 Value function이 조금만 달라지더라도, Policy자체는 좌회전에서 우회전을 하는 등의 크게 변화할 수 있는 risk를 안고 있습니다. 이러한 risk가 전체적인 알고리즘의 수렴에 불안정성을 더해줍니다.
   하지만 Policy자체가 함수화 되어버릴 경우, 학습을 하면서 조금씩 변하는 value function으로 인해서 policy또한 조금씩 변하게 되어서 안정적이고 부드럽게 수렴하게 됩니다.
