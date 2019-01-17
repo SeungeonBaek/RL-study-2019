@@ -119,7 +119,15 @@
 
     > function REINFORCE
       Initialise 𝜃 arbitrarily
-      for each episode {s_1, a_1, r_2, ..., s_(T-1), a_(T-1), r_T}
+      for each episode {s_1, a_1, r_2, ..., s_(T-1), a_(T-1), r_T} ~ 𝜋_𝜃 do
+        for t = 1 to T-1 do
+          𝜃 <- 𝜃 + 𝛼 * ∇𝜃 log( 𝜋_𝜃(s_t,a_t) * v_t)
+        end for
+      end for
+      return 𝜃
+      end function
+
+  loop문을 보시면 학습, 즉 parameter의 update가 episode마다 일어나고 있음을 알 수 있습니다. 이 때 parameter를 regression 방법이 아니고 stochastic gradient descent 방법을 사용해서 한 step씩 update 합니다.
 
 
 
