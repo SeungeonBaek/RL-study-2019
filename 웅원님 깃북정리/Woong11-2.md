@@ -129,40 +129,106 @@
 
   loop문을 보시면 학습, 즉 parameter의 update가 episode마다 일어나고 있음을 알 수 있습니다. 이 때 parameter를 regression 방법이 아니고 stochastic gradient descent 방법을 사용해서 한 step씩 update 합니다.
 
+***
+
+## Actor-Critic Policy Gradient
+
+  Monte-Carlo Policy Gradient 알고리즘을 위에서 다시 한 번 보십시오.
+
+  REINFORCE 알고리즘에서는 Return을 사용하기 때문에 Monte-Carlo 고유의 문제인 high variance의 문제가 있습니다. 또한 episode 자체가 길 수도 있기 때문에 학습하는데 까지의 시간이 생각보다 오래걸릴 수도 있습니다. 따라서 다음과 같은 아이디어를 낼 수 있을 것입니다.
+
+  Parameter를 하나 더 사용해서 action value function도 approximation하는 것입니다.
+
+***
+
+## 1. Actor & Critic
+
+  그러한 알고리즘을 actor-critic이라고 부르고 아래 그림을 통해 설명하도록 하겠습니다. Critic은 action value function을 approximation하는 w를 update하고 Actor는 approximate하는 𝜃를 update 합니다. 따라서 w와 𝜃라는 두 개의 weight parameter를 사용해야 합니다.
+
+  - Monte-Carlo policy gradient still has high variance
+
+  - We use a critic to estimate the action-value function
+    Q_w(s,a) ≈ Q^𝜋𝜃(s,a)
+
+  - Actor-critic algorithms maintain two sets of parameters
+    Critic : Updates action-value function parameters w
+    Actor  : Updates policy parameters 𝜃, in direction suggested by critic
+
+  - Actor-critic algorithms follow an approximate policy gradient
+    ∇𝜃 J(𝜃) ≈ E_𝜋𝜃 [∇𝜃 log(𝜋_𝜃(s,a)) * Q_w(s,a)]
+         ∆𝜃 = 𝛼 * ∇𝜃 log( 𝜋_𝜃(s_t,a_t) * Q_w(s,a) )
+
+  이 Critic은 action-value function을 통해 현재의 Policy를 평가하는 역할을 합니다. action을 해보고 그 action의 action value function이 높았으면 그 action을 할 확률을 높이도록 policy의 parameter를 update한느데 그 판단의 척도가 되는 action value function또한 처음에는 잘 모르기 때문에 학습을 해주어야 하고 그래서 critic이 필요합니다.
+
+  action-value function을 update하는 것은 chapter 8에서 봤던 것 처럼 TD(0)을 사용하여 update합니다. 아래에는 action-value function을 linear하게 approximation했을 경우입니다.
+
+  DNN을 사용할 때에는 이전에 배웠던 방법으로 바꾸어 사용하면 됩니다. TD(0)을 사용한 Actor-Critic 알고리즘은 아래와 같습니다.
+
+  Monte-Carlo PG때와는 다르게 매 time step마다 update를 하는 것을 볼 수 있습니다. 또한 update를 할 때는 policy의 parameter와 action value function의 parameter를 동시에 update해줍니다.
+
+    > Action-Value Actor-Critic
+
+    - Simple actor-critic algorithm based on action-value critic
+
+    - Using lenear valuf function approximator Q_w(s,a) = 𝜙(s,a)^T * w
+      Critic : Updates w by linear TD(0)
+      Actor  : Updates 𝜃 by policy gradient
+
+    function QAC
+      Initialise s, 𝜃
+      Sample a ~ 𝜋_𝜃
+
+      for each step do
+        Sample reward r = R^a_s; sample transition s' ~ P^a_s.
+        Sample action a' ~ 𝜋_𝜃(s',a')
+        𝛿 = r + 𝛾 * Q_w(s',a') - Q_w(s,a)
+        𝜃 = 𝜃 + 𝛼 * ∇𝜃 log( 𝜋_𝜃(s_t,a_t) * Q_w(s,a) )
+
+        w <- w + β * 𝛿 * 𝜙(s,a)
+        a <- a', s <- s'
+      end for
+    end function
+
+***
+
+## 2. Baseline
+
+  여기까지 기본적인 Policy Gradient의 개념에 대해서 살펴보았는데 Actor Critic말고 다르게 Variance 문제를 해결하는 것이 Baseline이니다. Q function 이후로 사용하고 있지 않던 State value function을 일종의 평균으로 사용하여 현재의 행동이 평균적으로 얻을 수 있는 value보다 얼마나 더 좋나 라는 것을 계산하도록 해서 variance를 줄이는 것입니다.
+
+  즉, 지금까지 해왔던 것보다 좋음녀 그 방향으로 update를 하고, 아니면 그 반대방향으로 가겠다는 것입니다.
+
+    > Reducing Variance Using a Baseline
+
+      - We subtract a baseline function B(s) from the policy gradient
+      - This can reduce variance, without changing expectation
+        E_𝜋𝜃[] = ~~
+               = ~~
+               = 0
+
+      - A good baseline B(s) is the state value function V^𝜋𝜃(s)
+        B(s) = V^𝜋𝜃(s)
+
+      - So we can rewrithe the policy gradient using the advantage function A^𝜋𝜃(s,a)
+        A^𝜋𝜃(s,a) = Q^𝜋𝜃(s,a) - V^𝜋𝜃(s)
+        ∇𝜃 J(𝜃) ≈ E_𝜋𝜃 [∇𝜃 log(𝜋_𝜃(s,a)) * A^𝜋𝜃(s,a)]
+
+  이러한 advantage function의 사용은 variance를 상당히 개선시킬 수 있습니다. 하지만 아래와 같이 value function과 action-value function을 둘 다 approximation해주어야 한다는 단점이 있습니다.
+
+  - The advantage function can significantly reduce variance of policy gradient
+  - So the critic should really estimate the davantage function
+  - For example, by estimating both ~~ and ~~
+  - Using two function approximators and two parameter vectors,
+    V_v(s) ~~
+    Q_w(s,a) ~~
+    A(s,a) = ~~
+  - And updating both value functions by e.g. TD learning
+
+  하지만 다시 action-value function이 immediate reward + value function이라는 것을 생각하면 아래와 같이 결국 value function 하나만 approximate해도 되서 critic에 parameter를 두 개 사용하는 비 효율성을 개선할 수 있습니다.
+
+  - For the true
 
 
 
+  지금까지는 evaluation으로 TD(0)을 사용했지만 이전에도 배웠듯이 이 자리는 TD(lambda)가 들어갈 수도 있고, eligibility trace가 들어갈 수도 있습니다.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-ㅁㄴㅇㄹ
+  위 방법은 variance가 낮은 대신에 one step만의 정보로 update하므로 bias가 높습니다. 이 문제에 대한 대책으로 TD와 MC 사이의 방법인 TD(lambda)를 사용할 수도 있다는 것입니다.
