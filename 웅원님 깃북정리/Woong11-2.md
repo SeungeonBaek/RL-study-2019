@@ -225,9 +225,15 @@
 
   하지만 다시 action-value function이 immediate reward + value function이라는 것을 생각하면 아래와 같이 결국 value function 하나만 approximate해도 되서 critic에 parameter를 두 개 사용하는 비 효율성을 개선할 수 있습니다.
 
-  - For the true
+  - For the true value function V^~~
 
+  - is an unbiased estimate of the advantage function
 
+  - So we can use the TD error to compute the policy gradient
+
+  - In practice we can use an approximate TD error
+
+  - This approach only requires one set of critic parameters v
 
   지금까지는 evaluation으로 TD(0)을 사용했지만 이전에도 배웠듯이 이 자리는 TD(lambda)가 들어갈 수도 있고, eligibility trace가 들어갈 수도 있습니다.
 
