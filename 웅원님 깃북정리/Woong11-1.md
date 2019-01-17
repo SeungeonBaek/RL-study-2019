@@ -97,7 +97,7 @@
 
       Goal : given policy 𝜋_𝜃(s,a) which parameters 𝜃, find best 𝜃
       But how do we measure the quality of a policy 𝜋_𝜃?
-      In episode environments we can use the start value
+      In episodic environments we can use the start value
         J_1(𝜃) = V^(𝜋_𝜃)(s_1) = E_𝜋𝜃[v_1]
 
       In continuing environments we can use the average value
