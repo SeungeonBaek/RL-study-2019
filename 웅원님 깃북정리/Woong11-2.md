@@ -138,7 +138,7 @@
 
   REINFORCE 알고리즘에서는 Return을 사용하기 때문에 Monte-Carlo 고유의 문제인 high variance의 문제가 있습니다. 또한 episode 자체가 길 수도 있기 때문에 학습하는데 까지의 시간이 생각보다 오래걸릴 수도 있습니다. 따라서 다음과 같은 아이디어를 낼 수 있을 것입니다.
 
-  Parameter를 하나 더 사용해서 action value function도 approximation하는 것입니다.
+  Parameter를 하나 더 사용해서 action-value function도 approximation하는 것입니다.
 
 ***
 
