@@ -219,23 +219,30 @@
   - So the critic should really estimate the davantage function
   - For example, by estimating both ~~ and ~~
   - Using two function approximators and two parameter vectors,
-    V_v(s) ~~
-    Q_w(s,a) ~~
-    A(s,a) = ~~
+    V_v(s)   ≈  V^𝜋𝜃(s)
+    Q_w(s,a) ≈  Q^𝜋𝜃(s)
+    A(s,a)   =  Q_w(s,a) - V_v(s)
+
   - And updating both value functions by e.g. TD learning
 
   하지만 다시 action-value function이 immediate reward + value function이라는 것을 생각하면 아래와 같이 결국 value function 하나만 approximate해도 되서 critic에 parameter를 두 개 사용하는 비 효율성을 개선할 수 있습니다.
 
-  - For the true value function V^~~
+  - For the true value function V^𝜋𝜃(s), the TD error 𝛿^𝜋𝜃
+    𝛿^𝜋𝜃 = r + 𝛾 * V^𝜋𝜃(s') - V^𝜋𝜃(s)
 
   - is an unbiased estimate of the advantage function
+    E_𝜋𝜃[𝛿^𝜋𝜃 | s,a] = E_𝜋𝜃[r + 𝛾 * V^𝜋𝜃(s') | s,a] - V^𝜋𝜃(s)
+                     = Q^𝜋𝜃(s,a) - V^𝜋𝜃(s)
+                     = A^𝜋𝜃(s,a)
 
   - So we can use the TD error to compute the policy gradient
+    ∇𝜃 J(𝜃)   = E_𝜋𝜃 [∇𝜃 log(𝜋_𝜃(s,a)) * 𝛿^𝜋𝜃]
 
   - In practice we can use an approximate TD error
+    𝛿_v = r + 𝛾 * V_v(s') - V_v(s)
 
   - This approach only requires one set of critic parameters v
 
-  지금까지는 evaluation으로 TD(0)을 사용했지만 이전에도 배웠듯이 이 자리는 TD(lambda)가 들어갈 수도 있고, eligibility trace가 들어갈 수도 있습니다.
+  지금까지는 evaluation으로 TD(0)을 사용했지만 이전에도 배웠듯이 이 자리는 TD(𝜆)가 들어갈 수도 있고, eligibility trace가 들어갈 수도 있습니다.
 
-  위 방법은 variance가 낮은 대신에 one step만의 정보로 update하므로 bias가 높습니다. 이 문제에 대한 대책으로 TD와 MC 사이의 방법인 TD(lambda)를 사용할 수도 있다는 것입니다.
+  위 방법은 variance가 낮은 대신에 one step만의 정보로 update하므로 bias가 높습니다. 이 문제에 대한 대책으로 TD와 MC 사이의 방법인 TD(𝜆)를 사용할 수도 있다는 것입니다.
