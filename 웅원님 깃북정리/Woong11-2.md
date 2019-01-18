@@ -115,7 +115,7 @@
       - Update parametres by stochastic gradient ascent
       - Using policy gradient theorem
       - Using return v_t as an unbiased sample of Q^(𝜋_𝜃)(s_t, a_t)
-        ∆𝜃_t = 𝛼 * ∇𝜃 log( 𝜋_𝜃(s_t,a_t) * v_t)
+        ∆𝜃_t = 𝛼 * ∇𝜃 log( 𝜋_𝜃(s_t,a_t)) * v_t
 
     > function REINFORCE
       Initialise 𝜃 arbitrarily
@@ -201,8 +201,9 @@
 
       - We subtract a baseline function B(s) from the policy gradient
       - This can reduce variance, without changing expectation
-        E_𝜋𝜃[] = ~~
-               = ~~
+        E_𝜋𝜃[∇𝜃 log( 𝜋_𝜃(s_t,a_t)) * B(s)]
+               = {s ∈ S} Σ d^𝜋𝜃(s) * {a ∈ A} Σ ∇𝜃 𝜋_𝜃(s,a) * B(s)
+               = {s ∈ S} Σ d^𝜋𝜃(s) B(s) * ∇𝜃 * {a ∈ A} Σ 𝜋_𝜃(s,a)
                = 0
 
       - A good baseline B(s) is the state value function V^𝜋𝜃(s)
