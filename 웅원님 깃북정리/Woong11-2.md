@@ -116,7 +116,7 @@
       - Update parameters by stochastic gradient ascent
       - Using policy gradient theorem
       - Using return v_t as an unbiased sample of Q^(𝜋_𝜃)(s_t, a_t)
-        ∆𝜃_t = 𝛼 * ∇𝜃 log( 𝜋_𝜃(s_t,a_t)) * v_t
+        ∆𝜃_t = 𝛼 * ∇𝜃 log(𝜋_𝜃(s_t,a_t)) * v_t
 
     > function REINFORCE
       Initialise 𝜃 arbitrarily
