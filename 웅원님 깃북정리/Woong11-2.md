@@ -217,7 +217,7 @@
 
   - The advantage function can significantly reduce variance of policy gradient
   - So the critic should really estimate the davantage function
-  - For example, by estimating both ~~ and ~~
+  - For example, by estimating both V^𝜋𝜃(s) and Q^𝜋𝜃(s,a)
   - Using two function approximators and two parameter vectors,
     V_v(s)   ≈  V^𝜋𝜃(s)
     Q_w(s,a) ≈  Q^𝜋𝜃(s)
