@@ -42,7 +42,7 @@
         ∇𝜃 𝜋_𝜃(s,a) = 𝜋_𝜃(s,a) * ( ∇𝜃 𝜋_𝜃(s,a) / 𝜋_𝜃(s,a) )
                     = 𝜋_𝜃(s,a) * ∇𝜃 log(𝜋_𝜃(s,a)) * R^s_a
 
-      The socre function is ∇𝜃 log(𝜋_𝜃(s,a)) * R^s_a
+      The socre function is ∇𝜃 log(𝜋_𝜃(s,a))
 
   objective function의 gradient는 다음과 같습니다.
     E_𝜋𝜃[∇𝜃 log(𝜋_𝜃(s,a) * r)]
