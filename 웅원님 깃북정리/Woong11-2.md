@@ -225,7 +225,9 @@
   - Using two function approximators and two parameter vectors,
 
     > V_v(s)   ≈  V^𝜋𝜃(s)
+
       Q_w(s,a) ≈  Q^𝜋𝜃(s)
+      
       A(s,a)   =  Q_w(s,a) - V_v(s)
 
   - And updating both value functions by e.g. TD learning
