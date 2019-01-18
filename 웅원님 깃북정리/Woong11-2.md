@@ -231,12 +231,15 @@
   하지만 다시 action-value function이 immediate reward + value function이라는 것을 생각하면 아래와 같이 결국 value function 하나만 approximate해도 되서 critic에 parameter를 두 개 사용하는 비 효율성을 개선할 수 있습니다.
 
   - For the true value function V^𝜋𝜃(s), the TD error 𝛿^𝜋𝜃
-    𝛿^𝜋𝜃 = r + 𝛾 * V^𝜋𝜃(s') - V^𝜋𝜃(s)
+    > 𝛿^𝜋𝜃 = r + 𝛾 * V^𝜋𝜃(s') - V^𝜋𝜃(s)
 
   - is an unbiased estimate of the advantage function
-    E_𝜋𝜃[𝛿^𝜋𝜃 | s,a] = E_𝜋𝜃[r + 𝛾 * V^𝜋𝜃(s') | s,a] - V^𝜋𝜃(s)
-                     = Q^𝜋𝜃(s,a) - V^𝜋𝜃(s)
-                     = A^𝜋𝜃(s,a)
+
+    > E_𝜋𝜃[𝛿^𝜋𝜃 | s,a] = E_𝜋𝜃[r + 𝛾 * V^𝜋𝜃(s') | s,a] - V^𝜋𝜃(s)
+
+                       = Q^𝜋𝜃(s,a) - V^𝜋𝜃(s)
+
+                       = A^𝜋𝜃(s,a)
 
   - So we can use the TD error to compute the policy gradient
     ∇𝜃 J(𝜃)   = E_𝜋𝜃 [∇𝜃 log(𝜋_𝜃(s,a)) * 𝛿^𝜋𝜃]
