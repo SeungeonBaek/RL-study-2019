@@ -220,7 +220,7 @@
   이러한 advantage function의 사용은 variance를 상당히 개선시킬 수 있습니다. 하지만 아래와 같이 state-value function과 action-value function을 둘 다 approximation해주어야 한다는 단점이 있습니다.
 
   - The advantage function can significantly reduce variance of policy gradient
-  - So the critic should really estimate the davantage function
+  - So the critic should really estimate the advantage function
   - For example, by estimating both V^𝜋𝜃(s) and Q^𝜋𝜃(s,a)
   - Using two function approximators and two parameter vectors,
 
