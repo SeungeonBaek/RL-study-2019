@@ -160,7 +160,7 @@
   - Actor-critic algorithms follow an approximate policy gradient
 
     > ∇𝜃 J(𝜃) ≈ E_𝜋𝜃 [∇𝜃 log(𝜋_𝜃(s,a)) * Q_w(s,a)]
-           ∆𝜃 = 𝛼 * ∇𝜃 log( 𝜋_𝜃(s_t,a_t) * Q_w(s,a) )
+           ∆𝜃 = 𝛼 * ∇𝜃 log( 𝜋_𝜃(s_t,a_t) ) * Q_w(s,a)
 
   이 Critic은 action-value function을 통해 현재의 Policy를 평가하는 역할을 합니다. action을 해보고 그 action의 action value function이 높았으면 그 action을 할 확률을 높이도록 policy의 parameter를 update한느데 그 판단의 척도가 되는 action value function또한 처음에는 잘 모르기 때문에 학습을 해주어야 하고 그래서 critic이 필요합니다.
 
