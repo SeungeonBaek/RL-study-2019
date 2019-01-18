@@ -144,7 +144,7 @@
 
 ## 1. Actor & Critic
 
-  그러한 알고리즘을 actor-critic이라고 부르고 아래 그림을 통해 설명하도록 하겠습니다. Critic은 action value function을 approximation하는 w를 update하고 Actor는 approximate하는 𝜃를 update 합니다. 따라서 w와 𝜃라는 두 개의 weight parameter를 사용해야 합니다.
+  그러한 알고리즘을 actor-critic이라고 부르고 아래 그림을 통해 설명하도록 하겠습니다. Critic은 action-value function을 approximation하는 w를 update하고 Actor는 approximate하는 𝜃를 update 합니다. 따라서 w와 𝜃라는 두 개의 weight parameter를 사용해야 합니다.
 
   - Monte-Carlo policy gradient still has high variance
 
@@ -153,6 +153,7 @@
 
   - Actor-critic algorithms maintain two sets of parameters
     Critic : Updates action-value function parameters w
+    
     Actor  : Updates policy parameters 𝜃, in direction suggested by critic
 
   - Actor-critic algorithms follow an approximate policy gradient
