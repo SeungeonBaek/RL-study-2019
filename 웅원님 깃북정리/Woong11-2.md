@@ -152,8 +152,8 @@
     Q_w(s,a) ≈ Q^𝜋𝜃(s,a)
 
   - Actor-critic algorithms maintain two sets of parameters
+
     Critic : Updates action-value function parameters w
-    
     Actor  : Updates policy parameters 𝜃, in direction suggested by critic
 
   - Actor-critic algorithms follow an approximate policy gradient
