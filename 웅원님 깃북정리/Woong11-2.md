@@ -29,7 +29,7 @@
 
   왜 이렇게 하는 걸까요? 만약에 log의 형태로 바꾸지 않았다고 생각하면 식은 다음과 같이 됩니다.
 
-  $$\sum { s\in S }^{ }{ d(s) } \sum { a\in A }^{ }{ { { \nabla }{ \theta }\pi }{ \theta }(s,a)\quad{ R }_{ s,a }\quad } $$
+    {s ∈ S} Σ d(s) {a ∈ A} Σ ∇𝜃(𝜋_𝜃(s,a) * R^s_a)
 
   이렇게 되면 결국 𝜋_𝜃(s,a)가 사라졌기 때문에 expectation을 취할 수가 없습니다. 결국은 expectation으로 묶어서 그 안을 sampling하게 되어야 강화학습이 될텐데 따라서 expectation을 취하기 위해서 policy를 나눴다가 곱하는 것입니다. 그래서 score function은 아래와 같이 정의가 됩니다.
 
