@@ -249,7 +249,7 @@
   - In practice we can use an approximate TD error
     > 𝛿_v = r + 𝛾 * V_v(s') - V_v(s)
 
-  - This approach only requires one set of critic parameters v
+  - This approach only requires one set of critic parameters v without w
 
   지금까지는 evaluation으로 TD(0)을 사용했지만 이전에도 배웠듯이 이 자리는 TD(𝜆)가 들어갈 수도 있고, eligibility trace가 들어갈 수도 있습니다.
 
