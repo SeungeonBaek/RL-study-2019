@@ -222,7 +222,7 @@
   - The advantage function can significantly reduce variance of policy gradient
   - So the critic should really estimate the advantage function
   - For example, by estimating both V^𝜋𝜃(s) and Q^𝜋𝜃(s,a)
-  - Using two function approximators and two parameter vectors, w, v
+  - Using two function approximators and two parameter vectors, __w, v__
 
     > V_v(s) ≈ V^𝜋𝜃(s) // Q_w(s,a) ≈ Q^𝜋𝜃(s) // A(s,a) = Q_w(s,a) - V_v(s)
 
