@@ -66,7 +66,8 @@
       - Replaces instanteneous reward r with long-term value Q^𝜋(s,a)
       - Policy gradient theorem applies to start state objective, average reward and average value objective
 
-        For any differentiable policy 𝜋_𝜃(s,a), for any of the policy objective functions J = J_1, J_avR, or (1/(1-𝛾)) * J_avV, the policy gradient is
+        For any differentiable policy 𝜋_𝜃(s,a), for any of the policy objective functions
+        J = J_1, J_avR, or (1/(1-𝛾)) * J_avV, the policy gradient is
         ∇𝜃 J(𝜃) = E_𝜋𝜃 [∇𝜃 log(𝜋_𝜃(s,a)) * Q^𝜋(s,a)]
 
 ***
