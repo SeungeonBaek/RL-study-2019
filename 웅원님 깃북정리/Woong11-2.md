@@ -237,11 +237,11 @@
 
     > unbiased estimate of the advantage function
 
-      E_𝜋𝜃[𝛿^𝜋𝜃 | s,a] = E_𝜋𝜃[r + 𝛾 * V^𝜋𝜃(s') | s,a] - V^𝜋𝜃(s)
+        E_𝜋𝜃[𝛿^𝜋𝜃 | s,a] = E_𝜋𝜃[r + 𝛾 * V^𝜋𝜃(s') | s,a] - V^𝜋𝜃(s)
 
-                       = Q^𝜋𝜃(s,a) - V^𝜋𝜃(s)
+                         = Q^𝜋𝜃(s,a) - V^𝜋𝜃(s)
 
-                       = A^𝜋𝜃(s,a)
+                         = A^𝜋𝜃(s,a)
 
   - So we can use the TD error to compute the policy gradient
     ∇𝜃 J(𝜃)   = E_𝜋𝜃 [∇𝜃 log(𝜋_𝜃(s,a)) * 𝛿^𝜋𝜃]
