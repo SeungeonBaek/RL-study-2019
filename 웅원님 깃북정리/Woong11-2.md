@@ -244,10 +244,10 @@
                          = A^𝜋𝜃(s,a)
 
   - So we can use the TD error to compute the policy gradient
-    ∇𝜃 J(𝜃)   = E_𝜋𝜃 [∇𝜃 log(𝜋_𝜃(s,a)) * 𝛿^𝜋𝜃]
+    > ∇𝜃 J(𝜃)   = E_𝜋𝜃 [∇𝜃 log(𝜋_𝜃(s,a)) * 𝛿^𝜋𝜃]
 
   - In practice we can use an approximate TD error
-    𝛿_v = r + 𝛾 * V_v(s') - V_v(s)
+    > 𝛿_v = r + 𝛾 * V_v(s') - V_v(s)
 
   - This approach only requires one set of critic parameters v
 
