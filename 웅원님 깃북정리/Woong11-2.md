@@ -211,7 +211,7 @@
 
       - So we can rewrithe the policy gradient using the advantage function A^𝜋𝜃(s,a)
         A^𝜋𝜃(s,a) = Q^𝜋𝜃(s,a) - V^𝜋𝜃(s)
-        ∇𝜃 J(𝜃) ≈ E_𝜋𝜃 [∇𝜃 log(𝜋_𝜃(s,a)) * A^𝜋𝜃(s,a)]
+        ∇𝜃 J(𝜃)   = E_𝜋𝜃 [∇𝜃 log(𝜋_𝜃(s,a)) * A^𝜋𝜃(s,a)]
 
   이러한 advantage function의 사용은 variance를 상당히 개선시킬 수 있습니다. 하지만 아래와 같이 value function과 action-value function을 둘 다 approximation해주어야 한다는 단점이 있습니다.
 
