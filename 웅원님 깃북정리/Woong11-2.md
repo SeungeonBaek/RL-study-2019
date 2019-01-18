@@ -197,7 +197,7 @@
 
 ## 2. Baseline
 
-  여기까지 기본적인 Policy Gradient의 개념에 대해서 살펴보았는데 Actor-Critic말고 다르게 Variance 문제를 해결하는 것이 Baseline입니다. Q function 이후로 사용하고 있지 않던 State value function을 일종의 평균으로 사용하여 현재의 행동이 평균적으로 얻을 수 있는 value보다 얼마나 더 좋나 라는 것을 계산하도록 해서 variance를 줄이는 것입니다.
+  여기까지 기본적인 Policy Gradient의 개념에 대해서 살펴보았는데 Actor-Critic말고 다르게 Variance 문제를 해결하는 것이 Baseline입니다. Q function 이후로 사용하고 있지 않던 State-value function을 일종의 평균으로 사용하여 현재의 행동이 평균적으로 얻을 수 있는 value보다 얼마나 더 좋나 라는 것을 계산하도록 해서 variance를 줄이는 것입니다.
 
   즉, 지금까지 해왔던 것보다 좋음녀 그 방향으로 update를 하고, 아니면 그 반대방향으로 가겠다는 것입니다.
 
