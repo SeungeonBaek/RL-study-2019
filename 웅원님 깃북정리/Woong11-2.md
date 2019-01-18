@@ -174,7 +174,7 @@
 
     - Simple actor-critic algorithm based on action-value critic
 
-    - Using lenear valuf function approximator Q_w(s,a) = 𝜙(s,a)^T * w
+    - Using lenear value function approximator Q_w(s,a) = 𝜙(s,a)^T * w
       Critic : Updates w by linear TD(0)
       Actor  : Updates 𝜃 by policy gradient
 
