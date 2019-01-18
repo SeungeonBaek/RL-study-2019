@@ -113,7 +113,7 @@
   return자체가 action-value function의 unbiased estimation입니다. 이러한 알고리즘은 REINFORCE라고 하며 아래와 같습니다.
 
     > Monte-Carlo Policy Gradient (REINFORCE)
-      - Update parametres by stochastic gradient ascent
+      - Update parameters by stochastic gradient ascent
       - Using policy gradient theorem
       - Using return v_t as an unbiased sample of Q^(𝜋_𝜃)(s_t, a_t)
         ∆𝜃_t = 𝛼 * ∇𝜃 log( 𝜋_𝜃(s_t,a_t)) * v_t
