@@ -1,11 +1,4 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Dec 28 02:47:34 2017
 
-@author: seung eon
-"""
-
-#argument 즉 인수에 대해
 
 def print_numbers(a,b,c):
     print(a,end=' ')
