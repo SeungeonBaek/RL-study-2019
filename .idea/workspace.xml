@@ -10,20 +10,12 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="policy_iteration.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/002_RL by Keras/1-grid-world/1-policy-iteration/policy_iteration.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="7" column="22" lean-forward="true" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
-              <folding>
-                <element signature="e#24#37#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>state_after_action</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -36,8 +28,8 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="width" value="956" />
+  <component name="ProjectFrameBounds" extendedState="1">
+    <option name="width" value="960" />
     <option name="height" value="1040" />
   </component>
   <component name="ProjectView">
@@ -70,6 +62,13 @@
               <item name="1-grid-world" type="462c0819:PsiDirectoryNode" />
               <item name="1-policy-iteration" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="RL-study-2019" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RL-study-2019" type="462c0819:PsiDirectoryNode" />
+              <item name="002_RL by Keras" type="462c0819:PsiDirectoryNode" />
+              <item name="1-grid-world" type="462c0819:PsiDirectoryNode" />
+              <item name="2-value-iteration" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -93,7 +92,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.breakout_a3c">
+  <component name="RunManager" selected="Python.cartpole_dqn">
     <configuration name="breakout_a3c" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="RL-study-2019" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -130,24 +129,6 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <configuration name="deep_sarsa_agent" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="RL-study-2019" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/002_RL by Keras/1-grid-world/6-deep-sarsa" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/002_RL by Keras/1-grid-world/6-deep-sarsa/deep_sarsa_agent.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-    </configuration>
     <configuration name="play_a3c_model" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="RL-study-2019" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -166,7 +147,7 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <configuration name="reinforce_agent" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="policy_iteration" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="RL-study-2019" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -174,30 +155,48 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/002_RL by Keras/1-grid-world/7-reinforce" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/002_RL by Keras/1-grid-world/1-policy-iteration" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/002_RL by Keras/1-grid-world/7-reinforce/reinforce_agent.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/002_RL by Keras/1-grid-world/1-policy-iteration/policy_iteration.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="value_iteration" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="RL-study-2019" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/002_RL by Keras/1-grid-world/2-value-iteration" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/002_RL by Keras/1-grid-world/2-value-iteration/value_iteration.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
     <list>
-      <item itemvalue="Python.deep_sarsa_agent" />
-      <item itemvalue="Python.reinforce_agent" />
       <item itemvalue="Python.cartpole_dqn" />
       <item itemvalue="Python.play_a3c_model" />
       <item itemvalue="Python.breakout_a3c" />
+      <item itemvalue="Python.policy_iteration" />
+      <item itemvalue="Python.value_iteration" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.cartpole_dqn" />
+        <item itemvalue="Python.policy_iteration" />
+        <item itemvalue="Python.value_iteration" />
         <item itemvalue="Python.breakout_a3c" />
         <item itemvalue="Python.play_a3c_model" />
-        <item itemvalue="Python.cartpole_dqn" />
-        <item itemvalue="Python.reinforce_agent" />
-        <item itemvalue="Python.deep_sarsa_agent" />
       </list>
     </recent_temporary>
   </component>
@@ -215,17 +214,16 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1104" height="1040" extended-state="0" />
-    <editor active="true" />
+    <frame x="0" y="0" width="960" height="1040" extended-state="1" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22326455" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22342733" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" weight="0.32997763" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32997763" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.20387244" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="7" weight="0.32997763" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.32915717" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -273,13 +271,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/002_RL by Keras/1-grid-world/2-value-iteration/value_iteration.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/002_RL by Keras/1-grid-world/3-monte-carlo/mc_agent.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
@@ -322,13 +313,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/002_RL by Keras/2-cartpole/1-dqn/cartpole_dqn.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2415">
-          <caret line="16" column="27" lean-forward="true" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/002_RL by Keras/3-atari/1-breakout/breakout_a3c.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -353,12 +337,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/002_RL by Keras/1-grid-world/2-value-iteration/value_iteration.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="14" column="30" lean-forward="true" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/002_RL by Keras/1-grid-world/1-policy-iteration/policy_iteration.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="7" column="22" lean-forward="true" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
+        <state relative-caret-position="465">
+          <caret line="72" column="37" lean-forward="true" selection-start-line="72" selection-start-column="37" selection-end-line="72" selection-end-column="37" />
           <folding>
             <element signature="e#24#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/002_RL by Keras/2-cartpole/1-dqn/cartpole_dqn.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
           </folding>
         </state>
       </provider>
