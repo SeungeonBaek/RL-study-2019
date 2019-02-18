@@ -28,8 +28,8 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
-    <option name="width" value="960" />
+  <component name="ProjectFrameBounds">
+    <option name="width" value="1067" />
     <option name="height" value="1040" />
   </component>
   <component name="ProjectView">
@@ -92,7 +92,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.cartpole_dqn">
+  <component name="RunManager" selected="Python.policy_iteration">
     <configuration name="breakout_a3c" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="RL-study-2019" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -192,8 +192,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.cartpole_dqn" />
         <item itemvalue="Python.policy_iteration" />
+        <item itemvalue="Python.cartpole_dqn" />
         <item itemvalue="Python.value_iteration" />
         <item itemvalue="Python.breakout_a3c" />
         <item itemvalue="Python.play_a3c_model" />
