@@ -13,12 +13,12 @@
     <favorites_list name="RL-study-2019" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="policy_iteration.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/002_RL by Keras/1-grid-world/1-policy-iteration/policy_iteration.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="361">
-              <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+              <caret line="19" selection-start-line="19" selection-end-line="19" />
               <folding>
                 <element signature="e#24#37#0" expanded="true" />
               </folding>
@@ -29,7 +29,7 @@
       <file leaf-file-name="builtins.py" pinned="false" current-in-tab="false">
         <entry file="file://$USER_HOME$/.PyCharmCE2018.1/system/python_stubs/-772030374/builtins.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
+            <state relative-caret-position="15675">
               <caret line="825" column="4" selection-start-line="825" selection-start-column="4" selection-end-line="825" selection-end-column="4" />
             </state>
           </provider>
@@ -63,6 +63,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -99,7 +100,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -251,14 +251,13 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4985955" visible="true" weight="0.12065332" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.497191" visible="true" weight="0.12065332" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32997763" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50052685" side_tool="true" visible="true" weight="0.20357941" />
-      <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" x="155" y="802" width="1898" height="182" id="Run" order="2" sideWeight="0.49947312" weight="0.20357941" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32997763" />
       <window_info anchor="bottom" x="11" y="372" width="1898" height="295" id="Python Console" order="7" weight="0.32997763" />
-      <window_info id="Structure" order="1" sideWeight="0.5014045" side_tool="true" visible="true" weight="0.12065332" />
+      <window_info id="Structure" order="1" sideWeight="0.502809" side_tool="true" visible="true" weight="0.12065332" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32885906" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49947312" weight="0.36689037" />
       <window_info id="Favorites" order="2" sideWeight="0.5014045" side_tool="true" weight="0.12065332" />
@@ -268,12 +267,30 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/002_RL by Keras/1-grid-world/1-policy-iteration/policy_iteration.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+          <folding>
+            <element signature="e#24#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharmCE2018.1/system/python_stubs/-772030374/builtins.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15675">
+          <caret line="825" column="4" selection-start-line="825" selection-start-column="4" selection-end-line="825" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/001_PyExam/PyExam/Argument_exam.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="114">
@@ -388,7 +405,7 @@
     </entry>
     <entry file="file://$USER_HOME$/.PyCharmCE2018.1/system/python_stubs/-772030374/builtins.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
+        <state relative-caret-position="15675">
           <caret line="825" column="4" selection-start-line="825" selection-start-column="4" selection-end-line="825" selection-end-column="4" />
         </state>
       </provider>
@@ -396,7 +413,7 @@
     <entry file="file://$PROJECT_DIR$/002_RL by Keras/1-grid-world/1-policy-iteration/policy_iteration.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="361">
-          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
           <folding>
             <element signature="e#24#37#0" expanded="true" />
           </folding>
