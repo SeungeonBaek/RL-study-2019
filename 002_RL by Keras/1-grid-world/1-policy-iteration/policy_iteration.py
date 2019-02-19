@@ -2,7 +2,6 @@
 import random
 from environment import GraphicDisplay, Env
 
-
 class PolicyIteration:
     def __init__(self, env):
         # 환경에 대한 객체 선언
