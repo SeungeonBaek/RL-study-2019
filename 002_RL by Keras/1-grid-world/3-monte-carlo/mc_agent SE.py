@@ -29,6 +29,7 @@ class MCAgent:
             if state not in visit_state:
                 visit_state.append(state)
                 G_t = self.discount_factor * (sample[1] + G_t)
+                # print(G_t)
                 value = self.value_table[state]
                 self.value_table[state] = (value +
                                            self.learning_rate * (G_t - value))
